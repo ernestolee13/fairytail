@@ -1,0 +1,286 @@
+{
+  "schema_version": 1,
+  "contract_version": 1,
+  "content_version": "2026.07.18.2",
+  "reviewed_at": "2026-07-18",
+  "contracts": [
+    {
+      "contract_version": 1,
+      "concept_id": "package-dependency",
+      "canonical_fact_hash": "f0cc46b9a667fe4ba3c2df9c502133961850a4e0e2c411ad45a030ee0fd190de",
+      "role_ids": ["package", "dependency", "manifest", "resolver"],
+      "required_relations": [
+        {
+          "relation_id": "manifest-declares-dependency",
+          "from_role": "manifest",
+          "relation": "declares a requirement",
+          "to_role": "dependency"
+        },
+        {
+          "relation_id": "dependency-requires-package",
+          "from_role": "dependency",
+          "relation": "points to the required package",
+          "to_role": "package"
+        },
+        {
+          "relation_id": "resolver-selects-package",
+          "from_role": "resolver",
+          "relation": "selects a compatible package",
+          "to_role": "package"
+        }
+      ]
+    },
+    {
+      "contract_version": 1,
+      "concept_id": "process-server",
+      "canonical_fact_hash": "6f2f345dcd194bb125ab221094b49aaf866df08bd7610967a3346306f045900a",
+      "role_ids": ["program", "process", "server", "port", "database"],
+      "required_relations": [
+        {
+          "relation_id": "program-becomes-process",
+          "from_role": "program",
+          "relation": "becomes an active instance when run",
+          "to_role": "process"
+        },
+        {
+          "relation_id": "process-serves-as-server",
+          "from_role": "process",
+          "relation": "can take the role of receiving requests",
+          "to_role": "server"
+        },
+        {
+          "relation_id": "server-listens-on-port",
+          "from_role": "server",
+          "relation": "receives requests at a distinct endpoint",
+          "to_role": "port"
+        },
+        {
+          "relation_id": "server-may-access-database",
+          "from_role": "server",
+          "relation": "may use a data system while processing",
+          "to_role": "database"
+        }
+      ]
+    },
+    {
+      "contract_version": 1,
+      "concept_id": "environment-variable-config",
+      "canonical_fact_hash": "64d9339394f8f34cb04b32ef69b03e14b9a084f56159a9a7698fdfa6cffc040b",
+      "role_ids": ["config", "environment variable", "process"],
+      "required_relations": [
+        {
+          "relation_id": "config-may-use-environment-variable",
+          "from_role": "config",
+          "relation": "may use it as one channel for delivering settings",
+          "to_role": "environment variable"
+        },
+        {
+          "relation_id": "process-receives-environment-variable",
+          "from_role": "process",
+          "relation": "receives name-value settings at startup",
+          "to_role": "environment variable"
+        }
+      ]
+    },
+    {
+      "contract_version": 1,
+      "concept_id": "api-request-response",
+      "canonical_fact_hash": "0951e5ce4b7d6f626e786aff362b9565aecc655305eaa8f7e366e5ca9343cde7",
+      "role_ids": ["API", "endpoint", "request", "response"],
+      "required_relations": [
+        {
+          "relation_id": "api-defines-endpoint",
+          "from_role": "API",
+          "relation": "defines an available interaction point",
+          "to_role": "endpoint"
+        },
+        {
+          "relation_id": "request-goes-to-endpoint",
+          "from_role": "request",
+          "relation": "is sent in the defined format",
+          "to_role": "endpoint"
+        },
+        {
+          "relation_id": "endpoint-returns-response",
+          "from_role": "endpoint",
+          "relation": "returns the processing result",
+          "to_role": "response"
+        }
+      ]
+    },
+    {
+      "contract_version": 1,
+      "concept_id": "credential-api-key-access-token",
+      "canonical_fact_hash": "9ef53856bddb1f37c6df26f871232f11f4bacf295f31ffa93f8be568d514d23f",
+      "role_ids": ["API key", "access token", "scope", "resource server"],
+      "required_relations": [
+        {
+          "relation_id": "api-key-presented-to-resource-server",
+          "from_role": "API key",
+          "relation": "is presented as a credential for service access",
+          "to_role": "resource server"
+        },
+        {
+          "relation_id": "access-token-presented-to-resource-server",
+          "from_role": "access token",
+          "relation": "is presented as a delegated access credential",
+          "to_role": "resource server"
+        },
+        {
+          "relation_id": "scope-constrains-access-token",
+          "from_role": "scope",
+          "relation": "limits permitted access",
+          "to_role": "access token"
+        }
+      ]
+    },
+    {
+      "contract_version": 1,
+      "concept_id": "database-table-query",
+      "canonical_fact_hash": "bddd6dd6ce9f8df9de00089a5d5945f862d6c8251866501c7e67ca28058f029e",
+      "role_ids": ["database", "table", "row", "column", "query", "DBMS"],
+      "required_relations": [
+        {
+          "relation_id": "dbms-manages-database",
+          "from_role": "DBMS",
+          "relation": "manages the data system",
+          "to_role": "database"
+        },
+        {
+          "relation_id": "database-contains-table",
+          "from_role": "database",
+          "relation": "contains a structured collection",
+          "to_role": "table"
+        },
+        {
+          "relation_id": "table-contains-row",
+          "from_role": "table",
+          "relation": "contains individual records",
+          "to_role": "row"
+        },
+        {
+          "relation_id": "row-has-column",
+          "from_role": "row",
+          "relation": "is composed of defined fields",
+          "to_role": "column"
+        },
+        {
+          "relation_id": "dbms-processes-query",
+          "from_role": "DBMS",
+          "relation": "processes a read or change request",
+          "to_role": "query"
+        }
+      ]
+    },
+    {
+      "contract_version": 1,
+      "concept_id": "mcp-tool-resource",
+      "canonical_fact_hash": "bdac9289aef40f44cba2a188bf05588b1b1eb703eb5d8d7e35d2d87d7884acfe",
+      "role_ids": ["host", "client", "server", "resource", "tool"],
+      "required_relations": [
+        {
+          "relation_id": "host-owns-client",
+          "from_role": "host",
+          "relation": "manages a communication participant for each connection",
+          "to_role": "client"
+        },
+        {
+          "relation_id": "client-connects-to-server",
+          "from_role": "client",
+          "relation": "sends protocol requests",
+          "to_role": "server"
+        },
+        {
+          "relation_id": "server-exposes-resource",
+          "from_role": "server",
+          "relation": "may expose readable data",
+          "to_role": "resource"
+        },
+        {
+          "relation_id": "server-exposes-tool",
+          "from_role": "server",
+          "relation": "may expose executable capabilities",
+          "to_role": "tool"
+        }
+      ]
+    },
+    {
+      "contract_version": 1,
+      "concept_id": "permission-authentication-authorization",
+      "canonical_fact_hash": "c83472a5b981e525efdeb45d365b095031ef2917b8d2f6705ece43d1e7d93d0b",
+      "role_ids": ["authentication", "authorization", "permission"],
+      "required_relations": [
+        {
+          "relation_id": "authentication-establishes-context-for-authorization",
+          "from_role": "authentication",
+          "relation": "establishes identity as input to the decision",
+          "to_role": "authorization"
+        },
+        {
+          "relation_id": "authorization-decides-permission",
+          "from_role": "authorization",
+          "relation": "decides whether a specific action is permitted",
+          "to_role": "permission"
+        }
+      ]
+    },
+    {
+      "contract_version": 1,
+      "concept_id": "file-path-project-repository",
+      "canonical_fact_hash": "fbd6dc1d38f19f350ad77e8173b35793e60d9b026fa174d00bebd9bc00d4de09",
+      "role_ids": ["file", "path", "project", "repository", "worktree"],
+      "required_relations": [
+        {
+          "relation_id": "path-identifies-file",
+          "from_role": "path",
+          "relation": "resolves to identify the target",
+          "to_role": "file"
+        },
+        {
+          "relation_id": "project-scopes-worktree",
+          "from_role": "project",
+          "relation": "defines the current work scope",
+          "to_role": "worktree"
+        },
+        {
+          "relation_id": "repository-tracks-worktree",
+          "from_role": "repository",
+          "relation": "stores history used to compare the current worktree",
+          "to_role": "worktree"
+        },
+        {
+          "relation_id": "worktree-contains-file",
+          "from_role": "worktree",
+          "relation": "contains the files currently checked out",
+          "to_role": "file"
+        }
+      ]
+    },
+    {
+      "contract_version": 1,
+      "concept_id": "local-remote-cloud-deploy",
+      "canonical_fact_hash": "23a8410ec66fa0681383ff05f0f63853efe553a667cdfd61438c4894fae17505",
+      "role_ids": ["local", "remote", "cloud", "deploy"],
+      "required_relations": [
+        {
+          "relation_id": "local-may-sync-to-remote",
+          "from_role": "local",
+          "relation": "may transfer work content",
+          "to_role": "remote"
+        },
+        {
+          "relation_id": "remote-is-not-cloud",
+          "from_role": "remote",
+          "relation": "is a different concept with a different location or role",
+          "to_role": "cloud"
+        },
+        {
+          "relation_id": "deploy-may-target-cloud",
+          "from_role": "deploy",
+          "relation": "may place and run an approved result in the target environment",
+          "to_role": "cloud"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "card_version": 1,
+  "family_id": "C01",
+  "id": "unknown-field-card",
+  "unexpected_runtime_override": "must be rejected"
+}

@@ -1,0 +1,6 @@
+{
+  "hook_event_name": "SessionStart",
+  "session_id": "PRIVATE_SESSION_CANARY",
+  "cwd": "/private/PRIVATE_PATH_CANARY",
+  "source": "startup"
+}

@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fairytail.local/schemas/v1/explanation-patch.schema.json",
+  "title": "Fairytail presentation-only explanation patch v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "packet_id",
+    "protected_render_hash",
+    "section_order",
+    "section_detail"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "packet_id": {
+      "type": "string",
+      "pattern": "^fairytail\\.learning\\.v1\\.[a-f0-9]{64}$"
+    },
+    "protected_render_hash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "section_order": {
+      "type": "array",
+      "minItems": 8,
+      "maxItems": 8,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/sectionSlot" }
+    },
+    "section_detail": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "canonical_definition",
+        "current_encounter",
+        "analogy_or_neutral_fallback",
+        "analogy_breakpoint",
+        "target_side_effect_risk_rollback",
+        "one_next_action_and_evidence",
+        "diagnostic_or_teachback",
+        "protocol_fact_and_fairytail_policy_labels"
+      ],
+      "properties": {
+        "canonical_definition": { "$ref": "#/$defs/detail" },
+        "current_encounter": { "$ref": "#/$defs/detail" },
+        "analogy_or_neutral_fallback": { "$ref": "#/$defs/detail" },
+        "analogy_breakpoint": { "$ref": "#/$defs/detail" },
+        "target_side_effect_risk_rollback": { "$ref": "#/$defs/detail" },
+        "one_next_action_and_evidence": { "$ref": "#/$defs/detail" },
+        "diagnostic_or_teachback": { "$ref": "#/$defs/detail" },
+        "protocol_fact_and_fairytail_policy_labels": {
+          "$ref": "#/$defs/detail"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "detail": { "enum": ["full", "compact"] },
+    "sectionSlot": {
+      "enum": [
+        "canonical_definition",
+        "current_encounter",
+        "analogy_or_neutral_fallback",
+        "analogy_breakpoint",
+        "target_side_effect_risk_rollback",
+        "one_next_action_and_evidence",
+        "diagnostic_or_teachback",
+        "protocol_fact_and_fairytail_policy_labels"
+      ]
+    }
+  }
+}

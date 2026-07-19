@@ -1,0 +1,18 @@
+{
+  "artifact_version": 1,
+  "benchmark_id": "g010",
+  "kind": "measured-results-placeholder",
+  "synthetic": false,
+  "publishable": false,
+  "status": {
+    "value": null,
+    "status": "unavailable",
+    "source": "g010-offline-placeholder",
+    "reason": "No publishable measured transcript is included in this release"
+  },
+  "runs": [],
+  "limitations": [
+    "This placeholder remains non-publishable by design; the current release makes no claim from a retained G010 transcript.",
+    "No novice human comprehension study has been run; the automatic explanation score is a structural proxy only."
+  ]
+}

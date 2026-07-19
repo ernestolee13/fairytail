@@ -1,0 +1,83 @@
+{
+  "manifest_version": 1,
+  "benchmark_id": "g010",
+  "ponytail_commit": "16f29800fd2681bdf24f3eb4ccffe38be3baec6b",
+  "claude_cli_version": "2.1.214",
+  "model_pins": {
+    "parent": "claude-sonnet-4-6",
+    "renderer": "claude-haiku-4-5-20251001"
+  },
+  "effort_pins": {
+    "parent": "high"
+  },
+  "ponytail_source_pins": {
+    "skills/ponytail/SKILL.md": "1316a2f3f95741d2300b116fe0c2d81ce4a9568656ed0a62643f54aaf09957f2"
+  },
+  "headline_arms": ["baseline", "ponytail", "fairytail-local"],
+  "diagnostic_variants": ["fairytail-agent", "fairytail-skill-override"],
+  "host_boundaries": {
+    "claude": "Plugin agents and per-skill model overrides are supported, but resolved models must be verified because policy or environment can override them.",
+    "codex": "The native plugin packages shared skills and hooks, but does not bundle the optional custom agent; deterministic local rendering remains the portable default."
+  },
+  "statistics_contract": {
+    "discovery_repetitions_per_cell": 5,
+    "preferred_publishable_repetitions_per_cell": 10,
+    "continuous": ["per-run raw", "n", "mean", "sample SD", "median", "IQR"],
+    "binary": ["numerator", "denominator", "Wilson 95% CI"],
+    "independence_warning": "Repetitions are not independent tasks; report per-task outcomes and use task-level resampling."
+  },
+  "source_urls": [
+    "https://learn.chatgpt.com/docs/non-interactive-mode",
+    "https://learn.chatgpt.com/docs/agent-configuration/subagents",
+    "https://learn.chatgpt.com/docs/build-plugins",
+    "https://code.claude.com/docs/en/headless",
+    "https://code.claude.com/docs/en/sub-agents",
+    "https://code.claude.com/docs/en/prompt-caching",
+    "https://platform.claude.com/docs/en/api/rate-limits",
+    "https://github.com/DietrichGebert/ponytail/tree/16f29800fd2681bdf24f3eb4ccffe38be3baec6b"
+  ],
+  "file_pins": {
+    "agents/fairytail-explainer.md": "fa6db65c16941297b28fc4283037b60b6384a5be44285da15ff4a4e5a6b458d0",
+    "benchmarks/g010/diagnostics/skill-override-plugin/.claude-plugin/plugin.json": "426c3fec0ec1a8c8c909b3b7a5cb067d1c2c2d0f36bd273c17a979524411171d",
+    "benchmarks/g010/diagnostics/skill-override-plugin/skills/render/SKILL.md": "69a563195752a76a90053734923fc02f5114873c126f2ed252004d357359162c",
+    "benchmarks/g010/fixtures/explanation/bad.json": "d2c7adf43f76e55f834ffa12ae1bd7a55c296199d478b828e0080c1fc840df3e",
+    "benchmarks/g010/fixtures/explanation/frozen-packet.json": "45b8219a859a3e2be8d74ea607fb376672132ec28a6e10bf4a27e5304bc668c8",
+    "benchmarks/g010/fixtures/explanation/good-en.json": "a5e1290d58ef2fef723be09b37855032b208160f5048732a4674aae474806204",
+    "benchmarks/g010/fixtures/explanation/good-ko.json": "9641a29b9ebb2772ea2283f33e2e0f97a98d0aef75d6394885301a29d7b6266e",
+    "benchmarks/g010/fixtures/safe-path/arms/baseline/package.json": "e162f069f2b3a967dc41bd8e4f118efff5111548082047538e1d83827d3a3645",
+    "benchmarks/g010/fixtures/safe-path/arms/baseline/src/inside.mjs": "4d5f270885dadd9642bfa90ba628193fe6300fef7c880f658ab6b1fa213cc4eb",
+    "benchmarks/g010/fixtures/safe-path/arms/baseline/src/note-path.mjs": "5cd41485296b383313b2acb4e47ec04f8591a87dc062a1eff12022cf6274ac57",
+    "benchmarks/g010/fixtures/safe-path/arms/fairytail-local/package.json": "7dac2e8618cfabecfe766c7c60a5f336a197f1e22d65c11a71eca16f52df5cec",
+    "benchmarks/g010/fixtures/safe-path/arms/fairytail-local/src/note-path.mjs": "1e52ae535e95a7cd7a42c584603690121882d7ac926f6f6c7442a256c911f0d4",
+    "benchmarks/g010/fixtures/safe-path/arms/ponytail/package.json": "7dac2e8618cfabecfe766c7c60a5f336a197f1e22d65c11a71eca16f52df5cec",
+    "benchmarks/g010/fixtures/safe-path/arms/ponytail/src/note-path.mjs": "1e52ae535e95a7cd7a42c584603690121882d7ac926f6f6c7442a256c911f0d4",
+    "benchmarks/g010/fixtures/safe-path/base/package.json": "7dac2e8618cfabecfe766c7c60a5f336a197f1e22d65c11a71eca16f52df5cec",
+    "benchmarks/g010/fixtures/safe-path/base/src/note-path.mjs": "f38d90e92c27039de4538d6c192dd1f5d033d12630143f044e6e8c46d85ea047",
+    "benchmarks/g010/fixtures/safe-path/references/bad/package.json": "7dac2e8618cfabecfe766c7c60a5f336a197f1e22d65c11a71eca16f52df5cec",
+    "benchmarks/g010/fixtures/safe-path/references/bad/src/note-path.mjs": "367416aacc10d96e38ec5a5a740696f9f5649068403c74e9b76fe1919f1e9220",
+    "benchmarks/g010/fixtures/safe-path/references/good/package.json": "7dac2e8618cfabecfe766c7c60a5f336a197f1e22d65c11a71eca16f52df5cec",
+    "benchmarks/g010/fixtures/safe-path/references/good/src/note-path.mjs": "18209fd93caaf3d31b7250c73d7408699b18c8cf8c6fc1e06f016b564fc01870",
+    "benchmarks/g010/fixtures/safe-path/task.md": "aa1e645afba4d4400b1fe2fdfa3dc7c807d17d24e6134f880e4eadc8de529957",
+    "schemas/v1/benchmark-run.schema.json": "080fdaad488412ac617e367a5def53bb3b06a4947aed755d1751fd2dd2ea647c",
+    "schemas/v1/explanation-patch.schema.json": "f3ae5c8b4376d2ef7c121936718a856aa70ea02e7589acc74e4b4aabb49d3613",
+    "schemas/v1/learning-packet.schema.json": "052d9f1790e5d3dcfec866d72af559fe77a3616a7c6724b1b06beaad1b899953",
+    "scripts/benchmark-g010.mjs": "34b31ab47487748f8db4dcb4b7df48250a406cfce54c1954cde346f80ec060b3",
+    "scripts/verify-g010-benchmark.mjs": "2d2737284f7c566f7355f959e3d1e2d60093e21121bb70e28fcd0e042bc30480",
+    "benchmarks/g010/snapshots/fairytail-build-v1/SKILL.md": "07490be0f9ee70dde8bd4c354caf89e7c82742c3ffca136f9e69ac0388aed547",
+    "skills/build/SKILL.md": "44bbc395afb6a9ba0347024e4826e939556d902ac6cdec9bdf4a78eff0b34594",
+    "skills/fairytail-explain-concept/SKILL.md": "99d5a3d20a51db5b9363ab0b5927e035d22a73a99e73f9183c787a898b9d695c",
+    "src/benchmark/contracts.mjs": "7ebc47424e5e6974784dcde85f64b2d85389fd0773a32586419228e52190eaed",
+    "src/benchmark/diff.mjs": "58114033b8582769b0272f0d4acb95624250ac9fc40d06efc7f62e312025edce",
+    "src/benchmark/harness.mjs": "7989887fa227364cde4367c235b86cab440cedf13be66b5878c01d49c062608b",
+    "src/benchmark/live-claude.mjs": "7ecc8f0228562db669eda005f303c143a52bcae43fc262369ce3f8fc8b88d1a0",
+    "src/benchmark/manifest.mjs": "3fd43ad6ec49cf7738a368a6734f312ebafda7fd4eca1734b6b8de34d65addbf",
+    "src/benchmark/record.mjs": "5e0ac8751043a516d9fe8b78bca4a5042e0845c9243a7fa9acc80caeb989208e",
+    "src/benchmark/scoring.mjs": "d113e2dcc27d4ad26a002ce9854c44c496456b10c777ce3d99e8f10163d2d92d",
+    "src/benchmark/statistics.mjs": "d324d3a71e82e56986551da0ecdb74797671f21a9b000f1cefacac5518fb4bd9",
+    "src/benchmark/suite.mjs": "bf77dd96b4e15653c05bbc37ea51d617ea4fb1c78286b99492a93f962567f9f5",
+    "src/benchmark/telemetry.mjs": "f67d56eb4d06af275c83a7e5d642394c61aa8961ff6ae4714710c5410b051660",
+    "src/benchmark/verify.mjs": "48237208d3105047adbcefeda375a1003280cefd3b3913b9e998472c433583a4",
+    "src/learning/packet.mjs": "f684e575db7dcb0bfc197abb6f8e4a89c1e00eb121e265c24be8f632fc7c7f1b",
+    "src/learning/render.mjs": "a8ab574ee418137aa029e7ca1a6e2eb6d39fa0a6d5525af8ab2bb210f55e1522"
+  }
+}

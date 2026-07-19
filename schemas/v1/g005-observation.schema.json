@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fairytail.local/schemas/v1/g005-observation.schema.json",
+  "title": "Fairytail closed learning observation v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "observation",
+    "concept_id",
+    "scenario_id",
+    "at",
+    "novel_context",
+    "rubric"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "observation": {
+      "enum": ["teachback", "retrieval", "novel_application"]
+    },
+    "concept_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "scenario_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,119}$"
+    },
+    "at": { "type": "string", "format": "date-time" },
+    "novel_context": { "type": "boolean" },
+    "rubric": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "role_and_flow",
+        "confusion_boundary",
+        "analogy_limit",
+        "safe_next_action",
+        "fatal_misconception"
+      ],
+      "properties": {
+        "role_and_flow": { "type": "integer", "minimum": 0, "maximum": 2 },
+        "confusion_boundary": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 2
+        },
+        "analogy_limit": { "type": "integer", "minimum": 0, "maximum": 2 },
+        "safe_next_action": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 2
+        },
+        "fatal_misconception": { "type": "boolean" }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "observation": { "const": "novel_application" } },
+        "required": ["observation"]
+      },
+      "then": {
+        "properties": {
+          "novel_context": { "const": true },
+          "scenario_id": { "pattern": "^ctx-[a-f0-9]{16}$" }
+        }
+      },
+      "else": { "properties": { "novel_context": { "const": false } } }
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "fairytail",
+  "description": "Beginner-friendly, evidence-bounded explanations for Claude Code.",
+  "owner": {
+    "name": "Fairytail"
+  },
+  "plugins": [
+    {
+      "name": "fairytail",
+      "source": "./",
+      "description": "Minimal implementation guidance plus locally personalized beginner explanations."
+    }
+  ]
+}

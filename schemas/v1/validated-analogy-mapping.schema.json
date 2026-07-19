@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fairytail.local/schemas/v1/validated-analogy-mapping.schema.json",
+  "title": "Fairytail published analogy mapping v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "mapping_version",
+    "mapping_id",
+    "candidate_source_id",
+    "scenario_id",
+    "concept_id",
+    "profile_id",
+    "profile_world_id",
+    "analogy_label",
+    "role_map",
+    "relation_ids",
+    "non_mappings",
+    "breakpoint_ref",
+    "neutral_fallback_ref",
+    "validation_status",
+    "confidence",
+    "reviewed_at",
+    "expires_at"
+  ],
+  "properties": {
+    "mapping_version": { "const": 1 },
+    "mapping_id": {
+      "type": "string",
+      "pattern": "^P[1-9][0-9]*-S[0-9]{2}-A[1-9][0-9]*$"
+    },
+    "candidate_source_id": {
+      "type": "string",
+      "pattern": "^P[1-9][0-9]*-S[0-9]{2}$"
+    },
+    "scenario_id": { "type": "string", "pattern": "^S[0-9]{2}$" },
+    "concept_id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+    "profile_id": { "type": "string", "pattern": "^P[1-9][0-9]*$" },
+    "profile_world_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "analogy_label": { "type": "string", "minLength": 1, "maxLength": 120 },
+    "role_map": {
+      "type": "object",
+      "minProperties": 2,
+      "additionalProperties": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 80
+      }
+    },
+    "relation_ids": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" }
+    },
+    "non_mappings": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 12, "maxLength": 240 }
+    },
+    "breakpoint_ref": {
+      "type": "string",
+      "pattern": "^concepts/[a-z0-9-]+#analogy_breakpoint$"
+    },
+    "neutral_fallback_ref": {
+      "type": "string",
+      "pattern": "^concepts/[a-z0-9-]+#neutral_example$"
+    },
+    "validation_status": { "const": "validated" },
+    "confidence": { "enum": ["medium", "high"] },
+    "reviewed_at": { "type": "string", "format": "date" },
+    "expires_at": { "type": "string", "format": "date" }
+  }
+}

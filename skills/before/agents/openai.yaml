@@ -1,0 +1,6 @@
+interface:
+  display_name: "Fairytail Before"
+  short_description: "Explain a meaningful action before it runs"
+  default_prompt: "Use $fairytail:before to explain this action before it runs."
+policy:
+  allow_implicit_invocation: false

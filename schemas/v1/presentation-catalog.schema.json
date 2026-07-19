@@ -1,0 +1,246 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fairytail.local/schemas/v1/presentation-catalog.schema.json",
+  "title": "Fairytail reviewed presentation catalog v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "catalog_version",
+    "source_locale",
+    "locale",
+    "source_content_version",
+    "review",
+    "worlds",
+    "concepts",
+    "scenarios",
+    "contracts",
+    "mappings"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "catalog_version": { "$ref": "#/$defs/version" },
+    "source_locale": { "const": "en" },
+    "locale": { "const": "ko" },
+    "source_content_version": { "$ref": "#/$defs/version" },
+    "review": { "$ref": "#/$defs/review" },
+    "worlds": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": { "$ref": "#/$defs/world" }
+    },
+    "concepts": {
+      "type": "array",
+      "minItems": 12,
+      "maxItems": 12,
+      "items": { "$ref": "#/$defs/concept" }
+    },
+    "scenarios": {
+      "type": "array",
+      "minItems": 10,
+      "maxItems": 10,
+      "items": { "$ref": "#/$defs/scenario" }
+    },
+    "contracts": {
+      "type": "array",
+      "minItems": 10,
+      "maxItems": 10,
+      "items": { "$ref": "#/$defs/contract" }
+    },
+    "mappings": {
+      "type": "array",
+      "minItems": 30,
+      "maxItems": 30,
+      "items": { "$ref": "#/$defs/mapping" }
+    }
+  },
+  "$defs": {
+    "version": {
+      "type": "string",
+      "pattern": "^[0-9]{4}\\.[0-9]{2}\\.[0-9]{2}\\.[0-9]+$"
+    },
+    "hash": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "text": { "type": "string", "minLength": 1, "maxLength": 1200 },
+    "slug": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9]+(?:[-_][A-Za-z0-9]+)*$"
+    },
+    "review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "basis", "reviewed_at", "evidence_id"],
+      "properties": {
+        "status": { "const": "reviewed" },
+        "basis": { "$ref": "#/$defs/text" },
+        "reviewed_at": { "type": "string", "format": "date" },
+        "evidence_id": { "$ref": "#/$defs/text" }
+      }
+    },
+    "world": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_hash",
+        "profile_id",
+        "world_id",
+        "label",
+        "selection_aliases"
+      ],
+      "properties": {
+        "source_hash": { "$ref": "#/$defs/hash" },
+        "profile_id": { "type": "string", "pattern": "^P[1-9][0-9]*$" },
+        "world_id": { "$ref": "#/$defs/slug" },
+        "label": { "$ref": "#/$defs/text" },
+        "selection_aliases": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/text" },
+          "uniqueItems": true
+        }
+      }
+    },
+    "concept": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_hash",
+        "concept_id",
+        "canonical_definition",
+        "mechanism",
+        "safety_boundary",
+        "analogy_breakpoint",
+        "neutral_example"
+      ],
+      "properties": {
+        "source_hash": { "$ref": "#/$defs/hash" },
+        "concept_id": { "$ref": "#/$defs/slug" },
+        "canonical_definition": { "$ref": "#/$defs/text" },
+        "mechanism": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["actors", "flow"],
+          "properties": {
+            "actors": {
+              "type": "array",
+              "minItems": 1,
+              "items": { "$ref": "#/$defs/text" },
+              "uniqueItems": true
+            },
+            "flow": {
+              "type": "array",
+              "minItems": 1,
+              "items": { "$ref": "#/$defs/text" }
+            }
+          }
+        },
+        "safety_boundary": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/text" }
+        },
+        "analogy_breakpoint": { "$ref": "#/$defs/text" },
+        "neutral_example": { "$ref": "#/$defs/text" }
+      }
+    },
+    "scenario": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_hash",
+        "scenario_id",
+        "fixed_criterion",
+        "encounter",
+        "pre_action",
+        "next_action",
+        "evidence",
+        "diagnostic_question",
+        "policy_labels"
+      ],
+      "properties": {
+        "source_hash": { "$ref": "#/$defs/hash" },
+        "scenario_id": { "type": "string", "pattern": "^S[0-9]{2}$" },
+        "fixed_criterion": { "$ref": "#/$defs/text" },
+        "encounter": { "$ref": "#/$defs/text" },
+        "pre_action": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["target", "side_effect", "risk", "rollback"],
+          "properties": {
+            "target": { "$ref": "#/$defs/text" },
+            "side_effect": { "$ref": "#/$defs/text" },
+            "risk": { "$ref": "#/$defs/text" },
+            "rollback": { "$ref": "#/$defs/text" }
+          }
+        },
+        "next_action": { "$ref": "#/$defs/text" },
+        "evidence": { "$ref": "#/$defs/text" },
+        "diagnostic_question": { "$ref": "#/$defs/text" },
+        "policy_labels": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["kind", "text"],
+            "properties": {
+              "kind": { "enum": ["protocol_fact", "fairytail_policy"] },
+              "text": { "$ref": "#/$defs/text" }
+            }
+          }
+        }
+      }
+    },
+    "contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source_hash", "concept_id", "relations"],
+      "properties": {
+        "source_hash": { "$ref": "#/$defs/hash" },
+        "concept_id": { "$ref": "#/$defs/slug" },
+        "relations": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["relation_id", "relation"],
+            "properties": {
+              "relation_id": { "$ref": "#/$defs/slug" },
+              "relation": { "$ref": "#/$defs/text" }
+            }
+          }
+        }
+      }
+    },
+    "mapping": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_hash",
+        "mapping_id",
+        "analogy_label",
+        "role_map",
+        "non_mappings"
+      ],
+      "properties": {
+        "source_hash": { "$ref": "#/$defs/hash" },
+        "mapping_id": {
+          "type": "string",
+          "pattern": "^P[1-9][0-9]*-S[0-9]{2}-A[1-9][0-9]*$"
+        },
+        "analogy_label": { "$ref": "#/$defs/text" },
+        "role_map": {
+          "type": "object",
+          "minProperties": 2,
+          "additionalProperties": { "$ref": "#/$defs/text" }
+        },
+        "non_mappings": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/text" }
+        }
+      }
+    }
+  }
+}

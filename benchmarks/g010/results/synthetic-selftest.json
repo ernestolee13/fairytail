@@ -1,0 +1,1055 @@
+{
+  "artifact_version": 1,
+  "benchmark_id": "g010",
+  "kind": "synthetic-selftest",
+  "synthetic": true,
+  "publishable": false,
+  "created_at": "2026-07-18T00:00:00.000Z",
+  "pins": {
+    "manifest_sha256": "365b9c80cba84363e60b6023c22dc0c74598fae1eda5383a5ea3831c92c2854b",
+    "file_set_sha256": "513b794c8d462f39edb2985c1394df1c0d566affbde39ffe64f2758294ad5f2d",
+    "verified_file_count": 42
+  },
+  "scorer_selftest": {
+    "status": "pass",
+    "assertions": {
+      "good_reference_passes": true,
+      "bad_reference_is_caught": true,
+      "good_explanation_passes": true,
+      "bad_explanation_is_caught": true
+    }
+  },
+  "runs": [
+    {
+      "schema_version": 1,
+      "benchmark_id": "g010",
+      "run_id": "g010-synthetic-safe-path-baseline-r1",
+      "created_at": "2026-07-18T00:00:00.000Z",
+      "synthetic": true,
+      "measurement_kind": "synthetic-fixture",
+      "lane": "end-to-end",
+      "complete": true,
+      "publishable": false,
+      "host": "offline-fixture",
+      "host_cli_version": null,
+      "arm": "baseline",
+      "variant": "headline",
+      "task_id": "safe-relative-note-path",
+      "repetition": 1,
+      "pins": {
+        "verified": true,
+        "manifest_sha256": "365b9c80cba84363e60b6023c22dc0c74598fae1eda5383a5ea3831c92c2854b",
+        "file_set_sha256": "513b794c8d462f39edb2985c1394df1c0d566affbde39ffe64f2758294ad5f2d",
+        "ponytail_commit": "16f29800fd2681bdf24f3eb4ccffe38be3baec6b",
+        "fixture_commit": "temporary-git-fixture-HEAD",
+        "model_requested": null,
+        "model_resolved": null
+      },
+      "isolation": {
+        "workspace": "<temporary-git-workspace>",
+        "fresh_git_repository": true,
+        "settings_sources": [],
+        "network_calls": 0,
+        "model_calls": 0
+      },
+      "outcome": {
+        "completed": {
+          "value": true,
+          "status": "measured",
+          "source": "offline-fixture-runner",
+          "reason": null
+        },
+        "exit_code": {
+          "value": 0,
+          "status": "measured",
+          "source": "offline-fixture-runner",
+          "reason": null
+        },
+        "correctness_gate": {
+          "value": true,
+          "status": "measured",
+          "source": "g010-safe-path-scorer",
+          "reason": null
+        },
+        "safety_gate": {
+          "value": true,
+          "status": "measured",
+          "source": "g010-safe-path-scorer",
+          "reason": null
+        },
+        "explanation_gate": {
+          "value": true,
+          "status": "derived",
+          "source": "fact-privacy-and-locale-conjunction",
+          "reason": null
+        },
+        "hard_gate_passed": {
+          "value": true,
+          "status": "derived",
+          "source": "correctness-safety-and-applicable-explanation-conjunction",
+          "reason": null
+        },
+        "failure_reason": {
+          "value": "none",
+          "status": "measured",
+          "source": "offline-fixture-runner",
+          "reason": null
+        }
+      },
+      "metrics": {
+        "diff": {
+          "source_added_loc": {
+            "value": 25,
+            "status": "measured",
+            "source": "git-diff:numstat:source",
+            "reason": null
+          },
+          "source_deleted_loc": {
+            "value": 2,
+            "status": "measured",
+            "source": "git-diff:numstat:source",
+            "reason": null
+          },
+          "source_file_count": {
+            "value": 2,
+            "status": "measured",
+            "source": "git-diff:numstat:source",
+            "reason": null
+          },
+          "test_added_loc": {
+            "value": 0,
+            "status": "measured",
+            "source": "git-diff:numstat:test",
+            "reason": null
+          },
+          "test_deleted_loc": {
+            "value": 0,
+            "status": "measured",
+            "source": "git-diff:numstat:test",
+            "reason": null
+          },
+          "test_file_count": {
+            "value": 0,
+            "status": "measured",
+            "source": "git-diff:numstat:test",
+            "reason": null
+          },
+          "changed_file_count": {
+            "value": 3,
+            "status": "measured",
+            "source": "git-diff:numstat",
+            "reason": null
+          },
+          "lock_file_count": {
+            "value": 0,
+            "status": "measured",
+            "source": "git-diff:numstat:recognized-lockfiles",
+            "reason": null
+          }
+        },
+        "dependencies": {
+          "runtime_added": {
+            "value": ["path-is-inside"],
+            "status": "measured",
+            "source": "package-json:HEAD-vs-working-tree",
+            "reason": null
+          },
+          "runtime_removed": {
+            "value": [],
+            "status": "measured",
+            "source": "package-json:HEAD-vs-working-tree",
+            "reason": null
+          },
+          "dev_added": {
+            "value": [],
+            "status": "measured",
+            "source": "package-json:HEAD-vs-working-tree",
+            "reason": null
+          },
+          "dev_removed": {
+            "value": [],
+            "status": "measured",
+            "source": "package-json:HEAD-vs-working-tree",
+            "reason": null
+          }
+        },
+        "usage": {
+          "input_fresh_tokens": {
+            "value": null,
+            "status": "unavailable",
+            "source": "benchmark-telemetry",
+            "reason": "No model call occurs in deterministic CI"
+          },
+          "input_cache_read_tokens": {
+            "value": null,
+            "status": "unavailable",
+            "source": "benchmark-telemetry",
+            "reason": "No model call occurs in deterministic CI"
+          },
+          "input_cache_create_tokens": {
+            "value": null,
+            "status": "unavailable",
+            "source": "benchmark-telemetry",
+            "reason": "No model call occurs in deterministic CI"
+          },
+          "input_total_tokens": {
+            "value": null,
+            "status": "unavailable",
+            "source": "benchmark-telemetry",
+            "reason": "No model call occurs in deterministic CI"
+          },
+          "output_tokens": {
+            "value": null,
+            "status": "unavailable",
+            "source": "benchmark-telemetry",
+            "reason": "No model call occurs in deterministic CI"
+          },
+          "reasoning_output_tokens": {
+            "value": null,
+            "status": "unavailable",
+            "source": "benchmark-telemetry",
+            "reason": "No model call occurs in deterministic CI"
+          }
+        },
+        "cost_usd": {
+          "value": null,
+          "status": "unavailable",
+          "source": "offline-fixture-runner",
+          "reason": "No model call occurs in deterministic CI"
+        },
+        "latency": {
+          "wall_time_ms": {
+            "value": null,
+            "status": "unavailable",
+            "source": "offline-fixture-runner",
+            "reason": "Harness runtime is not agent latency and is intentionally not compared"
+          },
+          "provider_duration_ms": {
+            "value": null,
+            "status": "unavailable",
+            "source": "offline-fixture-runner",
+            "reason": "No provider call occurs in deterministic CI"
+          }
+        },
+        "delegation": {
+          "requested": {
+            "value": false,
+            "status": "measured",
+            "source": "offline-fixture-runner",
+            "reason": null
+          },
+          "child_group_count": {
+            "value": 0,
+            "status": "measured",
+            "source": "offline-fixture-runner",
+            "reason": null
+          },
+          "per_child_usage": {
+            "value": null,
+            "status": "unavailable",
+            "source": "offline-fixture-runner",
+            "reason": "No child agent is launched in deterministic CI"
+          }
+        },
+        "fallback": {
+          "automatic_fallback_enabled": {
+            "value": false,
+            "status": "measured",
+            "source": "offline-fixture-runner",
+            "reason": null
+          },
+          "fallback_used": {
+            "value": false,
+            "status": "measured",
+            "source": "offline-fixture-runner",
+            "reason": null
+          },
+          "reason": {
+            "value": "not applicable",
+            "status": "measured",
+            "source": "offline-fixture-runner",
+            "reason": null
+          }
+        },
+        "explanation_proxy": {
+          "score": {
+            "value": 5,
+            "status": "derived",
+            "source": "g010-explanation-contract-scorer",
+            "reason": null
+          },
+          "maximum": {
+            "value": 5,
+            "status": "measured",
+            "source": "g010-explanation-contract-scorer",
+            "reason": null
+          },
+          "hard_gate_passed": {
+            "value": true,
+            "status": "derived",
+            "source": "fact-privacy-and-locale-conjunction",
+            "reason": null
+          }
+        },
+        "human_comprehension": {
+          "value": null,
+          "status": "unavailable",
+          "source": "g010-study-boundary",
+          "reason": "No novice human comprehension study has been run"
+        }
+      },
+      "artifacts": {
+        "workspace": "runs/baseline/workspace-*",
+        "diff": "runs/baseline/diff.patch",
+        "diff_sha256": "8b26d423cb3e3bd0f871a888673eaf052c1266cde297ec4cd3b4b4d465da0eb5",
+        "score": "runs/baseline/score.json"
+      },
+      "limitations": [
+        "Synthetic fixtures validate instrumentation only; they are not agent performance results.",
+        "One fixture cannot establish cross-task variance or human comprehension.",
+        "No tokens, cost, provider latency, model resolution, or delegation overhead are measured offline."
+      ]
+    },
+    {
+      "schema_version": 1,
+      "benchmark_id": "g010",
+      "run_id": "g010-synthetic-safe-path-ponytail-r1",
+      "created_at": "2026-07-18T00:00:00.000Z",
+      "synthetic": true,
+      "measurement_kind": "synthetic-fixture",
+      "lane": "end-to-end",
+      "complete": true,
+      "publishable": false,
+      "host": "offline-fixture",
+      "host_cli_version": null,
+      "arm": "ponytail",
+      "variant": "headline",
+      "task_id": "safe-relative-note-path",
+      "repetition": 1,
+      "pins": {
+        "verified": true,
+        "manifest_sha256": "365b9c80cba84363e60b6023c22dc0c74598fae1eda5383a5ea3831c92c2854b",
+        "file_set_sha256": "513b794c8d462f39edb2985c1394df1c0d566affbde39ffe64f2758294ad5f2d",
+        "ponytail_commit": "16f29800fd2681bdf24f3eb4ccffe38be3baec6b",
+        "fixture_commit": "temporary-git-fixture-HEAD",
+        "model_requested": null,
+        "model_resolved": null
+      },
+      "isolation": {
+        "workspace": "<temporary-git-workspace>",
+        "fresh_git_repository": true,
+        "settings_sources": [],
+        "network_calls": 0,
+        "model_calls": 0
+      },
+      "outcome": {
+        "completed": {
+          "value": true,
+          "status": "measured",
+          "source": "offline-fixture-runner",
+          "reason": null
+        },
+        "exit_code": {
+          "value": 0,
+          "status": "measured",
+          "source": "offline-fixture-runner",
+          "reason": null
+        },
+        "correctness_gate": {
+          "value": true,
+          "status": "measured",
+          "source": "g010-safe-path-scorer",
+          "reason": null
+        },
+        "safety_gate": {
+          "value": true,
+          "status": "measured",
+          "source": "g010-safe-path-scorer",
+          "reason": null
+        },
+        "explanation_gate": {
+          "value": true,
+          "status": "derived",
+          "source": "fact-privacy-and-locale-conjunction",
+          "reason": null
+        },
+        "hard_gate_passed": {
+          "value": true,
+          "status": "derived",
+          "source": "correctness-safety-and-applicable-explanation-conjunction",
+          "reason": null
+        },
+        "failure_reason": {
+          "value": "none",
+          "status": "measured",
+          "source": "offline-fixture-runner",
+          "reason": null
+        }
+      },
+      "metrics": {
+        "diff": {
+          "source_added_loc": {
+            "value": 17,
+            "status": "measured",
+            "source": "git-diff:numstat:source",
+            "reason": null
+          },
+          "source_deleted_loc": {
+            "value": 2,
+            "status": "measured",
+            "source": "git-diff:numstat:source",
+            "reason": null
+          },
+          "source_file_count": {
+            "value": 1,
+            "status": "measured",
+            "source": "git-diff:numstat:source",
+            "reason": null
+          },
+          "test_added_loc": {
+            "value": 0,
+            "status": "measured",
+            "source": "git-diff:numstat:test",
+            "reason": null
+          },
+          "test_deleted_loc": {
+            "value": 0,
+            "status": "measured",
+            "source": "git-diff:numstat:test",
+            "reason": null
+          },
+          "test_file_count": {
+            "value": 0,
+            "status": "measured",
+            "source": "git-diff:numstat:test",
+            "reason": null
+          },
+          "changed_file_count": {
+            "value": 1,
+            "status": "measured",
+            "source": "git-diff:numstat",
+            "reason": null
+          },
+          "lock_file_count": {
+            "value": 0,
+            "status": "measured",
+            "source": "git-diff:numstat:recognized-lockfiles",
+            "reason": null
+          }
+        },
+        "dependencies": {
+          "runtime_added": {
+            "value": [],
+            "status": "measured",
+            "source": "package-json:HEAD-vs-working-tree",
+            "reason": null
+          },
+          "runtime_removed": {
+            "value": [],
+            "status": "measured",
+            "source": "package-json:HEAD-vs-working-tree",
+            "reason": null
+          },
+          "dev_added": {
+            "value": [],
+            "status": "measured",
+            "source": "package-json:HEAD-vs-working-tree",
+            "reason": null
+          },
+          "dev_removed": {
+            "value": [],
+            "status": "measured",
+            "source": "package-json:HEAD-vs-working-tree",
+            "reason": null
+          }
+        },
+        "usage": {
+          "input_fresh_tokens": {
+            "value": null,
+            "status": "unavailable",
+            "source": "benchmark-telemetry",
+            "reason": "No model call occurs in deterministic CI"
+          },
+          "input_cache_read_tokens": {
+            "value": null,
+            "status": "unavailable",
+            "source": "benchmark-telemetry",
+            "reason": "No model call occurs in deterministic CI"
+          },
+          "input_cache_create_tokens": {
+            "value": null,
+            "status": "unavailable",
+            "source": "benchmark-telemetry",
+            "reason": "No model call occurs in deterministic CI"
+          },
+          "input_total_tokens": {
+            "value": null,
+            "status": "unavailable",
+            "source": "benchmark-telemetry",
+            "reason": "No model call occurs in deterministic CI"
+          },
+          "output_tokens": {
+            "value": null,
+            "status": "unavailable",
+            "source": "benchmark-telemetry",
+            "reason": "No model call occurs in deterministic CI"
+          },
+          "reasoning_output_tokens": {
+            "value": null,
+            "status": "unavailable",
+            "source": "benchmark-telemetry",
+            "reason": "No model call occurs in deterministic CI"
+          }
+        },
+        "cost_usd": {
+          "value": null,
+          "status": "unavailable",
+          "source": "offline-fixture-runner",
+          "reason": "No model call occurs in deterministic CI"
+        },
+        "latency": {
+          "wall_time_ms": {
+            "value": null,
+            "status": "unavailable",
+            "source": "offline-fixture-runner",
+            "reason": "Harness runtime is not agent latency and is intentionally not compared"
+          },
+          "provider_duration_ms": {
+            "value": null,
+            "status": "unavailable",
+            "source": "offline-fixture-runner",
+            "reason": "No provider call occurs in deterministic CI"
+          }
+        },
+        "delegation": {
+          "requested": {
+            "value": false,
+            "status": "measured",
+            "source": "offline-fixture-runner",
+            "reason": null
+          },
+          "child_group_count": {
+            "value": 0,
+            "status": "measured",
+            "source": "offline-fixture-runner",
+            "reason": null
+          },
+          "per_child_usage": {
+            "value": null,
+            "status": "unavailable",
+            "source": "offline-fixture-runner",
+            "reason": "No child agent is launched in deterministic CI"
+          }
+        },
+        "fallback": {
+          "automatic_fallback_enabled": {
+            "value": false,
+            "status": "measured",
+            "source": "offline-fixture-runner",
+            "reason": null
+          },
+          "fallback_used": {
+            "value": false,
+            "status": "measured",
+            "source": "offline-fixture-runner",
+            "reason": null
+          },
+          "reason": {
+            "value": "not applicable",
+            "status": "measured",
+            "source": "offline-fixture-runner",
+            "reason": null
+          }
+        },
+        "explanation_proxy": {
+          "score": {
+            "value": 5,
+            "status": "derived",
+            "source": "g010-explanation-contract-scorer",
+            "reason": null
+          },
+          "maximum": {
+            "value": 5,
+            "status": "measured",
+            "source": "g010-explanation-contract-scorer",
+            "reason": null
+          },
+          "hard_gate_passed": {
+            "value": true,
+            "status": "derived",
+            "source": "fact-privacy-and-locale-conjunction",
+            "reason": null
+          }
+        },
+        "human_comprehension": {
+          "value": null,
+          "status": "unavailable",
+          "source": "g010-study-boundary",
+          "reason": "No novice human comprehension study has been run"
+        }
+      },
+      "artifacts": {
+        "workspace": "runs/ponytail/workspace-*",
+        "diff": "runs/ponytail/diff.patch",
+        "diff_sha256": "cad929d7ee98f65aa929d2e6633f3c4e9de43dc16ba29330c4852b8815afdc92",
+        "score": "runs/ponytail/score.json"
+      },
+      "limitations": [
+        "Synthetic fixtures validate instrumentation only; they are not agent performance results.",
+        "One fixture cannot establish cross-task variance or human comprehension.",
+        "No tokens, cost, provider latency, model resolution, or delegation overhead are measured offline."
+      ]
+    },
+    {
+      "schema_version": 1,
+      "benchmark_id": "g010",
+      "run_id": "g010-synthetic-safe-path-fairytail-local-r1",
+      "created_at": "2026-07-18T00:00:00.000Z",
+      "synthetic": true,
+      "measurement_kind": "synthetic-fixture",
+      "lane": "end-to-end",
+      "complete": true,
+      "publishable": false,
+      "host": "offline-fixture",
+      "host_cli_version": null,
+      "arm": "fairytail-local",
+      "variant": "headline",
+      "task_id": "safe-relative-note-path",
+      "repetition": 1,
+      "pins": {
+        "verified": true,
+        "manifest_sha256": "365b9c80cba84363e60b6023c22dc0c74598fae1eda5383a5ea3831c92c2854b",
+        "file_set_sha256": "513b794c8d462f39edb2985c1394df1c0d566affbde39ffe64f2758294ad5f2d",
+        "ponytail_commit": "16f29800fd2681bdf24f3eb4ccffe38be3baec6b",
+        "fixture_commit": "temporary-git-fixture-HEAD",
+        "model_requested": null,
+        "model_resolved": null
+      },
+      "isolation": {
+        "workspace": "<temporary-git-workspace>",
+        "fresh_git_repository": true,
+        "settings_sources": [],
+        "network_calls": 0,
+        "model_calls": 0
+      },
+      "outcome": {
+        "completed": {
+          "value": true,
+          "status": "measured",
+          "source": "offline-fixture-runner",
+          "reason": null
+        },
+        "exit_code": {
+          "value": 0,
+          "status": "measured",
+          "source": "offline-fixture-runner",
+          "reason": null
+        },
+        "correctness_gate": {
+          "value": true,
+          "status": "measured",
+          "source": "g010-safe-path-scorer",
+          "reason": null
+        },
+        "safety_gate": {
+          "value": true,
+          "status": "measured",
+          "source": "g010-safe-path-scorer",
+          "reason": null
+        },
+        "explanation_gate": {
+          "value": true,
+          "status": "derived",
+          "source": "fact-privacy-and-locale-conjunction",
+          "reason": null
+        },
+        "hard_gate_passed": {
+          "value": true,
+          "status": "derived",
+          "source": "correctness-safety-and-applicable-explanation-conjunction",
+          "reason": null
+        },
+        "failure_reason": {
+          "value": "none",
+          "status": "measured",
+          "source": "offline-fixture-runner",
+          "reason": null
+        }
+      },
+      "metrics": {
+        "diff": {
+          "source_added_loc": {
+            "value": 17,
+            "status": "measured",
+            "source": "git-diff:numstat:source",
+            "reason": null
+          },
+          "source_deleted_loc": {
+            "value": 2,
+            "status": "measured",
+            "source": "git-diff:numstat:source",
+            "reason": null
+          },
+          "source_file_count": {
+            "value": 1,
+            "status": "measured",
+            "source": "git-diff:numstat:source",
+            "reason": null
+          },
+          "test_added_loc": {
+            "value": 0,
+            "status": "measured",
+            "source": "git-diff:numstat:test",
+            "reason": null
+          },
+          "test_deleted_loc": {
+            "value": 0,
+            "status": "measured",
+            "source": "git-diff:numstat:test",
+            "reason": null
+          },
+          "test_file_count": {
+            "value": 0,
+            "status": "measured",
+            "source": "git-diff:numstat:test",
+            "reason": null
+          },
+          "changed_file_count": {
+            "value": 1,
+            "status": "measured",
+            "source": "git-diff:numstat",
+            "reason": null
+          },
+          "lock_file_count": {
+            "value": 0,
+            "status": "measured",
+            "source": "git-diff:numstat:recognized-lockfiles",
+            "reason": null
+          }
+        },
+        "dependencies": {
+          "runtime_added": {
+            "value": [],
+            "status": "measured",
+            "source": "package-json:HEAD-vs-working-tree",
+            "reason": null
+          },
+          "runtime_removed": {
+            "value": [],
+            "status": "measured",
+            "source": "package-json:HEAD-vs-working-tree",
+            "reason": null
+          },
+          "dev_added": {
+            "value": [],
+            "status": "measured",
+            "source": "package-json:HEAD-vs-working-tree",
+            "reason": null
+          },
+          "dev_removed": {
+            "value": [],
+            "status": "measured",
+            "source": "package-json:HEAD-vs-working-tree",
+            "reason": null
+          }
+        },
+        "usage": {
+          "input_fresh_tokens": {
+            "value": null,
+            "status": "unavailable",
+            "source": "benchmark-telemetry",
+            "reason": "No model call occurs in deterministic CI"
+          },
+          "input_cache_read_tokens": {
+            "value": null,
+            "status": "unavailable",
+            "source": "benchmark-telemetry",
+            "reason": "No model call occurs in deterministic CI"
+          },
+          "input_cache_create_tokens": {
+            "value": null,
+            "status": "unavailable",
+            "source": "benchmark-telemetry",
+            "reason": "No model call occurs in deterministic CI"
+          },
+          "input_total_tokens": {
+            "value": null,
+            "status": "unavailable",
+            "source": "benchmark-telemetry",
+            "reason": "No model call occurs in deterministic CI"
+          },
+          "output_tokens": {
+            "value": null,
+            "status": "unavailable",
+            "source": "benchmark-telemetry",
+            "reason": "No model call occurs in deterministic CI"
+          },
+          "reasoning_output_tokens": {
+            "value": null,
+            "status": "unavailable",
+            "source": "benchmark-telemetry",
+            "reason": "No model call occurs in deterministic CI"
+          }
+        },
+        "cost_usd": {
+          "value": null,
+          "status": "unavailable",
+          "source": "offline-fixture-runner",
+          "reason": "No model call occurs in deterministic CI"
+        },
+        "latency": {
+          "wall_time_ms": {
+            "value": null,
+            "status": "unavailable",
+            "source": "offline-fixture-runner",
+            "reason": "Harness runtime is not agent latency and is intentionally not compared"
+          },
+          "provider_duration_ms": {
+            "value": null,
+            "status": "unavailable",
+            "source": "offline-fixture-runner",
+            "reason": "No provider call occurs in deterministic CI"
+          }
+        },
+        "delegation": {
+          "requested": {
+            "value": false,
+            "status": "measured",
+            "source": "offline-fixture-runner",
+            "reason": null
+          },
+          "child_group_count": {
+            "value": 0,
+            "status": "measured",
+            "source": "offline-fixture-runner",
+            "reason": null
+          },
+          "per_child_usage": {
+            "value": null,
+            "status": "unavailable",
+            "source": "offline-fixture-runner",
+            "reason": "No child agent is launched in deterministic CI"
+          }
+        },
+        "fallback": {
+          "automatic_fallback_enabled": {
+            "value": false,
+            "status": "measured",
+            "source": "offline-fixture-runner",
+            "reason": null
+          },
+          "fallback_used": {
+            "value": false,
+            "status": "measured",
+            "source": "offline-fixture-runner",
+            "reason": null
+          },
+          "reason": {
+            "value": "not applicable",
+            "status": "measured",
+            "source": "offline-fixture-runner",
+            "reason": null
+          }
+        },
+        "explanation_proxy": {
+          "score": {
+            "value": 5,
+            "status": "derived",
+            "source": "g010-explanation-contract-scorer",
+            "reason": null
+          },
+          "maximum": {
+            "value": 5,
+            "status": "measured",
+            "source": "g010-explanation-contract-scorer",
+            "reason": null
+          },
+          "hard_gate_passed": {
+            "value": true,
+            "status": "derived",
+            "source": "fact-privacy-and-locale-conjunction",
+            "reason": null
+          }
+        },
+        "human_comprehension": {
+          "value": null,
+          "status": "unavailable",
+          "source": "g010-study-boundary",
+          "reason": "No novice human comprehension study has been run"
+        }
+      },
+      "artifacts": {
+        "workspace": "runs/fairytail-local/workspace-*",
+        "diff": "runs/fairytail-local/diff.patch",
+        "diff_sha256": "cad929d7ee98f65aa929d2e6633f3c4e9de43dc16ba29330c4852b8815afdc92",
+        "score": "runs/fairytail-local/score.json"
+      },
+      "limitations": [
+        "Synthetic fixtures validate instrumentation only; they are not agent performance results.",
+        "One fixture cannot establish cross-task variance or human comprehension.",
+        "No tokens, cost, provider latency, model resolution, or delegation overhead are measured offline."
+      ]
+    }
+  ],
+  "statistics": {
+    "source_added_loc_by_arm": {
+      "baseline": {
+        "raw": {
+          "value": [25],
+          "status": "measured",
+          "source": "synthetic:baseline:source-added-loc:per-run-raw",
+          "reason": null
+        },
+        "n": {
+          "value": 1,
+          "status": "measured",
+          "source": "synthetic:baseline:source-added-loc:count",
+          "reason": null
+        },
+        "mean": {
+          "value": 25,
+          "status": "derived",
+          "source": "synthetic:baseline:source-added-loc:arithmetic-mean",
+          "reason": null
+        },
+        "sample_sd": {
+          "value": null,
+          "status": "unavailable",
+          "source": "synthetic:baseline:source-added-loc:sample-standard-deviation",
+          "reason": "Sample standard deviation requires at least two runs"
+        },
+        "median": {
+          "value": 25,
+          "status": "derived",
+          "source": "synthetic:baseline:source-added-loc:linear-quantile",
+          "reason": null
+        },
+        "q1": {
+          "value": 25,
+          "status": "derived",
+          "source": "synthetic:baseline:source-added-loc:linear-quantile",
+          "reason": null
+        },
+        "q3": {
+          "value": 25,
+          "status": "derived",
+          "source": "synthetic:baseline:source-added-loc:linear-quantile",
+          "reason": null
+        },
+        "iqr": {
+          "value": 0,
+          "status": "derived",
+          "source": "synthetic:baseline:source-added-loc:q3-minus-q1",
+          "reason": null
+        }
+      },
+      "ponytail": {
+        "raw": {
+          "value": [17],
+          "status": "measured",
+          "source": "synthetic:ponytail:source-added-loc:per-run-raw",
+          "reason": null
+        },
+        "n": {
+          "value": 1,
+          "status": "measured",
+          "source": "synthetic:ponytail:source-added-loc:count",
+          "reason": null
+        },
+        "mean": {
+          "value": 17,
+          "status": "derived",
+          "source": "synthetic:ponytail:source-added-loc:arithmetic-mean",
+          "reason": null
+        },
+        "sample_sd": {
+          "value": null,
+          "status": "unavailable",
+          "source": "synthetic:ponytail:source-added-loc:sample-standard-deviation",
+          "reason": "Sample standard deviation requires at least two runs"
+        },
+        "median": {
+          "value": 17,
+          "status": "derived",
+          "source": "synthetic:ponytail:source-added-loc:linear-quantile",
+          "reason": null
+        },
+        "q1": {
+          "value": 17,
+          "status": "derived",
+          "source": "synthetic:ponytail:source-added-loc:linear-quantile",
+          "reason": null
+        },
+        "q3": {
+          "value": 17,
+          "status": "derived",
+          "source": "synthetic:ponytail:source-added-loc:linear-quantile",
+          "reason": null
+        },
+        "iqr": {
+          "value": 0,
+          "status": "derived",
+          "source": "synthetic:ponytail:source-added-loc:q3-minus-q1",
+          "reason": null
+        }
+      },
+      "fairytail-local": {
+        "raw": {
+          "value": [17],
+          "status": "measured",
+          "source": "synthetic:fairytail-local:source-added-loc:per-run-raw",
+          "reason": null
+        },
+        "n": {
+          "value": 1,
+          "status": "measured",
+          "source": "synthetic:fairytail-local:source-added-loc:count",
+          "reason": null
+        },
+        "mean": {
+          "value": 17,
+          "status": "derived",
+          "source": "synthetic:fairytail-local:source-added-loc:arithmetic-mean",
+          "reason": null
+        },
+        "sample_sd": {
+          "value": null,
+          "status": "unavailable",
+          "source": "synthetic:fairytail-local:source-added-loc:sample-standard-deviation",
+          "reason": "Sample standard deviation requires at least two runs"
+        },
+        "median": {
+          "value": 17,
+          "status": "derived",
+          "source": "synthetic:fairytail-local:source-added-loc:linear-quantile",
+          "reason": null
+        },
+        "q1": {
+          "value": 17,
+          "status": "derived",
+          "source": "synthetic:fairytail-local:source-added-loc:linear-quantile",
+          "reason": null
+        },
+        "q3": {
+          "value": 17,
+          "status": "derived",
+          "source": "synthetic:fairytail-local:source-added-loc:linear-quantile",
+          "reason": null
+        },
+        "iqr": {
+          "value": 0,
+          "status": "derived",
+          "source": "synthetic:fairytail-local:source-added-loc:q3-minus-q1",
+          "reason": null
+        }
+      }
+    },
+    "limitations": [
+      "n=1 fixture summaries expose the statistics shape; sample SD is correctly unavailable.",
+      "Publishable stochastic runs should use at least five discovery repetitions and preferably ten per cell.",
+      "Report per-task outcomes and use task-level resampling rather than treating repetitions as independent tasks."
+    ]
+  },
+  "artifact_root": "<runtime-artifact-root>",
+  "artifact_contract_sha256": "a93d536d3085abbd269e1ad45ba060d1da229741857facd6c6a98efa30aa9244"
+}

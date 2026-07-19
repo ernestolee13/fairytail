@@ -1,0 +1,11 @@
+{
+  "name": "superpowers",
+  "displayName": "Superpowers coexistence fixture",
+  "version": "0.0.0",
+  "description": "Minimal inert fixture reproducing the namespaced skill and SessionStart surfaces Fairytail must preserve.",
+  "author": {
+    "name": "Fairytail test fixture"
+  },
+  "license": "UNLICENSED",
+  "defaultEnabled": false
+}

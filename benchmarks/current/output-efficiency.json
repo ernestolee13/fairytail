@@ -1,0 +1,147 @@
+{
+  "artifact_version": 5,
+  "benchmark_id": "g012-fairytail-current-release-gate",
+  "verification_scope": "current deterministic explanation, semantic activation contract, alias deduplication, analogy diversity, visual, and source pins",
+  "status": "pass",
+  "source_pins": {
+    "README.md": "274edd0fe29c425d01a8e194677e01c8ddde8b9612bb61f141c7c51e3d5814cb",
+    "README.ko.md": "51521a90de597973ad17fb33dd1472578e10b90ef304d5418fc41f51421d496d",
+    "ARCHITECTURE.md": "3ba070c8f67ffaacfd4a4ed32a47a1e7686c006f341b3bf7523b78e35cb77c3b",
+    "docs/PERFORMANCE.md": "360f25f1e0ce3ccc992443c4fbccc7df854d97c6a151da8f4992bdce5b924960",
+    "docs/PUBLIC_INSTALL_AND_SAMPLES.md": "225400cdf83f8e9aad407747811330f74d18ecba568928f4862339b92897157e",
+    "docs/assets/evidence/terminal-evidence.json": "c9eed13b37f6d20b0f37d118b6c51c8330fa1db6b6d1be1bdeeaaf4ad13db83b",
+    "docs/assets/evidence/jargon-to-clarity.json": "559a1d0f6cefe934671d96c8f4cf0265a3d816d3e26e8adaf976d4f57637c1b2",
+    "src/runtime/concept.mjs": "eb87bdbec620ff8ed50241b0418cce1b10a67a86226733436452f435f98a0119",
+    "src/runtime/generic-analogy.mjs": "3a6413303524b87b006cad143a3cd72eebba850254c11b8d84ac32e1d01a30b4",
+    "src/profile/data-dir.mjs": "52253681b9b9b7862bdf81260e0fff8ccd41fd0330099045c69ad2f5f60bdb09",
+    "src/profile/profile.mjs": "0989af5682b50dbd7bd6c2fb130ff27aab60d270981fd30baed219fbef5874b8",
+    "src/profile/privacy.mjs": "584926fb8140ac57d0f09691dbf9545c782fc7021d2b4628eb1f1219211388e3",
+    "src/analogy/engine.mjs": "362156e039ce3cb7c03ca7090e445eed85a5248d4037575dfc78c9cf09af5094",
+    "src/learning/terminal.mjs": "ae269788026fa5978c989eb00bc20bd91e8d418522990ec770df41e08a1528c3",
+    "src/benchmark/g012-performance.mjs": "343ebbfb2399cfbe919d97751bad99746a7f886fdc1bfd74a171dc80c66f9c60",
+    "src/explanation/router.mjs": "3a6b8d5823ee025e3de30ad842d8cc01ac9da94e8c733b8f81f1daa0df01a410",
+    "hooks/hooks.json": "c9d12933bbdd95bf3d1be3393a994b07ca25d5f0c1f815f0e094e86e6f43535c",
+    "skills/fairytail-explain-concept/SKILL.md": "c24db1c05cc1e08c1a05c299fc80de7224eb7a1f86506b9588b096283bbf4de5",
+    "skills/fairytail-explain-concept/scripts/explain.mjs": "93c158401e018185dfa042e7b2f5a966aaa60d705e49daf997b50392ca3336af",
+    "skills/fairytail-explain-concept/agents/openai.yaml": "ba8935136273edeeecc09235a5ec4db5fbf9f87859028b10529a9ff40b2d020b",
+    "skills/build/SKILL.md": "8c573fd3454b8b5d52d32053e05f4b00172da16a99bab4a22371f8c27c10bafa",
+    "skills/build/agents/openai.yaml": "e97e35109598155e6be1ee3bf23821afeb32ecf369379f0600c185fca7d4a73f",
+    "skills/before/SKILL.md": "1a522900986c64287033f18ade7283740975a276183867f48fc53327e646a414",
+    "skills/before/agents/openai.yaml": "b253423b1a8b8eefba0b1b43d7e0895462de332126ba657c8f410c335b15bf94",
+    "skills/finish/SKILL.md": "4d14adcd4e27124544910d99e6de100ac5042e97511fa8fefbf26c6fad07bbe4",
+    "skills/finish/agents/openai.yaml": "1482a20635580eb61fd645891ba8db6194ece0bb617af0a900281ead936d8fc3",
+    "skills/personalize/SKILL.md": "a7ad16b907a0850283ffda96ac8030a401cf76aeba6aac142dd077edf1bb4ec7",
+    "skills/personalize/agents/openai.yaml": "687973f0d80b8057f3f9b326f5f61c4a2b1a5284d81d4f1bc971e4c7a9b5c4f2",
+    "skills/doctor/SKILL.md": "3bbb1674b3812d05c30dd6afb24f3edcf340ade26d21ae8e5171b2aa35664767",
+    "skills/doctor/agents/openai.yaml": "8afd40d2eb2b40a9d76a4d4dad2bd333cf8b82f612ba8da625517b2b21443062",
+    "skills/error/SKILL.md": "7056f40046bcb9ec39ec5e3e6a8d584ba9067d0231bc434f710cca90762cf2dd",
+    "skills/onboard/SKILL.md": "fe929399a35bfb8295212165de10cd0631fd2112682648b0c99aad938d6b6e65",
+    "skills/onboard/agents/openai.yaml": "569fe9beaca7aadefa46d9ac3d5cf62782b0e1ebdff94704e1a43f41a8527e76",
+    "skills/profile/SKILL.md": "dca3ccd7a6c360a14ceae0e87abf58db2c9d829bdf4204e98a45eb834b802d07",
+    "skills/profile/agents/openai.yaml": "d416ec20d27f4db026509b48565c9e7f3641d9421e61ba708273ce4fe9ec6f99",
+    "skills/review/SKILL.md": "c276589e08520564a2c9bb48413d8491a56bbadf28504eb5f97097cea5e96baa",
+    "skills/safety/SKILL.md": "64544da48926b3f6aafebf02745831ac09a50ae0d843dfb919ba6bc2c869e23f",
+    "scripts/verify-context-gate.mjs": "d0ecd61681ae7039e8948981b217b4801986a72e58f27da21d08788265851b0d",
+    "scripts/verify-g012-performance.mjs": "4f4f265df777d9ac9b125e9310a6161fc0c0e5c572672d9ecede8d2671e388c3",
+    "scripts/fairytail-profile.mjs": "c42f5e36f10599d28cc003953de1a87c63fe42084cad02a7f99b2e5c6e8f72af",
+    "scripts/fairytail-doctor.mjs": "8c089ab8087d8e18c8a8e58d6259fc434262a7ea3316531e70136ee01df60e64",
+    "scripts/fairytail-personalize.mjs": "9cd7aa1916b31d1540e1eab83d3ba0f81bc1413dcc889c0aa966d7dfeccdd1b0",
+    "scripts/smoke-codex-beginner.mjs": "6af4dec7471602bfb3047033fab6ae37ba841a9da155d88b8f983effa462c164",
+    "fixtures/activation/v2/cases.json": "13e15d6e6169bade01b71f8782169bcc3e8b8234fe0a952552139dcea484dc86",
+    "test/context-gate.test.mjs": "14fe8f8c573feb9c3d87dca0835a8b0a8616f8cc51efc1bc77531c5e0c00be5d",
+    "test/activation.contract.test.mjs": "27a31f14ba81f64f0818b8f468d2560c0f2658fd7c7f0945ee87560e382515c0"
+  },
+  "direct_explanation": {
+    "aliases": 26,
+    "locales": 2,
+    "rendered_cases": 52,
+    "passed_cases": 52,
+    "maximum_output_bytes": 1013,
+    "output_limit_bytes": 4096,
+    "effects": {
+      "model_calls": 0,
+      "network_calls": 0,
+      "execution_calls": 0
+    }
+  },
+  "explicit_design_bundle": {
+    "concepts": ["api", "server", "database"],
+    "output_bytes": 1581,
+    "output_limit_bytes": 12288,
+    "effects": {
+      "model_calls": 0,
+      "network_calls": 0,
+      "execution_calls": 0
+    }
+  },
+  "alias_bundle_deduplication": {
+    "requested_aliases": 3,
+    "rendered_scenarios": 1,
+    "output_bytes": 1013,
+    "effects": {
+      "model_calls": 0,
+      "network_calls": 0,
+      "execution_calls": 0
+    }
+  },
+  "activation": {
+    "automatic_for_nontrivial_implementation": ["build"],
+    "manual_companion_workflows": ["before", "finish", "personalize"],
+    "manual_management": ["doctor", "profile"],
+    "strategy": "host-semantic-skill-description",
+    "rich_concept_route": "explicit Fairytail, beginner or plain-language need, analogy, personalization, confusion, comparison, or initial-design intent",
+    "ordinary_basic_questions": "host-default-answer",
+    "labeled_prompts": 64,
+    "concept_prompts": 48,
+    "rich_concept_prompts": 24,
+    "default_concept_prompts": 24,
+    "build_prompts": 16,
+    "minimal_build_prompts": 8,
+    "default_build_prompts": 8,
+    "locales": {
+      "en": 32,
+      "ko": 32
+    },
+    "user_prompt_submit_hook": false,
+    "prompt_hook_context_bytes": 0,
+    "measured_skill_description_bytes_before_host_framing": 2485,
+    "skill_description_limit_bytes_before_host_framing": 2560,
+    "listing_note": "Skill descriptions remain baseline host metadata; the full skill body loads only when selected."
+  },
+  "generic_analogy": {
+    "reviewed_concept_families": 10,
+    "unique_labels_per_locale": 10,
+    "explicit_breakpoint_per_family": true,
+    "personalized_role_binding": "User-authored familiar worlds can replace the generic picture after exact-slot validation; unsupported concepts stay with the host."
+  },
+  "structural_explanation": {
+    "fixtures": 5,
+    "compact_support": "2/9 in 5/5 scenarios",
+    "fairytail_support": "9/9 in 5/5 scenarios",
+    "model_calls": 0,
+    "network_calls": 0,
+    "limitation": "Structural field coverage is not a comprehension score."
+  },
+  "checks": {
+    "direct_cases_complete": true,
+    "direct_effects_zero": true,
+    "generic_first_use_analogy_complete": true,
+    "explicit_design_bundle_bounded": true,
+    "duplicate_scenario_bundle_compact": true,
+    "nontrivial_build_semantic_selection": true,
+    "companion_workflows_manual_only": true,
+    "management_skills_manual_only": true,
+    "semantic_activation_contract_current": true,
+    "generic_analogy_contract_current": true,
+    "structural_support_current": true,
+    "visual_contract_current": true,
+    "documentation_current": true
+  },
+  "failed_checks": [],
+  "limitations": [
+    "The direct gate proves bounded local behavior, not human comprehension.",
+    "The bilingual intent corpus is a product contract, not proof that either host selects the skill correctly; live release probes measure that separately.",
+    "Displayed local text contains words; zero model calls means no explanation model generated them.",
+    "Personalized mappings are validated for reviewed concept roles; Fairytail does not claim reviewed coverage for arbitrary new concepts."
+  ]
+}

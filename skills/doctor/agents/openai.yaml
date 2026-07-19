@@ -1,0 +1,6 @@
+interface:
+  display_name: "Fairytail Doctor"
+  short_description: "Check setup, onboarding, privacy, and host boundaries"
+  default_prompt: "Use $fairytail:doctor to diagnose setup without exposing profile answers."
+policy:
+  allow_implicit_invocation: false

@@ -1,0 +1,6 @@
+interface:
+  display_name: "Fairytail Personalize"
+  short_description: "Create a requested personal analogy mapping"
+  default_prompt: "Use $fairytail:personalize to create a new approved analogy mapping."
+policy:
+  allow_implicit_invocation: false

@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "evidence_id": "fairytail-structural-coverage-current",
+  "created_at": "2026-07-19T06:00:00.000Z",
+  "synthetic_fixture": true,
+  "comparison_kind": "deterministic-formatter-illustration",
+  "not_a_host_session_capture": true,
+  "model_calls": 0,
+  "network_calls": 0,
+  "profile_truth_source": "user-authored-local-profile-fixture",
+  "profile_context": "Restaurant kitchen workflow",
+  "sample": {
+    "scenarios": 5,
+    "scenario_ids": [
+      "S02",
+      "S04",
+      "S05",
+      "S06",
+      "S07"
+    ],
+    "concept_ids": [
+      "process-server",
+      "api-request-response",
+      "credential-api-key-access-token",
+      "database-table-query",
+      "mcp-tool-resource"
+    ]
+  },
+  "metric": {
+    "name": "explicit_beginner_support_field_coverage",
+    "criteria": [
+      "verified_outcome",
+      "verification_evidence",
+      "canonical_definition",
+      "familiar_relation_map",
+      "analogy_breakpoint",
+      "safety_boundary",
+      "target_risk_rollback",
+      "next_action_evidence",
+      "diagnostic_question"
+    ],
+    "compact_formatter": "2/9 in 5/5 scenarios",
+    "fairytail_formatter": "9/9 in 5/5 scenarios",
+    "limitation": "Structural disclosure coverage is not a host baseline, human comprehension, or learning score."
+  },
+  "scenarios": [
+    {
+      "scenario_id": "S02",
+      "concept_id": "process-server",
+      "canonical_fact_set_hash": "d4ac926f28f02209663733e3e196d2a172ae07cd3c810abc23e591c81b0dcbc0",
+      "compact_formatter_support": "2/9",
+      "fairytail_formatter_support": "9/9"
+    },
+    {
+      "scenario_id": "S04",
+      "concept_id": "api-request-response",
+      "canonical_fact_set_hash": "68de9b8eee10ea038f83fd00300da5cf6e07b7ba9fb0ef3c0e2f40b99611752c",
+      "compact_formatter_support": "2/9",
+      "fairytail_formatter_support": "9/9"
+    },
+    {
+      "scenario_id": "S05",
+      "concept_id": "credential-api-key-access-token",
+      "canonical_fact_set_hash": "c2ab9df1a9d218f94daf90eccf4b24e98dfe3c8c44a4ea3a781cde5f7ef1facf",
+      "compact_formatter_support": "2/9",
+      "fairytail_formatter_support": "9/9"
+    },
+    {
+      "scenario_id": "S06",
+      "concept_id": "database-table-query",
+      "canonical_fact_set_hash": "85f2a021dd50a05ddab9d899bba56d00251021c586afc83efc71044c8b910707",
+      "compact_formatter_support": "2/9",
+      "fairytail_formatter_support": "9/9"
+    },
+    {
+      "scenario_id": "S07",
+      "concept_id": "mcp-tool-resource",
+      "canonical_fact_set_hash": "d425d81d755161480c1ba3d5dfa5ac1199dd65290e7f67f8b09e083845e757ad",
+      "compact_formatter_support": "2/9",
+      "fairytail_formatter_support": "9/9"
+    }
+  ],
+  "source_pins": {
+    "scripts/generate-terminal-evidence.mjs": "148830a3e61897b6debe35b235f4ac5fa85ae7abbf9d20e81d1c767579316b20",
+    "src/analogy/personalized.mjs": "30927ec00265ec6572be117fc358f4b35784ef7061f961e539a26fb78693e0ac",
+    "src/learning/terminal.mjs": "ae269788026fa5978c989eb00bc20bd91e8d418522990ec770df41e08a1528c3",
+    "src/profile/onboarding.mjs": "b290b4dfb33f8b0dccd0429be195fa3aa9b0bb3258a5dc0b3b3964b6fc86edce"
+  }
+}

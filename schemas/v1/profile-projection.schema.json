@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fairytail.local/schemas/v1/profile-projection.schema.json",
+  "title": "Fairytail profile-to-model allowlist projection v1",
+  "type": "object",
+  "additionalProperties": false,
+  "minProperties": 1,
+  "properties": {
+    "language": { "enum": ["en", "ko"] },
+    "presentation_preference": {
+      "enum": ["analogy_first", "checklist", "try_first", "neutral"]
+    },
+    "familiar_worlds": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["label"],
+        "properties": {
+          "label": { "type": "string", "minLength": 1, "maxLength": 40 }
+        }
+      }
+    }
+  }
+}

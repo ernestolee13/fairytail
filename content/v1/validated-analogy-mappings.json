@@ -1,0 +1,967 @@
+{
+  "schema_version": 1,
+  "catalog_version": "2026.07.18.2",
+  "content_version": "2026.07.18.2",
+  "candidate_registry_hash": "35b1dce35f083d4ed45a3af97595e022e01cf8b5561b50200c3df2cf73fce44a",
+  "mapping_catalog_hash": "7fd23818d587a12037779f5713c4bbc2165466749db8ab74cbc2cfb26868cddc",
+  "selection_mode": "bundled-validated-selection-only",
+  "review": {
+    "status": "reviewed",
+    "basis": "G004 fixed-role and directed-relation review against the versioned concept cards and research evaluation matrix",
+    "reviewed_at": "2026-07-18",
+    "evidence_id": "G004-ANALOGY-REVIEW-2026-07-18"
+  },
+  "worlds": [
+    {
+      "profile_id": "P1",
+      "world_id": "hospital-nursing",
+      "label": "Hospital nursing and care handoffs",
+      "selection_aliases": [
+        "Health and care",
+        "Hospitals and nursing",
+        "Hospital nursing and care handoffs"
+      ]
+    },
+    {
+      "profile_id": "P2",
+      "world_id": "small-ecommerce-operations",
+      "label": "Small online store operations",
+      "selection_aliases": [
+        "Sales and customer service",
+        "Operations and project management",
+        "Small online store operations"
+      ]
+    },
+    {
+      "profile_id": "P3",
+      "world_id": "humanities-student",
+      "label": "Humanities study and student clubs",
+      "selection_aliases": [
+        "Education and learning",
+        "Research and analysis",
+        "Content and writing",
+        "Humanities study and student clubs"
+      ]
+    }
+  ],
+  "mappings": [
+    {
+      "mapping_version": 1,
+      "mapping_id": "P1-S01-A1",
+      "candidate_source_id": "P1-S01",
+      "scenario_id": "S01",
+      "concept_id": "package-dependency",
+      "profile_id": "P1",
+      "profile_world_id": "hospital-nursing",
+      "analogy_label": "Medication kit and prescription requirement",
+      "role_map": {
+        "package": "medication kit",
+        "dependency": "prescription requirement",
+        "manifest": "prescription and medication specification",
+        "resolver": "procurement and pharmacy reviewer"
+      },
+      "relation_ids": [
+        "manifest-declares-dependency",
+        "dependency-requires-package",
+        "resolver-selects-package"
+      ],
+      "non_mappings": [
+        "A digital package can contain executable code, transitive dependencies, and install scripts, so its supply-chain risks are more complex than those of a medication kit."
+      ],
+      "breakpoint_ref": "concepts/package-dependency#analogy_breakpoint",
+      "neutral_fallback_ref": "concepts/package-dependency#neutral_example",
+      "validation_status": "validated",
+      "confidence": "medium",
+      "reviewed_at": "2026-07-18",
+      "expires_at": "2027-07-18"
+    },
+    {
+      "mapping_version": 1,
+      "mapping_id": "P2-S01-A1",
+      "candidate_source_id": "P2-S01",
+      "scenario_id": "S01",
+      "concept_id": "package-dependency",
+      "profile_id": "P2",
+      "profile_world_id": "small-ecommerce-operations",
+      "analogy_label": "App and creative-asset tool bundle and campaign requirement",
+      "role_map": {
+        "package": "app and creative-asset tool bundle",
+        "dependency": "campaign requirement",
+        "manifest": "campaign tool specification",
+        "resolver": "app-and-version selector"
+      },
+      "relation_ids": [
+        "manifest-declares-dependency",
+        "dependency-requires-package",
+        "resolver-selects-package"
+      ],
+      "non_mappings": [
+        "A digital package can bring transitive dependencies and install scripts with it, giving it a broader execution scope than an ordinary campaign tool."
+      ],
+      "breakpoint_ref": "concepts/package-dependency#analogy_breakpoint",
+      "neutral_fallback_ref": "concepts/package-dependency#neutral_example",
+      "validation_status": "validated",
+      "confidence": "medium",
+      "reviewed_at": "2026-07-18",
+      "expires_at": "2027-07-18"
+    },
+    {
+      "mapping_version": 1,
+      "mapping_id": "P3-S01-A1",
+      "candidate_source_id": "P3-S01",
+      "scenario_id": "S01",
+      "concept_id": "package-dependency",
+      "profile_id": "P3",
+      "profile_world_id": "humanities-student",
+      "analogy_label": "Reference book and assignment requirement",
+      "role_map": {
+        "package": "reference book",
+        "dependency": "assignment requirement",
+        "manifest": "bibliography plan",
+        "resolver": "book-and-edition selection process"
+      },
+      "relation_ids": [
+        "manifest-declares-dependency",
+        "dependency-requires-package",
+        "resolver-selects-package"
+      ],
+      "non_mappings": [
+        "A package may be executable code rather than reading material, and it can involve transitive dependencies, platform constraints, and malicious supply-chain risks."
+      ],
+      "breakpoint_ref": "concepts/package-dependency#analogy_breakpoint",
+      "neutral_fallback_ref": "concepts/package-dependency#neutral_example",
+      "validation_status": "validated",
+      "confidence": "medium",
+      "reviewed_at": "2026-07-18",
+      "expires_at": "2027-07-18"
+    },
+    {
+      "mapping_version": 1,
+      "mapping_id": "P1-S02-A1",
+      "candidate_source_id": "P1-S02",
+      "scenario_id": "S02",
+      "concept_id": "process-server",
+      "profile_id": "P1",
+      "profile_world_id": "hospital-nursing",
+      "analogy_label": "On-duty staff member and temporary ward intake desk",
+      "role_map": {
+        "program": "workflow manual",
+        "process": "on-duty staff member",
+        "server": "staff member at a temporary ward intake desk",
+        "port": "desk number",
+        "database": "separate records room"
+      },
+      "relation_ids": [
+        "program-becomes-process",
+        "process-serves-as-server",
+        "server-listens-on-port",
+        "server-may-access-database"
+      ],
+      "non_mappings": [
+        "A real server can consist of multiple processes, proxies, and concurrent requests, and the same program can switch between client and server roles across connections."
+      ],
+      "breakpoint_ref": "concepts/process-server#analogy_breakpoint",
+      "neutral_fallback_ref": "concepts/process-server#neutral_example",
+      "validation_status": "validated",
+      "confidence": "medium",
+      "reviewed_at": "2026-07-18",
+      "expires_at": "2027-07-18"
+    },
+    {
+      "mapping_version": 1,
+      "mapping_id": "P2-S02-A1",
+      "candidate_source_id": "P2-S02",
+      "scenario_id": "S02",
+      "concept_id": "process-server",
+      "profile_id": "P2",
+      "profile_world_id": "small-ecommerce-operations",
+      "analogy_label": "Active campaign-preview operator and internal review desk",
+      "role_map": {
+        "program": "campaign-preview operating procedure",
+        "process": "active preview operator",
+        "server": "internal review-desk operator",
+        "port": "review-desk number",
+        "database": "order and campaign records system"
+      },
+      "relation_ids": [
+        "program-becomes-process",
+        "process-serves-as-server",
+        "server-listens-on-port",
+        "server-may-access-database"
+      ],
+      "non_mappings": [
+        "A real server is an automated process; multiple instances, concurrent requests, and proxies make it unlike a single human operator."
+      ],
+      "breakpoint_ref": "concepts/process-server#analogy_breakpoint",
+      "neutral_fallback_ref": "concepts/process-server#neutral_example",
+      "validation_status": "validated",
+      "confidence": "medium",
+      "reviewed_at": "2026-07-18",
+      "expires_at": "2027-07-18"
+    },
+    {
+      "mapping_version": 1,
+      "mapping_id": "P3-S02-A1",
+      "candidate_source_id": "P3-S02",
+      "scenario_id": "S02",
+      "concept_id": "process-server",
+      "profile_id": "P3",
+      "profile_world_id": "humanities-student",
+      "analogy_label": "Student-club event rehearsal booth",
+      "role_map": {
+        "program": "event operations script",
+        "process": "person running the rehearsal",
+        "server": "event rehearsal-booth operator",
+        "port": "booth number",
+        "database": "event logbook"
+      },
+      "relation_ids": [
+        "program-becomes-process",
+        "process-serves-as-server",
+        "server-listens-on-port",
+        "server-may-access-database"
+      ],
+      "non_mappings": [
+        "A server process follows encoded rules and protocols; it does not improvise coordination across proxies, instances, and concurrent requests the way people in a rehearsal might."
+      ],
+      "breakpoint_ref": "concepts/process-server#analogy_breakpoint",
+      "neutral_fallback_ref": "concepts/process-server#neutral_example",
+      "validation_status": "validated",
+      "confidence": "medium",
+      "reviewed_at": "2026-07-18",
+      "expires_at": "2027-07-18"
+    },
+    {
+      "mapping_version": 1,
+      "mapping_id": "P1-S03-A1",
+      "candidate_source_id": "P1-S03",
+      "scenario_id": "S03",
+      "concept_id": "environment-variable-config",
+      "profile_id": "P1",
+      "profile_world_id": "hospital-nursing",
+      "analogy_label": "Labeled setup card issued at shift start",
+      "role_map": {
+        "config": "complete shift operations configuration",
+        "environment variable": "labeled setup card issued at shift start",
+        "process": "staff member working from the setup card"
+      },
+      "relation_ids": [
+        "config-may-use-environment-variable",
+        "process-receives-environment-variable"
+      ],
+      "non_mappings": [
+        "Environment-variable values are strings by default; inheritance and precedence vary by OS and runtime, and values may be exposed through logs or process inspection."
+      ],
+      "breakpoint_ref": "concepts/environment-variable-config#analogy_breakpoint",
+      "neutral_fallback_ref": "concepts/environment-variable-config#neutral_example",
+      "validation_status": "validated",
+      "confidence": "medium",
+      "reviewed_at": "2026-07-18",
+      "expires_at": "2027-07-18"
+    },
+    {
+      "mapping_version": 1,
+      "mapping_id": "P2-S03-A1",
+      "candidate_source_id": "P2-S03",
+      "scenario_id": "S03",
+      "concept_id": "environment-variable-config",
+      "profile_id": "P2",
+      "profile_world_id": "small-ecommerce-operations",
+      "analogy_label": "Labeled setup card delivered at campaign launch",
+      "role_map": {
+        "config": "complete campaign operations configuration",
+        "environment variable": "labeled setup card delivered at launch",
+        "process": "running campaign tool that reads the setup"
+      },
+      "relation_ids": [
+        "config-may-use-environment-variable",
+        "process-receives-environment-variable"
+      ],
+      "non_mappings": [
+        "An environment variable is neither the entire configuration nor a secret vault; its value can be exposed through logs, crash dumps, or process inspection."
+      ],
+      "breakpoint_ref": "concepts/environment-variable-config#analogy_breakpoint",
+      "neutral_fallback_ref": "concepts/environment-variable-config#neutral_example",
+      "validation_status": "validated",
+      "confidence": "medium",
+      "reviewed_at": "2026-07-18",
+      "expires_at": "2027-07-18"
+    },
+    {
+      "mapping_version": 1,
+      "mapping_id": "P3-S03-A1",
+      "candidate_source_id": "P3-S03",
+      "scenario_id": "S03",
+      "concept_id": "environment-variable-config",
+      "profile_id": "P3",
+      "profile_world_id": "humanities-student",
+      "analogy_label": "Labeled setup card delivered at event start",
+      "role_map": {
+        "config": "complete event operations configuration",
+        "environment variable": "labeled setup card delivered at start",
+        "process": "event operations tool that reads the setup"
+      },
+      "relation_ids": [
+        "config-may-use-environment-variable",
+        "process-receives-environment-variable"
+      ],
+      "non_mappings": [
+        "An environment variable is a string-delivery channel; it does not guarantee secret protection, and inheritance, case sensitivity, and persistence vary by environment."
+      ],
+      "breakpoint_ref": "concepts/environment-variable-config#analogy_breakpoint",
+      "neutral_fallback_ref": "concepts/environment-variable-config#neutral_example",
+      "validation_status": "validated",
+      "confidence": "medium",
+      "reviewed_at": "2026-07-18",
+      "expires_at": "2027-07-18"
+    },
+    {
+      "mapping_version": 1,
+      "mapping_id": "P1-S04-A1",
+      "candidate_source_id": "P1-S04",
+      "scenario_id": "S04",
+      "concept_id": "api-request-response",
+      "profile_id": "P1",
+      "profile_world_id": "hospital-nursing",
+      "analogy_label": "Lab order → lab intake desk → result",
+      "role_map": {
+        "API": "lab-order rules",
+        "endpoint": "lab intake desk",
+        "request": "prescribed lab order form",
+        "response": "lab result sheet"
+      },
+      "relation_ids": [
+        "api-defines-endpoint",
+        "request-goes-to-endpoint",
+        "endpoint-returns-response"
+      ],
+      "non_mappings": [
+        "A real API does not fill in ambiguous intent like a human receptionist; it follows schema, method, rate-limit, and partial-failure rules."
+      ],
+      "breakpoint_ref": "concepts/api-request-response#analogy_breakpoint",
+      "neutral_fallback_ref": "concepts/api-request-response#neutral_example",
+      "validation_status": "validated",
+      "confidence": "high",
+      "reviewed_at": "2026-07-18",
+      "expires_at": "2027-07-18"
+    },
+    {
+      "mapping_version": 1,
+      "mapping_id": "P2-S04-A1",
+      "candidate_source_id": "P2-S04",
+      "scenario_id": "S04",
+      "concept_id": "api-request-response",
+      "profile_id": "P2",
+      "profile_world_id": "small-ecommerce-operations",
+      "analogy_label": "Analytics request form → reporting endpoint → result",
+      "role_map": {
+        "API": "reporting service rules",
+        "endpoint": "reporting intake point",
+        "request": "prescribed analytics request form",
+        "response": "analytics result sheet"
+      },
+      "relation_ids": [
+        "api-defines-endpoint",
+        "request-goes-to-endpoint",
+        "endpoint-returns-response"
+      ],
+      "non_mappings": [
+        "An API is not a human desk that interprets free-form requests; callers must follow its method, schema, credential, and rate-limit requirements precisely."
+      ],
+      "breakpoint_ref": "concepts/api-request-response#analogy_breakpoint",
+      "neutral_fallback_ref": "concepts/api-request-response#neutral_example",
+      "validation_status": "validated",
+      "confidence": "high",
+      "reviewed_at": "2026-07-18",
+      "expires_at": "2027-07-18"
+    },
+    {
+      "mapping_version": 1,
+      "mapping_id": "P3-S04-A1",
+      "candidate_source_id": "P3-S04",
+      "scenario_id": "S04",
+      "concept_id": "api-request-response",
+      "profile_id": "P3",
+      "profile_world_id": "humanities-student",
+      "analogy_label": "Book search request → search desk → list",
+      "role_map": {
+        "API": "book-search rules",
+        "endpoint": "search desk",
+        "request": "prescribed book-search request",
+        "response": "book list"
+      },
+      "relation_ids": [
+        "api-defines-endpoint",
+        "request-goes-to-endpoint",
+        "endpoint-returns-response"
+      ],
+      "non_mappings": [
+        "A real API endpoint does not infer the intent of an ambiguous question; it processes requests using defined methods, schemas, statuses, and failure rules."
+      ],
+      "breakpoint_ref": "concepts/api-request-response#analogy_breakpoint",
+      "neutral_fallback_ref": "concepts/api-request-response#neutral_example",
+      "validation_status": "validated",
+      "confidence": "high",
+      "reviewed_at": "2026-07-18",
+      "expires_at": "2027-07-18"
+    },
+    {
+      "mapping_version": 1,
+      "mapping_id": "P1-S05-A1",
+      "candidate_source_id": "P1-S05",
+      "scenario_id": "S05",
+      "concept_id": "credential-api-key-access-token",
+      "profile_id": "P1",
+      "profile_world_id": "hospital-nursing",
+      "analogy_label": "Shared access key and time-and-area-limited wristband",
+      "role_map": {
+        "API key": "copyable shared service access key",
+        "access token": "time-and-area-limited wristband",
+        "scope": "permitted areas",
+        "resource server": "entrance attendant"
+      },
+      "relation_ids": [
+        "api-key-presented-to-resource-server",
+        "access-token-presented-to-resource-server",
+        "scope-constrains-access-token"
+      ],
+      "non_mappings": [
+        "A digital secret can be copied without its owner's knowledge, and a token may be opaque or represent a service rather than a person."
+      ],
+      "breakpoint_ref": "concepts/credential-api-key-access-token#analogy_breakpoint",
+      "neutral_fallback_ref": "concepts/credential-api-key-access-token#neutral_example",
+      "validation_status": "validated",
+      "confidence": "medium",
+      "reviewed_at": "2026-07-18",
+      "expires_at": "2027-07-18"
+    },
+    {
+      "mapping_version": 1,
+      "mapping_id": "P2-S05-A1",
+      "candidate_source_id": "P2-S05",
+      "scenario_id": "S05",
+      "concept_id": "credential-api-key-access-token",
+      "profile_id": "P2",
+      "profile_world_id": "small-ecommerce-operations",
+      "analogy_label": "Service key and campaign-scoped authorization sheet",
+      "role_map": {
+        "API key": "copyable service key",
+        "access token": "time-limited campaign-scoped authorization sheet",
+        "scope": "permitted campaigns and functions",
+        "resource server": "service-request inspector"
+      },
+      "relation_ids": [
+        "api-key-presented-to-resource-server",
+        "access-token-presented-to-resource-server",
+        "scope-constrains-access-token"
+      ],
+      "non_mappings": [
+        "API-key permission models vary by provider, while an access token's audience, resource, and scope are checked more strictly than a simple authorization sheet suggests."
+      ],
+      "breakpoint_ref": "concepts/credential-api-key-access-token#analogy_breakpoint",
+      "neutral_fallback_ref": "concepts/credential-api-key-access-token#neutral_example",
+      "validation_status": "validated",
+      "confidence": "medium",
+      "reviewed_at": "2026-07-18",
+      "expires_at": "2027-07-18"
+    },
+    {
+      "mapping_version": 1,
+      "mapping_id": "P3-S05-A1",
+      "candidate_source_id": "P3-S05",
+      "scenario_id": "S05",
+      "concept_id": "credential-api-key-access-token",
+      "profile_id": "P3",
+      "profile_world_id": "humanities-student",
+      "analogy_label": "Library service key and event access wristband",
+      "role_map": {
+        "API key": "copyable library service key",
+        "access token": "event-period and area access wristband",
+        "scope": "permitted library rooms and actions",
+        "resource server": "library entrance attendant"
+      },
+      "relation_ids": [
+        "api-key-presented-to-resource-server",
+        "access-token-presented-to-resource-server",
+        "scope-constrains-access-token"
+      ],
+      "non_mappings": [
+        "Unlike a physical wristband, a digital credential can be copied invisibly, and token-validation rules vary by provider."
+      ],
+      "breakpoint_ref": "concepts/credential-api-key-access-token#analogy_breakpoint",
+      "neutral_fallback_ref": "concepts/credential-api-key-access-token#neutral_example",
+      "validation_status": "validated",
+      "confidence": "medium",
+      "reviewed_at": "2026-07-18",
+      "expires_at": "2027-07-18"
+    },
+    {
+      "mapping_version": 1,
+      "mapping_id": "P1-S06-A1",
+      "candidate_source_id": "P1-S06",
+      "scenario_id": "S06",
+      "concept_id": "database-table-query",
+      "profile_id": "P1",
+      "profile_world_id": "hospital-nursing",
+      "analogy_label": "Managed records system and search/action request form",
+      "role_map": {
+        "database": "managed work-record system",
+        "table": "structured record ledger",
+        "row": "one work record",
+        "column": "record field",
+        "query": "search/action request",
+        "DBMS": "records manager"
+      },
+      "relation_ids": [
+        "dbms-manages-database",
+        "database-contains-table",
+        "table-contains-row",
+        "row-has-column",
+        "dbms-processes-query"
+      ],
+      "non_mappings": [
+        "A real database has transactions, constraints, indexes, joins, concurrency, NULL semantics, and an optimizer, so it is not merely a ledger."
+      ],
+      "breakpoint_ref": "concepts/database-table-query#analogy_breakpoint",
+      "neutral_fallback_ref": "concepts/database-table-query#neutral_example",
+      "validation_status": "validated",
+      "confidence": "high",
+      "reviewed_at": "2026-07-18",
+      "expires_at": "2027-07-18"
+    },
+    {
+      "mapping_version": 1,
+      "mapping_id": "P2-S06-A1",
+      "candidate_source_id": "P2-S06",
+      "scenario_id": "S06",
+      "concept_id": "database-table-query",
+      "profile_id": "P2",
+      "profile_world_id": "small-ecommerce-operations",
+      "analogy_label": "Order record system and search/action request form",
+      "role_map": {
+        "database": "managed order-record system",
+        "table": "order ledger",
+        "row": "one order record",
+        "column": "order field",
+        "query": "search/action request",
+        "DBMS": "order-record manager"
+      },
+      "relation_ids": [
+        "dbms-manages-database",
+        "database-contains-table",
+        "table-contains-row",
+        "row-has-column",
+        "dbms-processes-query"
+      ],
+      "non_mappings": [
+        "A database query is not limited to reading; it may also update or delete data and must follow transaction, constraint, and concurrency rules."
+      ],
+      "breakpoint_ref": "concepts/database-table-query#analogy_breakpoint",
+      "neutral_fallback_ref": "concepts/database-table-query#neutral_example",
+      "validation_status": "validated",
+      "confidence": "high",
+      "reviewed_at": "2026-07-18",
+      "expires_at": "2027-07-18"
+    },
+    {
+      "mapping_version": 1,
+      "mapping_id": "P3-S06-A1",
+      "candidate_source_id": "P3-S06",
+      "scenario_id": "S06",
+      "concept_id": "database-table-query",
+      "profile_id": "P3",
+      "profile_world_id": "humanities-student",
+      "analogy_label": "Book record system and search request form",
+      "role_map": {
+        "database": "managed book-record system",
+        "table": "book ledger",
+        "row": "one book record",
+        "column": "book-information field",
+        "query": "search/action request",
+        "DBMS": "book-record manager"
+      },
+      "relation_ids": [
+        "dbms-manages-database",
+        "database-contains-table",
+        "table-contains-row",
+        "row-has-column",
+        "dbms-processes-query"
+      ],
+      "non_mappings": [
+        "A database is more than a simple list; a query can change as well as read data, with constraints, indexes, and transactions involved."
+      ],
+      "breakpoint_ref": "concepts/database-table-query#analogy_breakpoint",
+      "neutral_fallback_ref": "concepts/database-table-query#neutral_example",
+      "validation_status": "validated",
+      "confidence": "high",
+      "reviewed_at": "2026-07-18",
+      "expires_at": "2027-07-18"
+    },
+    {
+      "mapping_version": 1,
+      "mapping_id": "P1-S07-A1",
+      "candidate_source_id": "P1-S07",
+      "scenario_id": "S07",
+      "concept_id": "mcp-tool-resource",
+      "profile_id": "P1",
+      "profile_world_id": "hospital-nursing",
+      "analogy_label": "Hospital front desk and dedicated lines to outside labs",
+      "role_map": {
+        "host": "hospital front desk",
+        "client": "dedicated line for each outside lab",
+        "server": "outside lab",
+        "resource": "lab guidance materials",
+        "tool": "lab-testing service"
+      },
+      "relation_ids": [
+        "host-owns-client",
+        "client-connects-to-server",
+        "server-exposes-resource",
+        "server-exposes-tool"
+      ],
+      "non_mappings": [
+        "An MCP connection does not guarantee a server's trustworthiness, accuracy, or least privilege; the confirmation flow also depends on the host implementation and policy."
+      ],
+      "breakpoint_ref": "concepts/mcp-tool-resource#analogy_breakpoint",
+      "neutral_fallback_ref": "concepts/mcp-tool-resource#neutral_example",
+      "validation_status": "validated",
+      "confidence": "medium",
+      "reviewed_at": "2026-07-18",
+      "expires_at": "2027-07-18"
+    },
+    {
+      "mapping_version": 1,
+      "mapping_id": "P2-S07-A1",
+      "candidate_source_id": "P2-S07",
+      "scenario_id": "S07",
+      "concept_id": "mcp-tool-resource",
+      "profile_id": "P2",
+      "profile_world_id": "small-ecommerce-operations",
+      "analogy_label": "Operations hub and vendor integration lines",
+      "role_map": {
+        "host": "operations hub",
+        "client": "integration line for each vendor",
+        "server": "external vendor system",
+        "resource": "vendor-provided materials",
+        "tool": "vendor execution service"
+      },
+      "relation_ids": [
+        "host-owns-client",
+        "client-connects-to-server",
+        "server-exposes-resource",
+        "server-exposes-tool"
+      ],
+      "non_mappings": [
+        "A standard protocol connection does not automatically guarantee an external vendor's trustworthiness or least privilege, and tool-execution confirmation varies by host."
+      ],
+      "breakpoint_ref": "concepts/mcp-tool-resource#analogy_breakpoint",
+      "neutral_fallback_ref": "concepts/mcp-tool-resource#neutral_example",
+      "validation_status": "validated",
+      "confidence": "medium",
+      "reviewed_at": "2026-07-18",
+      "expires_at": "2027-07-18"
+    },
+    {
+      "mapping_version": 1,
+      "mapping_id": "P3-S07-A1",
+      "candidate_source_id": "P3-S07",
+      "scenario_id": "S07",
+      "concept_id": "mcp-tool-resource",
+      "profile_id": "P3",
+      "profile_world_id": "humanities-student",
+      "analogy_label": "Student council help desk and vendor contact lines",
+      "role_map": {
+        "host": "student council help desk",
+        "client": "contact line for each vendor",
+        "server": "external vendor",
+        "resource": "vendor information",
+        "tool": "vendor execution service"
+      },
+      "relation_ids": [
+        "host-owns-client",
+        "client-connects-to-server",
+        "server-exposes-resource",
+        "server-exposes-tool"
+      ],
+      "non_mappings": [
+        "A capability being exposed by an MCP server does not make it safe or accurate; automatic tool calls and confirmation behavior depend on the application implementation."
+      ],
+      "breakpoint_ref": "concepts/mcp-tool-resource#analogy_breakpoint",
+      "neutral_fallback_ref": "concepts/mcp-tool-resource#neutral_example",
+      "validation_status": "validated",
+      "confidence": "medium",
+      "reviewed_at": "2026-07-18",
+      "expires_at": "2027-07-18"
+    },
+    {
+      "mapping_version": 1,
+      "mapping_id": "P1-S08-A1",
+      "candidate_source_id": "P1-S08",
+      "scenario_id": "S08",
+      "concept_id": "permission-authentication-authorization",
+      "profile_id": "P1",
+      "profile_world_id": "hospital-nursing",
+      "analogy_label": "Badge verification and access rules for a specific medication room",
+      "role_map": {
+        "authentication": "badge authenticity check",
+        "authorization": "specific medication-room access-rule check",
+        "permission": "permission to open the medication-room door"
+      },
+      "relation_ids": [
+        "authentication-establishes-context-for-authorization",
+        "authorization-decides-permission"
+      ],
+      "non_mappings": [
+        "A real identity can be a service, process, or device—not only a person—and anonymous authorization and dynamic policies are also possible."
+      ],
+      "breakpoint_ref": "concepts/permission-authentication-authorization#analogy_breakpoint",
+      "neutral_fallback_ref": "concepts/permission-authentication-authorization#neutral_example",
+      "validation_status": "validated",
+      "confidence": "high",
+      "reviewed_at": "2026-07-18",
+      "expires_at": "2027-07-18"
+    },
+    {
+      "mapping_version": 1,
+      "mapping_id": "P2-S08-A1",
+      "candidate_source_id": "P2-S08",
+      "scenario_id": "S08",
+      "concept_id": "permission-authentication-authorization",
+      "profile_id": "P2",
+      "profile_world_id": "small-ecommerce-operations",
+      "analogy_label": "Account sign-in and refund authorization",
+      "role_map": {
+        "authentication": "account sign-in verification",
+        "authorization": "refund-rule check",
+        "permission": "permission to refund a specific order"
+      },
+      "relation_ids": [
+        "authentication-establishes-context-for-authorization",
+        "authorization-decides-permission"
+      ],
+      "non_mappings": [
+        "A successful sign-in does not permit every action; policy can vary by resource, action, time, and relationship."
+      ],
+      "breakpoint_ref": "concepts/permission-authentication-authorization#analogy_breakpoint",
+      "neutral_fallback_ref": "concepts/permission-authentication-authorization#neutral_example",
+      "validation_status": "validated",
+      "confidence": "high",
+      "reviewed_at": "2026-07-18",
+      "expires_at": "2027-07-18"
+    },
+    {
+      "mapping_version": 1,
+      "mapping_id": "P3-S08-A1",
+      "candidate_source_id": "P3-S08",
+      "scenario_id": "S08",
+      "concept_id": "permission-authentication-authorization",
+      "profile_id": "P3",
+      "profile_world_id": "humanities-student",
+      "analogy_label": "Student ID verification and special-collections authorization",
+      "role_map": {
+        "authentication": "student ID authenticity check",
+        "authorization": "special-collections access-rule check",
+        "permission": "permission to view specific material"
+      },
+      "relation_ids": [
+        "authentication-establishes-context-for-authorization",
+        "authorization-decides-permission"
+      ],
+      "non_mappings": [
+        "A digital principal can be a service or device rather than a person, and a public resource may be authorized without authentication."
+      ],
+      "breakpoint_ref": "concepts/permission-authentication-authorization#analogy_breakpoint",
+      "neutral_fallback_ref": "concepts/permission-authentication-authorization#neutral_example",
+      "validation_status": "validated",
+      "confidence": "high",
+      "reviewed_at": "2026-07-18",
+      "expires_at": "2027-07-18"
+    },
+    {
+      "mapping_version": 1,
+      "mapping_id": "P1-S09-A1",
+      "candidate_source_id": "P1-S09",
+      "scenario_id": "S09",
+      "concept_id": "file-path-project-repository",
+      "profile_id": "P1",
+      "profile_world_id": "hospital-nursing",
+      "analogy_label": "Work binder, document address, and history archive",
+      "role_map": {
+        "file": "document",
+        "path": "document address",
+        "project": "work binder",
+        "repository": "change-history archive",
+        "worktree": "currently open working copy"
+      },
+      "relation_ids": [
+        "path-identifies-file",
+        "project-scopes-worktree",
+        "repository-tracks-worktree",
+        "worktree-contains-file"
+      ],
+      "non_mappings": [
+        "Symlinks and hard links can give one file multiple paths, and a Git repository is a graph of refs and objects rather than a simple backup folder."
+      ],
+      "breakpoint_ref": "concepts/file-path-project-repository#analogy_breakpoint",
+      "neutral_fallback_ref": "concepts/file-path-project-repository#neutral_example",
+      "validation_status": "validated",
+      "confidence": "high",
+      "reviewed_at": "2026-07-18",
+      "expires_at": "2027-07-18"
+    },
+    {
+      "mapping_version": 1,
+      "mapping_id": "P2-S09-A1",
+      "candidate_source_id": "P2-S09",
+      "scenario_id": "S09",
+      "concept_id": "file-path-project-repository",
+      "profile_id": "P2",
+      "profile_world_id": "small-ecommerce-operations",
+      "analogy_label": "Campaign workspace, asset address, and version history",
+      "role_map": {
+        "file": "creative-asset file",
+        "path": "asset address",
+        "project": "campaign work scope",
+        "repository": "version-history archive",
+        "worktree": "current campaign working copy"
+      },
+      "relation_ids": [
+        "path-identifies-file",
+        "project-scopes-worktree",
+        "repository-tracks-worktree",
+        "worktree-contains-file"
+      ],
+      "non_mappings": [
+        "A repository is not the same as a folder and may have no worktree; a path and a file are not always in a one-to-one relationship."
+      ],
+      "breakpoint_ref": "concepts/file-path-project-repository#analogy_breakpoint",
+      "neutral_fallback_ref": "concepts/file-path-project-repository#neutral_example",
+      "validation_status": "validated",
+      "confidence": "high",
+      "reviewed_at": "2026-07-18",
+      "expires_at": "2027-07-18"
+    },
+    {
+      "mapping_version": 1,
+      "mapping_id": "P3-S09-A1",
+      "candidate_source_id": "P3-S09",
+      "scenario_id": "S09",
+      "concept_id": "file-path-project-repository",
+      "profile_id": "P3",
+      "profile_world_id": "humanities-student",
+      "analogy_label": "Assignment workspace, file address, and Git history",
+      "role_map": {
+        "file": "assignment file",
+        "path": "file address",
+        "project": "assignment work scope",
+        "repository": "Git history archive",
+        "worktree": "currently open assignment working copy"
+      },
+      "relation_ids": [
+        "path-identifies-file",
+        "project-scopes-worktree",
+        "repository-tracks-worktree",
+        "worktree-contains-file"
+      ],
+      "non_mappings": [
+        "A Git repository is not merely an assignment folder; a bare repository has no current working files, and one file can appear through multiple paths."
+      ],
+      "breakpoint_ref": "concepts/file-path-project-repository#analogy_breakpoint",
+      "neutral_fallback_ref": "concepts/file-path-project-repository#neutral_example",
+      "validation_status": "validated",
+      "confidence": "high",
+      "reviewed_at": "2026-07-18",
+      "expires_at": "2027-07-18"
+    },
+    {
+      "mapping_version": 1,
+      "mapping_id": "P1-S10-A1",
+      "candidate_source_id": "P1-S10",
+      "scenario_id": "S10",
+      "concept_id": "local-remote-cloud-deploy",
+      "profile_id": "P1",
+      "profile_world_id": "hospital-nursing",
+      "analogy_label": "My workstation → another department → production rollout",
+      "role_map": {
+        "local": "my workstation",
+        "remote": "another department's workspace",
+        "cloud": "scalable rented workspace available on demand",
+        "deploy": "procedure for placing and running an approved version in production"
+      },
+      "relation_ids": [
+        "local-may-sync-to-remote",
+        "remote-is-not-cloud",
+        "deploy-may-target-cloud"
+      ],
+      "non_mappings": [
+        "A remote can be on the same machine, the cloud is more complex than a single workspace, and deployment may involve DNS, secrets, migrations, health checks, rollback, and other state transitions."
+      ],
+      "breakpoint_ref": "concepts/local-remote-cloud-deploy#analogy_breakpoint",
+      "neutral_fallback_ref": "concepts/local-remote-cloud-deploy#neutral_example",
+      "validation_status": "validated",
+      "confidence": "medium",
+      "reviewed_at": "2026-07-18",
+      "expires_at": "2027-07-18"
+    },
+    {
+      "mapping_version": 1,
+      "mapping_id": "P2-S10-A1",
+      "candidate_source_id": "P2-S10",
+      "scenario_id": "S10",
+      "concept_id": "local-remote-cloud-deploy",
+      "profile_id": "P2",
+      "profile_world_id": "small-ecommerce-operations",
+      "analogy_label": "Local draft → remote repository → preview release",
+      "role_map": {
+        "local": "local draft on my device",
+        "remote": "shared remote repository",
+        "cloud": "scalable hosted workspace available on demand",
+        "deploy": "procedure for releasing and running an approved preview on the target"
+      },
+      "relation_ids": [
+        "local-may-sync-to-remote",
+        "remote-is-not-cloud",
+        "deploy-may-target-cloud"
+      ],
+      "non_mappings": [
+        "A push transfers changes to a remote repository; a deployment separately involves the target's build, configuration, release, health, and rollback, so the two are not the same."
+      ],
+      "breakpoint_ref": "concepts/local-remote-cloud-deploy#analogy_breakpoint",
+      "neutral_fallback_ref": "concepts/local-remote-cloud-deploy#neutral_example",
+      "validation_status": "validated",
+      "confidence": "high",
+      "reviewed_at": "2026-07-18",
+      "expires_at": "2027-07-18"
+    },
+    {
+      "mapping_version": 1,
+      "mapping_id": "P3-S10-A1",
+      "candidate_source_id": "P3-S10",
+      "scenario_id": "S10",
+      "concept_id": "local-remote-cloud-deploy",
+      "profile_id": "P3",
+      "profile_world_id": "humanities-student",
+      "analogy_label": "Personal assignment → shared repository → presentation preview",
+      "role_map": {
+        "local": "personal assignment on my device",
+        "remote": "shared repository",
+        "cloud": "online workspace rented on demand",
+        "deploy": "procedure for placing and running an approved presentation preview on the target"
+      },
+      "relation_ids": [
+        "local-may-sync-to-remote",
+        "remote-is-not-cloud",
+        "deploy-may-target-cloud"
+      ],
+      "non_mappings": [
+        "Remote storage and public release are separate; deployment is a state transition that requires checks for the target, secrets, billing, health, and rollback."
+      ],
+      "breakpoint_ref": "concepts/local-remote-cloud-deploy#analogy_breakpoint",
+      "neutral_fallback_ref": "concepts/local-remote-cloud-deploy#neutral_example",
+      "validation_status": "validated",
+      "confidence": "high",
+      "reviewed_at": "2026-07-18",
+      "expires_at": "2027-07-18"
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fairytail.local/schemas/v1/learning-evidence.schema.json",
+  "title": "Fairytail learning evidence v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "evidence_version",
+    "concept_id",
+    "state",
+    "events",
+    "state_history",
+    "next_retrieval_after"
+  ],
+  "properties": {
+    "evidence_version": { "const": 1 },
+    "concept_id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+    "state": {
+      "enum": [
+        "unseen",
+        "exposed",
+        "explained_once",
+        "retrieved_delayed",
+        "applied_novel"
+      ]
+    },
+    "events": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["type", "scenario_id", "at"],
+        "properties": {
+          "type": {
+            "enum": [
+              "exposed",
+              "teachback_scored",
+              "retrieval_scored",
+              "novel_application_scored"
+            ]
+          },
+          "scenario_id": { "type": "string", "minLength": 1 },
+          "at": { "type": "string", "format": "date-time" },
+          "score": { "type": "integer", "minimum": 0, "maximum": 8 },
+          "fatal_misconception": { "type": "boolean" },
+          "novel_context": { "type": "boolean" }
+        }
+      }
+    },
+    "state_history": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "enum": [
+          "unseen",
+          "exposed",
+          "explained_once",
+          "retrieved_delayed",
+          "applied_novel"
+        ]
+      }
+    },
+    "next_retrieval_after": {
+      "oneOf": [{ "type": "null" }, { "type": "string", "format": "date-time" }]
+    }
+  }
+}

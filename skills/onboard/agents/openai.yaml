@@ -1,0 +1,6 @@
+interface:
+  display_name: "Fairytail Onboard"
+  short_description: "Set up a private beginner explanation profile"
+  default_prompt: "Use $fairytail:onboard to set up my private beginner profile."
+policy:
+  allow_implicit_invocation: true

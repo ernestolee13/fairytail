@@ -1,0 +1,45 @@
+{
+  "packet_version": 1,
+  "canonical_fact_hash": "5e9a7d2d58f2676a42e4fa1c5bc7d30c75041b27a4ccf1d2256e46feadf87158",
+  "concept_ids": ["path-traversal", "trust-boundary"],
+  "immutable_facts": {
+    "definition": "Path traversal happens when untrusted path input resolves outside the directory the application intended to expose.",
+    "mechanism": "Normalize the candidate path, then verify that the normalized result remains strictly below the trusted root.",
+    "analogy_roles": [
+      {
+        "target_role": "path validator",
+        "meaning": "checks the normalized candidate"
+      },
+      {
+        "target_role": "trusted root",
+        "meaning": "the only allowed filesystem boundary"
+      }
+    ],
+    "analogy_breakpoint": "A filesystem path can be crafted byte by byte; a visitor cannot reshape a real corridor.",
+    "worked_input": "../secret.txt",
+    "verification": "A nested note must resolve, while traversal, absolute, empty, non-string, and NUL-containing inputs must be rejected.",
+    "confusion_pair": {
+      "left": "normalization",
+      "right": "authorization",
+      "diagnostic": "Normalization makes a path canonical; the boundary check decides whether it is allowed."
+    }
+  },
+  "presentation_contract": {
+    "locales": ["en", "ko"],
+    "progressive_disclosure": [
+      "fact",
+      "analogy",
+      "breakpoint",
+      "example",
+      "verification",
+      "teach_back"
+    ],
+    "allowed_changes": ["analogy wording", "tone", "worked-example phrasing"],
+    "forbidden_changes": [
+      "facts",
+      "identifiers",
+      "safety boundary",
+      "verification meaning"
+    ]
+  }
+}

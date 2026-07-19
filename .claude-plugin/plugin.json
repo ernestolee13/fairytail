@@ -1,0 +1,14 @@
+{
+  "name": "fairytail",
+  "displayName": "Fairytail",
+  "version": "0.1.6",
+  "description": "Beginner-friendly explanations with fixed facts and locally validated personal analogies.",
+  "author": {
+    "name": "Fairytail contributors",
+    "url": "https://github.com/ernestolee13/fairytail"
+  },
+  "homepage": "https://github.com/ernestolee13/fairytail#readme",
+  "repository": "https://github.com/ernestolee13/fairytail",
+  "license": "MIT",
+  "defaultEnabled": false
+}

@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fairytail.local/schemas/v1/analogy-mapping.schema.json",
+  "title": "Fairytail analogy mapping v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "mapping_version",
+    "mapping_id",
+    "concept_id",
+    "profile_id",
+    "profile_world",
+    "candidate_text",
+    "role_map",
+    "relations_preserved",
+    "non_mappings",
+    "breakpoint",
+    "neutral_fallback",
+    "confidence",
+    "user_status",
+    "validation_status",
+    "verified_at"
+  ],
+  "properties": {
+    "mapping_version": { "const": 1 },
+    "mapping_id": { "type": "string", "pattern": "^P[1-9][0-9]*-S[0-9]{2}$" },
+    "concept_id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+    "profile_id": { "type": "string", "pattern": "^P[1-9][0-9]*$" },
+    "profile_world": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "candidate_text": { "type": "string", "minLength": 1 },
+    "role_map": {
+      "type": "object",
+      "additionalProperties": { "type": "string", "minLength": 1 }
+    },
+    "relations_preserved": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "uniqueItems": true
+    },
+    "non_mappings": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "uniqueItems": true
+    },
+    "breakpoint": { "type": "string", "minLength": 1 },
+    "neutral_fallback": { "type": "string", "minLength": 1 },
+    "confidence": { "enum": ["unvalidated", "low", "medium", "high"] },
+    "user_status": { "enum": ["candidate", "accepted", "rejected"] },
+    "validation_status": {
+      "enum": ["candidate_requires_validation", "validated", "rejected"]
+    },
+    "verified_at": { "type": "string", "format": "date" }
+  }
+}

@@ -1,0 +1,6 @@
+interface:
+  display_name: "Fairytail Build"
+  short_description: "Minimal implementation for non-trivial code changes"
+  default_prompt: "Use $fairytail:build for this non-trivial implementation task."
+policy:
+  allow_implicit_invocation: true

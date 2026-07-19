@@ -1,0 +1,145 @@
+{
+  "schema_version": 1,
+  "cases": [
+    {
+      "id": "claude-standalone",
+      "snapshot": {
+        "schema_version": 1,
+        "host": "claude_code",
+        "host_version": "2.1.214",
+        "enabled_plugins": [],
+        "orchestrators": [],
+        "fairytail_adapters": [],
+        "capabilities": {
+          "namespaced_skills": true,
+          "plugin_hooks": true,
+          "isolated_agent": true,
+          "model_allowed": false
+        }
+      },
+      "expected_mode": "standalone",
+      "expected_route": "deterministic_inline",
+      "expected_status": "ready"
+    },
+    {
+      "id": "claude-superpowers",
+      "snapshot": {
+        "schema_version": 1,
+        "host": "claude_code",
+        "host_version": "2.1.214",
+        "enabled_plugins": ["superpowers"],
+        "orchestrators": ["superpowers"],
+        "fairytail_adapters": [],
+        "capabilities": {
+          "namespaced_skills": true,
+          "plugin_hooks": true,
+          "isolated_agent": true,
+          "model_allowed": true
+        }
+      },
+      "expected_mode": "additive_explanation_only",
+      "expected_route": "isolated_subagent",
+      "expected_status": "ready"
+    },
+    {
+      "id": "codex-superpowers-omx",
+      "snapshot": {
+        "schema_version": 1,
+        "host": "codex",
+        "host_version": "0.116.0",
+        "enabled_plugins": ["superpowers"],
+        "orchestrators": ["superpowers", "omx"],
+        "fairytail_adapters": ["codex_advisory"],
+        "capabilities": {
+          "namespaced_skills": false,
+          "plugin_hooks": true,
+          "isolated_agent": true,
+          "model_allowed": true
+        }
+      },
+      "expected_mode": "advisory_only",
+      "expected_route": "deterministic_inline",
+      "expected_status": "ready"
+    },
+    {
+      "id": "opencode-omo-native-host",
+      "snapshot": {
+        "schema_version": 1,
+        "host": "opencode",
+        "host_version": "1.4.0",
+        "enabled_plugins": ["oh-my-openagent"],
+        "orchestrators": ["omo"],
+        "fairytail_adapters": [],
+        "capabilities": {
+          "namespaced_skills": false,
+          "plugin_hooks": true,
+          "isolated_agent": false,
+          "model_allowed": false
+        }
+      },
+      "expected_mode": "advisory_only",
+      "expected_route": "deterministic_inline",
+      "expected_status": "ready"
+    },
+    {
+      "id": "opencode-omo-claude-import-only",
+      "snapshot": {
+        "schema_version": 1,
+        "host": "opencode",
+        "host_version": "1.4.0",
+        "enabled_plugins": ["oh-my-opencode"],
+        "orchestrators": ["omo"],
+        "fairytail_adapters": ["omo_claude_import"],
+        "capabilities": {
+          "namespaced_skills": false,
+          "plugin_hooks": true,
+          "isolated_agent": false,
+          "model_allowed": false
+        }
+      },
+      "expected_mode": "advisory_only",
+      "expected_route": "deterministic_inline",
+      "expected_status": "ready"
+    },
+    {
+      "id": "opencode-dual-adapter",
+      "snapshot": {
+        "schema_version": 1,
+        "host": "opencode",
+        "host_version": "1.4.0",
+        "enabled_plugins": ["oh-my-openagent"],
+        "orchestrators": ["omo"],
+        "fairytail_adapters": ["omo_claude_import", "opencode_native"],
+        "capabilities": {
+          "namespaced_skills": false,
+          "plugin_hooks": true,
+          "isolated_agent": false,
+          "model_allowed": false
+        }
+      },
+      "expected_mode": "duplicate_adapter_blocked",
+      "expected_route": "deterministic_inline",
+      "expected_status": "blocked"
+    },
+    {
+      "id": "claude-model-denied-with-omx-marker",
+      "snapshot": {
+        "schema_version": 1,
+        "host": "claude_code",
+        "host_version": "2.1.214",
+        "enabled_plugins": [],
+        "orchestrators": ["omx"],
+        "fairytail_adapters": [],
+        "capabilities": {
+          "namespaced_skills": true,
+          "plugin_hooks": true,
+          "isolated_agent": true,
+          "model_allowed": false
+        }
+      },
+      "expected_mode": "additive_explanation_only",
+      "expected_route": "deterministic_inline",
+      "expected_status": "ready"
+    }
+  ]
+}

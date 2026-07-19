@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fairytail.local/schemas/v2/profile.schema.json",
+  "title": "Fairytail learner profile v2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "profile_version",
+    "profile_id",
+    "language",
+    "familiar_worlds",
+    "observed_experience",
+    "presentation_preference",
+    "safety_concerns",
+    "no_analogy",
+    "model_processing",
+    "pii_redaction_enabled",
+    "updated_at"
+  ],
+  "properties": {
+    "profile_version": { "const": 2 },
+    "profile_id": { "type": "string", "pattern": "^P[1-9][0-9]*$" },
+    "language": { "enum": ["en", "ko"] },
+    "familiar_worlds": {
+      "type": "array",
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "label"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+          "label": { "type": "string", "minLength": 1, "maxLength": 40 }
+        }
+      }
+    },
+    "observed_experience": {
+      "type": "array",
+      "maxItems": 10,
+      "items": { "type": "string", "minLength": 1, "maxLength": 80 },
+      "uniqueItems": true
+    },
+    "presentation_preference": {
+      "enum": ["analogy_first", "checklist", "try_first", "neutral"]
+    },
+    "safety_concerns": {
+      "type": "array",
+      "maxItems": 8,
+      "items": { "type": "string", "minLength": 1, "maxLength": 80 },
+      "uniqueItems": true
+    },
+    "no_analogy": { "type": "boolean" },
+    "model_processing": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode",
+        "approved_fields",
+        "approved_at",
+        "approved_projection_digest"
+      ],
+      "properties": {
+        "mode": {
+          "enum": ["neutral_local", "personalized_model", "personalized_claude"]
+        },
+        "approved_fields": {
+          "type": "array",
+          "maxItems": 3,
+          "items": {
+            "enum": ["language", "presentation_preference", "familiar_worlds"]
+          },
+          "uniqueItems": true
+        },
+        "approved_at": {
+          "oneOf": [
+            { "type": "null" },
+            { "type": "string", "format": "date-time" }
+          ]
+        },
+        "approved_projection_digest": {
+          "oneOf": [
+            { "type": "null" },
+            { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+          ]
+        }
+      }
+    },
+    "pii_redaction_enabled": { "const": true },
+    "updated_at": { "type": "string", "format": "date" }
+  }
+}

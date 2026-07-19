@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "fixture_id": "api-delayed-transfer",
+  "learning_evidence": {
+    "evidence_version": 1,
+    "concept_id": "api-request-response",
+    "state": "applied_novel",
+    "events": [
+      {
+        "type": "exposed",
+        "scenario_id": "S04",
+        "at": "2026-07-18T00:00:00.000Z"
+      },
+      {
+        "type": "teachback_scored",
+        "scenario_id": "S04",
+        "at": "2026-07-18T00:05:00.000Z",
+        "score": 7,
+        "fatal_misconception": false
+      },
+      {
+        "type": "retrieval_scored",
+        "scenario_id": "S07",
+        "at": "2026-07-18T00:25:00.000Z",
+        "score": 7,
+        "fatal_misconception": false
+      },
+      {
+        "type": "novel_application_scored",
+        "scenario_id": "weather-api-novel-01",
+        "at": "2026-07-19T00:00:00.000Z",
+        "score": 7,
+        "fatal_misconception": false,
+        "novel_context": true
+      }
+    ],
+    "state_history": [
+      "unseen",
+      "exposed",
+      "explained_once",
+      "retrieved_delayed",
+      "applied_novel"
+    ],
+    "next_retrieval_after": null
+  },
+  "execution_permission_observation": {
+    "before": {
+      "destructive_action": "not_granted",
+      "credential_action": "not_granted",
+      "deploy_action": "not_granted"
+    },
+    "after": {
+      "destructive_action": "not_granted",
+      "credential_action": "not_granted",
+      "deploy_action": "not_granted"
+    },
+    "invariant": "Learning state remains completely separate from task execution permission."
+  }
+}

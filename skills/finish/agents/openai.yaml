@@ -1,0 +1,6 @@
+interface:
+  display_name: "Fairytail Finish"
+  short_description: "Explain fresh completion evidence on request"
+  default_prompt: "Use $fairytail:finish to explain the verified completion evidence."
+policy:
+  allow_implicit_invocation: false

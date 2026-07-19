@@ -1,0 +1,150 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fairytail.local/schemas/v1/benchmark-run.schema.json",
+  "title": "Fairytail G010 benchmark run v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "benchmark_id",
+    "run_id",
+    "created_at",
+    "synthetic",
+    "measurement_kind",
+    "lane",
+    "complete",
+    "publishable",
+    "host",
+    "host_cli_version",
+    "arm",
+    "variant",
+    "task_id",
+    "repetition",
+    "pins",
+    "isolation",
+    "outcome",
+    "metrics",
+    "artifacts",
+    "limitations"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "benchmark_id": { "const": "g010" },
+    "run_id": { "type": "string", "minLength": 1 },
+    "created_at": { "type": "string", "format": "date-time" },
+    "synthetic": { "type": "boolean" },
+    "measurement_kind": {
+      "enum": ["synthetic-fixture", "live-agent", "unavailable-placeholder"]
+    },
+    "lane": { "enum": ["build", "render", "end-to-end"] },
+    "complete": { "type": "boolean" },
+    "publishable": { "type": "boolean" },
+    "host": { "type": "string", "minLength": 1 },
+    "host_cli_version": {
+      "oneOf": [{ "type": "null" }, { "type": "string", "minLength": 1 }]
+    },
+    "arm": { "enum": ["baseline", "ponytail", "fairytail-local"] },
+    "variant": {
+      "enum": ["headline", "fairytail-agent", "fairytail-skill-override"]
+    },
+    "task_id": { "type": "string", "minLength": 1 },
+    "repetition": { "type": "integer", "minimum": 1 },
+    "pins": {
+      "type": "object",
+      "required": ["verified", "manifest_sha256", "file_set_sha256"],
+      "properties": {
+        "verified": { "type": "boolean" },
+        "manifest_sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "file_set_sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+      },
+      "additionalProperties": true
+    },
+    "isolation": { "type": "object", "minProperties": 1 },
+    "outcome": {
+      "type": "object",
+      "additionalProperties": { "$ref": "#/$defs/metric" },
+      "required": [
+        "completed",
+        "exit_code",
+        "correctness_gate",
+        "safety_gate",
+        "explanation_gate",
+        "hard_gate_passed",
+        "failure_reason"
+      ]
+    },
+    "metrics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "diff",
+        "dependencies",
+        "usage",
+        "cost_usd",
+        "latency",
+        "delegation",
+        "fallback",
+        "explanation_proxy",
+        "human_comprehension"
+      ],
+      "properties": {
+        "diff": { "$ref": "#/$defs/metricMap" },
+        "dependencies": { "$ref": "#/$defs/metricMap" },
+        "usage": { "$ref": "#/$defs/metricMap" },
+        "cost_usd": { "$ref": "#/$defs/metric" },
+        "latency": { "$ref": "#/$defs/metricMap" },
+        "delegation": { "$ref": "#/$defs/metricMap" },
+        "fallback": { "$ref": "#/$defs/metricMap" },
+        "explanation_proxy": { "$ref": "#/$defs/metricMap" },
+        "human_comprehension": { "$ref": "#/$defs/metric" }
+      }
+    },
+    "artifacts": { "type": "object", "minProperties": 1 },
+    "limitations": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 1 }
+    }
+  },
+  "$defs": {
+    "metricMap": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": { "$ref": "#/$defs/metric" }
+    },
+    "metric": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value", "status", "source", "reason"],
+      "properties": {
+        "value": {},
+        "status": {
+          "enum": ["measured", "derived", "estimated", "unavailable", "invalid"]
+        },
+        "source": { "type": "string", "minLength": 1 },
+        "reason": {
+          "oneOf": [{ "type": "null" }, { "type": "string", "minLength": 1 }]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": { "status": { "enum": ["unavailable", "invalid"] } }
+          },
+          "then": {
+            "properties": {
+              "value": { "type": "null" },
+              "reason": { "type": "string", "minLength": 1 }
+            }
+          },
+          "else": {
+            "properties": {
+              "value": { "not": { "type": "null" } },
+              "reason": { "type": "null" }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fairytail.local/schemas/v1/integration-snapshot.schema.json",
+  "title": "Fairytail integration capability snapshot",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "host",
+    "host_version",
+    "enabled_plugins",
+    "orchestrators",
+    "fairytail_adapters",
+    "capabilities"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "host": {
+      "enum": ["claude_code", "codex", "opencode", "unknown"]
+    },
+    "host_version": {
+      "type": ["string", "null"],
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9.+_-]{0,63}$"
+    },
+    "enabled_plugins": {
+      "type": "array",
+      "maxItems": 32,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9]+(?:[._-][a-z0-9]+)*$"
+      }
+    },
+    "orchestrators": {
+      "type": "array",
+      "maxItems": 3,
+      "uniqueItems": true,
+      "items": { "enum": ["superpowers", "omo", "omx"] }
+    },
+    "fairytail_adapters": {
+      "type": "array",
+      "maxItems": 4,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "claude_plugin",
+          "omo_claude_import",
+          "opencode_native",
+          "codex_advisory"
+        ]
+      }
+    },
+    "capabilities": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "namespaced_skills",
+        "plugin_hooks",
+        "isolated_agent",
+        "model_allowed"
+      ],
+      "properties": {
+        "namespaced_skills": { "type": "boolean" },
+        "plugin_hooks": { "type": "boolean" },
+        "isolated_agent": { "type": "boolean" },
+        "model_allowed": { "type": "boolean" }
+      }
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "hook_event_name": "PostToolUse",
+  "session_id": "PRIVATE_SESSION_CANARY",
+  "tool_name": "Bash",
+  "tool_input": {
+    "command": "npm run check PRIVATE_COMMAND_CANARY"
+  },
+  "tool_response": "PRIVATE_OUTPUT_CANARY"
+}

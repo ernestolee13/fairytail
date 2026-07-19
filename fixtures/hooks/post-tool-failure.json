@@ -1,0 +1,9 @@
+{
+  "hook_event_name": "PostToolUseFailure",
+  "session_id": "PRIVATE_SESSION_CANARY",
+  "tool_name": "Bash",
+  "tool_input": {
+    "command": "echo PRIVATE_TOOL_INPUT_CANARY"
+  },
+  "error": "PRIVATE_ERROR_CANARY"
+}

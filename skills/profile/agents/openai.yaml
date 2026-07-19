@@ -1,0 +1,6 @@
+interface:
+  display_name: "Fairytail Profile"
+  short_description: "Inspect or manage private explanation preferences"
+  default_prompt: "Use $fairytail:profile to show my non-sensitive profile status."
+policy:
+  allow_implicit_invocation: false

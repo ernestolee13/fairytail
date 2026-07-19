@@ -1,0 +1,503 @@
+{
+  "schema_version": 3,
+  "cases": [
+    {
+      "id": "en-positive-explicit-api",
+      "locale": "en",
+      "expected_route": "rich",
+      "signal": "explicit_fairytail",
+      "concepts": ["api"],
+      "prompt": "Use Fairytail to explain API for a beginner."
+    },
+    {
+      "id": "en-positive-analogy-mcp",
+      "locale": "en",
+      "expected_route": "rich",
+      "signal": "analogy",
+      "concepts": ["mcp"],
+      "prompt": "Explain MCP with an analogy that a coding newcomer can follow."
+    },
+    {
+      "id": "en-positive-personalized-database",
+      "locale": "en",
+      "expected_route": "rich",
+      "signal": "personalized",
+      "concepts": ["database"],
+      "prompt": "Explain a database using a comparison from my barista background."
+    },
+    {
+      "id": "en-positive-beginner-server",
+      "locale": "en",
+      "expected_route": "rich",
+      "signal": "beginner",
+      "concepts": ["server"],
+      "prompt": "I am new to coding. Help me form a simple mental model of a server."
+    },
+    {
+      "id": "en-positive-confused-api",
+      "locale": "en",
+      "expected_route": "rich",
+      "signal": "confusion",
+      "concepts": ["api"],
+      "prompt": "I still cannot see why an API is needed or what job it does."
+    },
+    {
+      "id": "en-positive-plain-token",
+      "locale": "en",
+      "expected_route": "rich",
+      "signal": "plain_language",
+      "concepts": ["token"],
+      "prompt": "Explain an access token in plain language without assuming a technical background."
+    },
+    {
+      "id": "en-positive-first-app-bundle",
+      "locale": "en",
+      "expected_route": "rich",
+      "signal": "initial_design",
+      "concepts": ["api", "server", "database"],
+      "prompt": "I am designing my first app. Explain how its API, server, and database work together."
+    },
+    {
+      "id": "en-positive-design-mcp-key",
+      "locale": "en",
+      "expected_route": "rich",
+      "signal": "initial_design",
+      "concepts": ["mcp", "api-key"],
+      "prompt": "Before I design this agent integration, help me understand how MCP and an API key fit together."
+    },
+    {
+      "id": "en-positive-contextual-followup",
+      "locale": "en",
+      "expected_route": "rich",
+      "signal": "contextual_confusion",
+      "concepts": ["mcp"],
+      "prompt": "We were just discussing MCP, but I still do not get what it means in practical terms."
+    },
+    {
+      "id": "en-positive-nontechnical-permission",
+      "locale": "en",
+      "expected_route": "rich",
+      "signal": "beginner",
+      "concepts": ["permission"],
+      "prompt": "For a non-technical user, explain the difference between authentication and authorization."
+    },
+    {
+      "id": "en-positive-deploy-mental-model",
+      "locale": "en",
+      "expected_route": "rich",
+      "signal": "mental_model",
+      "concepts": ["deploy"],
+      "prompt": "Deployment still feels abstract to me. Give me a concrete mental model and its limits."
+    },
+    {
+      "id": "en-positive-confusion-pair",
+      "locale": "en",
+      "expected_route": "rich",
+      "signal": "confusion",
+      "concepts": ["repository", "package"],
+      "prompt": "I keep mixing up a repository and a package. Explain the difference so it sticks."
+    },
+    {
+      "id": "ko-positive-explicit-api",
+      "locale": "ko",
+      "expected_route": "rich",
+      "signal": "explicit_fairytail",
+      "concepts": ["api"],
+      "prompt": "페어리테일로 API를 개발 초보에게 설명해줘."
+    },
+    {
+      "id": "ko-positive-analogy-mcp",
+      "locale": "ko",
+      "expected_route": "rich",
+      "signal": "analogy",
+      "concepts": ["mcp"],
+      "prompt": "MCP를 코딩 입문자가 이해할 만한 비유로 설명해줘."
+    },
+    {
+      "id": "ko-positive-personalized-database",
+      "locale": "ko",
+      "expected_route": "rich",
+      "signal": "personalized",
+      "concepts": ["database"],
+      "prompt": "내 바리스타 경험을 기준으로 데이터베이스를 이해하기 쉽게 설명해줘."
+    },
+    {
+      "id": "ko-positive-beginner-server",
+      "locale": "ko",
+      "expected_route": "rich",
+      "signal": "beginner",
+      "concepts": ["server"],
+      "prompt": "개발을 처음 배우고 있어. 서버가 무슨 역할인지 쉬운 그림으로 알려줘."
+    },
+    {
+      "id": "ko-positive-confused-api",
+      "locale": "ko",
+      "expected_route": "rich",
+      "signal": "confusion",
+      "concepts": ["api"],
+      "prompt": "API가 왜 필요한지 아직 감이 안 와. 실제로 무슨 일을 하는 거야?"
+    },
+    {
+      "id": "ko-positive-plain-token",
+      "locale": "ko",
+      "expected_route": "rich",
+      "signal": "plain_language",
+      "concepts": ["token"],
+      "prompt": "액세스 토큰을 기술 배경이 없는 사람도 알 수 있는 말로 설명해줘."
+    },
+    {
+      "id": "ko-positive-first-app-bundle",
+      "locale": "ko",
+      "expected_route": "rich",
+      "signal": "initial_design",
+      "concepts": ["api", "server", "database"],
+      "prompt": "첫 앱을 설계 중이야. API, 서버, 데이터베이스가 어떻게 이어지는지 설명해줘."
+    },
+    {
+      "id": "ko-positive-design-mcp-key",
+      "locale": "ko",
+      "expected_route": "rich",
+      "signal": "initial_design",
+      "concepts": ["mcp", "api-key"],
+      "prompt": "에이전트 연동을 초기 설계하기 전에 MCP와 API 키가 어떻게 연결되는지 이해하고 싶어."
+    },
+    {
+      "id": "ko-positive-contextual-followup",
+      "locale": "ko",
+      "expected_route": "rich",
+      "signal": "contextual_confusion",
+      "concepts": ["mcp"],
+      "prompt": "앞에서 MCP 얘기를 했는데도 아직 실감이 안 나. 쉽게 말하면 무슨 뜻이야?"
+    },
+    {
+      "id": "ko-positive-nontechnical-permission",
+      "locale": "ko",
+      "expected_route": "rich",
+      "signal": "beginner",
+      "concepts": ["permission"],
+      "prompt": "비전공자에게 사용자 인증과 접근 인가의 차이를 설명하듯 알려줘."
+    },
+    {
+      "id": "ko-positive-deploy-mental-model",
+      "locale": "ko",
+      "expected_route": "rich",
+      "signal": "mental_model",
+      "concepts": ["deploy"],
+      "prompt": "배포라는 말이 아직 추상적이야. 구체적인 그림과 비유가 깨지는 지점까지 알려줘."
+    },
+    {
+      "id": "ko-positive-confusion-pair",
+      "locale": "ko",
+      "expected_route": "rich",
+      "signal": "confusion",
+      "concepts": ["repository", "package"],
+      "prompt": "레포지토리와 패키지를 자꾸 헷갈려. 기억에 남게 차이를 설명해줘."
+    },
+    {
+      "id": "en-negative-ordinary-api",
+      "locale": "en",
+      "expected_route": "default",
+      "signal": "ordinary_definition",
+      "concepts": ["api"],
+      "prompt": "What is an API?"
+    },
+    {
+      "id": "en-negative-one-line-mcp",
+      "locale": "en",
+      "expected_route": "default",
+      "signal": "ordinary_definition",
+      "concepts": ["mcp"],
+      "prompt": "Define MCP in one sentence."
+    },
+    {
+      "id": "en-negative-implement-api",
+      "locale": "en",
+      "expected_route": "default",
+      "signal": "implementation",
+      "concepts": ["api"],
+      "prompt": "Implement the users API endpoint and add its tests."
+    },
+    {
+      "id": "en-negative-fix-server",
+      "locale": "en",
+      "expected_route": "default",
+      "signal": "fix",
+      "concepts": ["server"],
+      "prompt": "Fix the server error shown in the failing test."
+    },
+    {
+      "id": "en-negative-review-database",
+      "locale": "en",
+      "expected_route": "default",
+      "signal": "review",
+      "concepts": ["database"],
+      "prompt": "Review this database migration for correctness."
+    },
+    {
+      "id": "en-negative-trivial-label",
+      "locale": "en",
+      "expected_route": "default",
+      "signal": "trivial_edit",
+      "concepts": [],
+      "prompt": "Change the button label from Save to Done."
+    },
+    {
+      "id": "en-negative-token-rename",
+      "locale": "en",
+      "expected_route": "default",
+      "signal": "trivial_edit",
+      "concepts": ["token"],
+      "prompt": "Rename the token variable to accessToken."
+    },
+    {
+      "id": "en-negative-beginner-product",
+      "locale": "en",
+      "expected_route": "default",
+      "signal": "incidental_beginner_word",
+      "concepts": ["api"],
+      "prompt": "Build a beginner API tutorial app with three exercises."
+    },
+    {
+      "id": "en-negative-mcp-config",
+      "locale": "en",
+      "expected_route": "default",
+      "signal": "implementation",
+      "concepts": ["mcp", "server"],
+      "prompt": "Add the MCP server configuration from the supplied values."
+    },
+    {
+      "id": "en-negative-deploy-script",
+      "locale": "en",
+      "expected_route": "default",
+      "signal": "implementation",
+      "concepts": ["deploy"],
+      "prompt": "Create a deployment script for the staging environment."
+    },
+    {
+      "id": "en-negative-code-explanation",
+      "locale": "en",
+      "expected_route": "default",
+      "signal": "code_explanation",
+      "concepts": [],
+      "prompt": "Explain what changed in this function and why the test passes now."
+    },
+    {
+      "id": "en-negative-sprint-plan",
+      "locale": "en",
+      "expected_route": "default",
+      "signal": "planning",
+      "concepts": ["database"],
+      "prompt": "Plan the next sprint for the database migration work."
+    },
+    {
+      "id": "ko-negative-ordinary-api",
+      "locale": "ko",
+      "expected_route": "default",
+      "signal": "ordinary_definition",
+      "concepts": ["api"],
+      "prompt": "API가 뭐야?"
+    },
+    {
+      "id": "ko-negative-one-line-mcp",
+      "locale": "ko",
+      "expected_route": "default",
+      "signal": "ordinary_definition",
+      "concepts": ["mcp"],
+      "prompt": "MCP를 한 문장으로 정의해줘."
+    },
+    {
+      "id": "ko-negative-implement-api",
+      "locale": "ko",
+      "expected_route": "default",
+      "signal": "implementation",
+      "concepts": ["api"],
+      "prompt": "사용자 API 엔드포인트를 구현하고 테스트를 추가해줘."
+    },
+    {
+      "id": "ko-negative-fix-server",
+      "locale": "ko",
+      "expected_route": "default",
+      "signal": "fix",
+      "concepts": ["server"],
+      "prompt": "실패한 테스트에 나온 서버 오류를 고쳐줘."
+    },
+    {
+      "id": "ko-negative-review-database",
+      "locale": "ko",
+      "expected_route": "default",
+      "signal": "review",
+      "concepts": ["database"],
+      "prompt": "이 데이터베이스 마이그레이션을 리뷰해줘."
+    },
+    {
+      "id": "ko-negative-trivial-label",
+      "locale": "ko",
+      "expected_route": "default",
+      "signal": "trivial_edit",
+      "concepts": [],
+      "prompt": "저장 버튼 문구를 완료로 바꿔줘."
+    },
+    {
+      "id": "ko-negative-token-rename",
+      "locale": "ko",
+      "expected_route": "default",
+      "signal": "trivial_edit",
+      "concepts": ["token"],
+      "prompt": "token 변수를 accessToken으로 이름만 바꿔줘."
+    },
+    {
+      "id": "ko-negative-beginner-product",
+      "locale": "ko",
+      "expected_route": "default",
+      "signal": "incidental_beginner_word",
+      "concepts": ["api"],
+      "prompt": "초보자용 API 튜토리얼 앱을 문제 세 개로 만들어줘."
+    },
+    {
+      "id": "ko-negative-mcp-config",
+      "locale": "ko",
+      "expected_route": "default",
+      "signal": "implementation",
+      "concepts": ["mcp", "server"],
+      "prompt": "전달한 값으로 MCP 서버 설정을 추가해줘."
+    },
+    {
+      "id": "ko-negative-deploy-script",
+      "locale": "ko",
+      "expected_route": "default",
+      "signal": "implementation",
+      "concepts": ["deploy"],
+      "prompt": "스테이징 환경 배포 스크립트를 만들어줘."
+    },
+    {
+      "id": "ko-negative-code-explanation",
+      "locale": "ko",
+      "expected_route": "default",
+      "signal": "code_explanation",
+      "concepts": [],
+      "prompt": "이 함수에서 무엇이 바뀌었고 테스트가 왜 통과하는지 설명해줘."
+    },
+    {
+      "id": "ko-negative-sprint-plan",
+      "locale": "ko",
+      "expected_route": "default",
+      "signal": "planning",
+      "concepts": ["database"],
+      "prompt": "데이터베이스 마이그레이션 작업의 다음 스프린트를 계획해줘."
+    }
+  ],
+  "build_cases": [
+    {
+      "id": "en-build-positive-nontrivial-feature",
+      "locale": "en",
+      "expected_route": "minimal",
+      "signal": "nontrivial_implementation",
+      "prompt": "Complete the repository's path helper so it rejects traversal and absolute inputs, add focused tests, and verify the change without adding dependencies."
+    },
+    {
+      "id": "en-build-positive-root-cause-fix",
+      "locale": "en",
+      "expected_route": "minimal",
+      "signal": "nontrivial_fix",
+      "prompt": "Fix the parser's root cause so nested escaped quotes work, add one focused regression test, and run the existing test command."
+    },
+    {
+      "id": "en-build-positive-simplification",
+      "locale": "en",
+      "expected_route": "minimal",
+      "signal": "nontrivial_simplification",
+      "prompt": "Simplify the duplicated validation shared by upload and import while preserving behavior and the existing public API."
+    },
+    {
+      "id": "en-build-positive-beginner-product",
+      "locale": "en",
+      "expected_route": "minimal",
+      "signal": "incidental_beginner_word",
+      "prompt": "In this repository, implement the beginner API tutorial feature with three exercises and focused tests."
+    },
+    {
+      "id": "en-build-negative-trivial-config",
+      "locale": "en",
+      "expected_route": "default",
+      "signal": "trivial_edit",
+      "prompt": "In .mcp.json, change only the server command from old-server to new-server and validate the JSON."
+    },
+    {
+      "id": "en-build-negative-trivial-typo",
+      "locale": "en",
+      "expected_route": "default",
+      "signal": "trivial_edit",
+      "prompt": "Fix only the typo in the server error string from 'requst failed' to 'request failed', then run the existing test."
+    },
+    {
+      "id": "en-build-negative-design-only",
+      "locale": "en",
+      "expected_route": "default",
+      "signal": "design_only",
+      "prompt": "Design the API, server, and database architecture for my first app. Return an implementation plan; do not explain the concepts or edit code."
+    },
+    {
+      "id": "en-build-negative-review-only",
+      "locale": "en",
+      "expected_route": "default",
+      "signal": "review_only",
+      "prompt": "Review this database migration for correctness. Report findings only and do not edit files."
+    },
+    {
+      "id": "ko-build-positive-nontrivial-feature",
+      "locale": "ko",
+      "expected_route": "minimal",
+      "signal": "nontrivial_implementation",
+      "prompt": "이 저장소의 경로 헬퍼가 상위 경로 이동과 절대 경로 입력을 거부하도록 완성하고 집중 테스트를 추가한 뒤 검증해줘. 의존성은 추가하지 마."
+    },
+    {
+      "id": "ko-build-positive-root-cause-fix",
+      "locale": "ko",
+      "expected_route": "minimal",
+      "signal": "nontrivial_fix",
+      "prompt": "중첩된 이스케이프 따옴표를 처리하도록 파서의 근본 원인을 고치고 집중 회귀 테스트 하나를 추가한 뒤 기존 테스트를 실행해줘."
+    },
+    {
+      "id": "ko-build-positive-simplification",
+      "locale": "ko",
+      "expected_route": "minimal",
+      "signal": "nontrivial_simplification",
+      "prompt": "업로드와 가져오기 경로에 중복된 검증을 동작과 공개 API를 유지하면서 단순화해줘."
+    },
+    {
+      "id": "ko-build-positive-beginner-product",
+      "locale": "ko",
+      "expected_route": "minimal",
+      "signal": "incidental_beginner_word",
+      "prompt": "이 저장소에 초보자용 API 튜토리얼 기능과 연습 문제 세 개를 구현하고 집중 테스트를 추가해줘."
+    },
+    {
+      "id": "ko-build-negative-trivial-config",
+      "locale": "ko",
+      "expected_route": "default",
+      "signal": "trivial_edit",
+      "prompt": ".mcp.json에서 서버 명령만 old-server에서 new-server로 바꾸고 JSON이 유효한지 확인해줘."
+    },
+    {
+      "id": "ko-build-negative-trivial-typo",
+      "locale": "ko",
+      "expected_route": "default",
+      "signal": "trivial_edit",
+      "prompt": "서버 오류 문자열의 'requst failed' 오타만 'request failed'로 고친 뒤 기존 테스트를 실행해줘."
+    },
+    {
+      "id": "ko-build-negative-design-only",
+      "locale": "ko",
+      "expected_route": "default",
+      "signal": "design_only",
+      "prompt": "첫 앱의 API, 서버, 데이터베이스 아키텍처를 설계해줘. 개념 설명이나 코드 수정 없이 구현 계획만 작성해줘."
+    },
+    {
+      "id": "ko-build-negative-review-only",
+      "locale": "ko",
+      "expected_route": "default",
+      "signal": "review_only",
+      "prompt": "이 데이터베이스 마이그레이션의 정확성을 검토해줘. 파일은 수정하지 말고 발견한 문제만 보고해줘."
+    }
+  ]
+}

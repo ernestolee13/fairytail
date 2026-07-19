@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "content_version": "2026.07.18.2",
+  "pairs": [
+    {
+      "schema_version": 1,
+      "pair_id": "server-database",
+      "concepts": ["server", "database"],
+      "fixed_distinction": "A server is a role that processes requests, while a database is a system that manages data. A database may run as a separate server process or be embedded in an application.",
+      "diagnostic_question": "Does an application that reads an SQLite file always need a separate database server?",
+      "source_concept_ids": ["process-server", "database-table-query"]
+    },
+    {
+      "schema_version": 1,
+      "pair_id": "api-mcp",
+      "concepts": ["API", "MCP"],
+      "fixed_distinction": "An API is the broad category of rules for software interaction; MCP is a specific protocol through which an AI host discovers and uses tools, resources, and prompts.",
+      "diagnostic_question": "Can an MCP server call an existing GitHub API internally?",
+      "source_concept_ids": ["api-request-response", "mcp-tool-resource"]
+    },
+    {
+      "schema_version": 1,
+      "pair_id": "api-credentials-llm-token",
+      "concepts": ["API key/access token", "LLM token"],
+      "fixed_distinction": "API keys and access tokens are access credentials, while an LLM token is a unit of model processing and cost.",
+      "diagnostic_question": "Can copying a context token log you in to an API?",
+      "source_concept_ids": [
+        "credential-api-key-access-token",
+        "llm-token-context-window"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "pair_id": "api-key-access-token",
+      "concepts": ["API key", "access token"],
+      "fixed_distinction": "The meaning of an API key depends on the provider's contract, while an OAuth access token represents delegated authority with a scope, resource, and duration.",
+      "diagnostic_question": "Is every value sent in a Bearer header an OAuth token?",
+      "source_concept_ids": ["credential-api-key-access-token"]
+    },
+    {
+      "schema_version": 1,
+      "pair_id": "authentication-authorization",
+      "concepts": ["authentication", "authorization"],
+      "fixed_distinction": "AuthN verifies identity; AuthZ decides whether a specific action on a specific target is allowed.",
+      "diagnostic_question": "Can deletion still be denied after a successful login?",
+      "source_concept_ids": ["permission-authentication-authorization"]
+    },
+    {
+      "schema_version": 1,
+      "pair_id": "local-server-remote-cloud",
+      "concepts": ["local server", "remote/cloud"],
+      "fixed_distinction": "Server is a role; local, remote, and cloud describe execution location or operating model.",
+      "diagnostic_question": "Is localhost:3000 automatically exposed to the internet?",
+      "source_concept_ids": ["process-server", "local-remote-cloud-deploy"]
+    },
+    {
+      "schema_version": 1,
+      "pair_id": "repository-folder-project",
+      "concepts": ["repository", "folder/project"],
+      "fixed_distinction": "A folder groups files, a repository is a Git history structure, and a project is a tool-specific scope of work.",
+      "diagnostic_question": "Is every project folder a Git repository?",
+      "source_concept_ids": ["file-path-project-repository"]
+    },
+    {
+      "schema_version": 1,
+      "pair_id": "package-dependency",
+      "concepts": ["package", "dependency"],
+      "fixed_distinction": "A package is a distributable object; a dependency is a relationship stating that the object is needed.",
+      "diagnostic_question": "Can the same package be a dependency of project A but not project B?",
+      "source_concept_ids": ["package-dependency"]
+    },
+    {
+      "schema_version": 1,
+      "pair_id": "model-tool",
+      "concepts": ["model", "tool"],
+      "fixed_distinction": "A model can select or propose tool use, while the host/application coordinates policy, approval, and invocation. An application/executor actually runs a client-side function tool; an MCP server that receives `tools/call` actually runs an MCP tool.",
+      "diagnostic_question": "When tool-call JSON is generated, has the file already changed? Which component actually executes the action?",
+      "source_concept_ids": ["mcp-tool-resource"]
+    },
+    {
+      "schema_version": 1,
+      "pair_id": "config-env-secret",
+      "concepts": ["config", "env", "secret"],
+      "fixed_distinction": "Configuration is the complete set of settings, an environment variable is one delivery channel, and a secret is a value whose nature requires protection.",
+      "diagnostic_question": "Does placing a value in an environment variable automatically make it a secret?",
+      "source_concept_ids": [
+        "environment-variable-config",
+        "credential-api-key-access-token"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "pair_id": "remote-cloud",
+      "concepts": ["remote", "cloud"],
+      "fixed_distinction": "Remote describes a relative location; cloud is a computing-resource delivery model.",
+      "diagnostic_question": "Can another Git repository on the same laptop be a remote?",
+      "source_concept_ids": ["local-remote-cloud-deploy"]
+    },
+    {
+      "schema_version": 1,
+      "pair_id": "push-deploy",
+      "concepts": ["push", "deploy"],
+      "fixed_distinction": "Push transfers Git objects; deploy applies a build, configuration, or release to a target environment.",
+      "diagnostic_question": "Does the service change merely because code was pushed to GitHub?",
+      "source_concept_ids": [
+        "file-path-project-repository",
+        "local-remote-cloud-deploy"
+      ]
+    }
+  ]
+}

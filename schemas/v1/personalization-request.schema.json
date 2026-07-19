@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fairytail.local/schemas/v1/personalization-request.schema.json",
+  "title": "Fairytail consent-bound personalization request v2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "request_id",
+    "destination",
+    "purpose",
+    "canonical_fact_set_hash",
+    "scenario_id",
+    "concept_id",
+    "language",
+    "presentation_preference",
+    "familiar_contexts",
+    "projection_digest",
+    "approval_instance_digest",
+    "role_ids",
+    "required_relations"
+  ],
+  "properties": {
+    "schema_version": { "const": 2 },
+    "request_id": { "type": "string", "pattern": "^FTR-[a-f0-9]{32}$" },
+    "destination": { "const": "configured_coding_model_service" },
+    "purpose": { "const": "bounded_analogy_role_binding_only" },
+    "canonical_fact_set_hash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "scenario_id": { "type": "string", "pattern": "^S[0-9]{2}$" },
+    "concept_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "language": { "enum": ["en", "ko"] },
+    "presentation_preference": {
+      "enum": ["analogy_first", "try_first", "checklist", "neutral"]
+    },
+    "familiar_contexts": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 5,
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 1, "maxLength": 40 }
+    },
+    "projection_digest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "approval_instance_digest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "role_ids": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 32,
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 1, "maxLength": 80 }
+    },
+    "required_relations": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 64,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["relation_id", "from_role", "relation", "to_role"],
+        "properties": {
+          "relation_id": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          },
+          "from_role": { "type": "string", "minLength": 1, "maxLength": 80 },
+          "relation": { "type": "string", "minLength": 1, "maxLength": 160 },
+          "to_role": { "type": "string", "minLength": 1, "maxLength": 80 }
+        }
+      }
+    }
+  }
+}

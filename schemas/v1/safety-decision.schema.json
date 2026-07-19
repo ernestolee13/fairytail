@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fairytail.dev/schemas/v1/safety-decision.schema.json",
+  "title": "Fairytail safety decision",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "risk",
+    "decision",
+    "reason_code",
+    "target",
+    "side_effect",
+    "action_fingerprint",
+    "approval_observed",
+    "requirements",
+    "recovery",
+    "retype_phrase",
+    "execution_authorized",
+    "may_request_host_execution"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "risk": { "enum": ["green", "yellow", "red", "unknown"] },
+    "decision": { "enum": ["defer", "ask", "deny"] },
+    "reason_code": {
+      "type": "string",
+      "pattern": "^FTG-[A-Z]+-[A-Z0-9_]+(?:-[A-Z0-9_]+)*$"
+    },
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["display", "fingerprint", "kind", "scope", "environment"],
+      "properties": {
+        "display": { "type": "string", "minLength": 1, "maxLength": 160 },
+        "fingerprint": {
+          "type": "string",
+          "pattern": "^sha256:[a-f0-9]{16}$"
+        },
+        "kind": { "type": "string" },
+        "scope": { "type": "string" },
+        "environment": { "type": "string" }
+      }
+    },
+    "side_effect": { "type": "string", "minLength": 1 },
+    "action_fingerprint": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{16}$"
+    },
+    "approval_observed": { "type": "boolean" },
+    "requirements": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "host_policy_still_required",
+        "scoped_user_approval",
+        "user_retype",
+        "manual_action_only"
+      ],
+      "properties": {
+        "host_policy_still_required": { "const": true },
+        "scoped_user_approval": { "type": "boolean" },
+        "user_retype": { "type": "boolean" },
+        "manual_action_only": { "type": "boolean" }
+      }
+    },
+    "recovery": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["precondition", "rollback"],
+      "properties": {
+        "precondition": { "type": "string", "minLength": 1 },
+        "rollback": { "type": "string", "minLength": 1 }
+      }
+    },
+    "retype_phrase": {
+      "type": ["string", "null"],
+      "maxLength": 160
+    },
+    "execution_authorized": { "const": false },
+    "may_request_host_execution": { "type": "boolean" }
+  }
+}

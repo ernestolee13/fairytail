@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fairytail.local/schemas/v1/golden-case.schema.json",
+  "title": "Fairytail golden case v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "case_version",
+    "case_id",
+    "profile_id",
+    "scenario_id",
+    "concept_ids",
+    "canonical_fact_set_hash",
+    "analogy_mapping_id",
+    "required_output_sections",
+    "evaluation_status"
+  ],
+  "properties": {
+    "case_version": { "const": 1 },
+    "case_id": { "type": "string", "pattern": "^P[1-9][0-9]*-S[0-9]{2}$" },
+    "profile_id": { "type": "string", "pattern": "^P[1-9][0-9]*$" },
+    "scenario_id": { "type": "string", "pattern": "^S[0-9]{2}$" },
+    "concept_ids": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 2,
+      "items": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+      "uniqueItems": true
+    },
+    "canonical_fact_set_hash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "analogy_mapping_id": {
+      "type": "string",
+      "pattern": "^P[1-9][0-9]*-S[0-9]{2}$"
+    },
+    "required_output_sections": {
+      "type": "array",
+      "minItems": 8,
+      "maxItems": 8,
+      "items": { "type": "string", "minLength": 1 },
+      "uniqueItems": true
+    },
+    "evaluation_status": { "const": "fixture_only_not_scored" }
+  }
+}

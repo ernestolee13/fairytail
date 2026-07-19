@@ -1,0 +1,1186 @@
+{
+  "schema_version": 1,
+  "catalog_version": "2026.07.18.2",
+  "source_locale": "en",
+  "locale": "ko",
+  "source_content_version": "2026.07.18.2",
+  "review": {
+    "status": "reviewed",
+    "basis": "Korean learner-facing copy reconstructed from the reviewed G004 Korean source snapshot; invariant IDs, roles, relation directions, and safety structure are checked against the English source.",
+    "reviewed_at": "2026-07-18",
+    "evidence_id": "G009-KO-PRESENTATION-REVIEW-2026-07-18"
+  },
+  "worlds": [
+    {
+      "source_hash": "5da26148d50b8314ced8b3dabe982ca32c3f86f301ddf5d1db6c22c8972b331b",
+      "profile_id": "P1",
+      "world_id": "hospital-nursing",
+      "label": "병원 간호: 의뢰·투약·기록·인계",
+      "selection_aliases": [
+        "보건·돌봄",
+        "병원·간호",
+        "병원 간호: 의뢰·투약·기록·인계"
+      ]
+    },
+    {
+      "source_hash": "4e32940976eb0332e2663a0b67e0d25016ef45bf4b2ecbf49000547a1b156f7f",
+      "profile_id": "P2",
+      "world_id": "small-ecommerce-operations",
+      "label": "소규모 쇼핑몰 운영: 캠페인·주문·CS·리포트",
+      "selection_aliases": [
+        "판매·고객 응대",
+        "운영·프로젝트 관리",
+        "소규모 쇼핑몰 운영: 캠페인·주문·CS·리포트"
+      ]
+    },
+    {
+      "source_hash": "baf0d4d74314767d78e8052139b342790fcc86653a58e23333e29b7fd992af64",
+      "profile_id": "P3",
+      "world_id": "humanities-student",
+      "label": "인문계 대학생: 과제·도서관·동아리 행사",
+      "selection_aliases": [
+        "교육·학습",
+        "연구·분석",
+        "콘텐츠·글쓰기",
+        "인문계 대학생: 과제·도서관·동아리 행사"
+      ]
+    }
+  ],
+  "concepts": [
+    {
+      "source_hash": "27f8e6353fe6521dfb8659f48fc32554da5859127184067add86fc1d5ba3bfd6",
+      "concept_id": "terminal-shell-command",
+      "canonical_definition": "terminal은 문자 입력을 전달하고 출력 스트림을 표시하는 호스트/UI다. shell은 텍스트를 명령으로 해석하는 프로그램이다. command는 shell 문법의 실행 단위이며 외부 프로그램, builtin, 함수, pipeline일 수 있다.",
+      "mechanism": {
+        "actors": [
+          "terminal",
+          "shell",
+          "command",
+          "process",
+          "stdout",
+          "stderr"
+        ],
+        "flow": [
+          "사용자 입력 → terminal → shell의 parsing·expansion → 실행 대상 선택 → process 실행 → stdout/stderr → terminal 표시."
+        ]
+      },
+      "safety_boundary": [
+        "명령 문자열보다 `현재 path, 정확한 target, side effect, 중지/복구 방법`을 먼저 표시한다."
+      ],
+      "analogy_breakpoint": "사람 접수자는 애매함을 보완하지만 shell은 quoting·expansion·pipe를 문자 규칙대로 처리하며 작은 차이가 파괴적 행동으로 이어질 수 있다.",
+      "neutral_example": "`pwd`로 현재 작업 위치만 확인한다. 외부 상태를 바꾸지 않는다."
+    },
+    {
+      "source_hash": "13eddbf3b8a06856788b68d1c80a541ae5166dc70d45e410c696631169d61964",
+      "concept_id": "file-path-project-repository",
+      "canonical_definition": "file은 OS가 읽고 쓸 수 있는 객체이고 path는 이를 식별하기 위해 해석되는 문자열이다. project는 한 작업의 도구별 범위다. Git repository는 refs와 object database로 이루어진 버전 이력 저장소이며 worktree가 없을 수도 있다.",
+      "mechanism": {
+        "actors": [
+          "file",
+          "path",
+          "directory",
+          "worktree",
+          "index",
+          "objects",
+          "refs"
+        ],
+        "flow": [
+          "상대 path는 현재 directory, 절대 path는 root부터 해석된다. Git은 worktree의 현재 파일과 index·objects·refs의 이력을 비교·기록한다."
+        ]
+      },
+      "safety_boundary": [
+        "recursive·delete·move 전에는 resolved absolute target과 repo root를 다시 확인한다."
+      ],
+      "analogy_breakpoint": "symlink/hard link 때문에 한 file에 여러 path가 생길 수 있고 repo는 단순 백업 폴더가 아니라 graph·refs·objects 구조다.",
+      "neutral_example": "`pwd`, `git rev-parse --show-toplevel`, `git status --short`로 위치와 변경 상태를 읽는다."
+    },
+    {
+      "source_hash": "fcc621e6a9a5ec0aa32a5ad4cce1856e9657d0526f7bb98932b5772fb7c67b18",
+      "concept_id": "package-dependency",
+      "canonical_definition": "package는 한 생태계가 배포·설치할 수 있도록 묶은 객체다. dependency는 project/package가 다른 package를 필요로 한다는 관계 또는 요구사항이다.",
+      "mechanism": {
+        "actors": [
+          "manifest",
+          "resolver",
+          "package",
+          "dependency",
+          "artifact",
+          "build/runtime"
+        ],
+        "flow": [
+          "manifest에 요구사항 기록 → resolver가 버전·환경에 맞는 artifact 선택 → 직접·전이 의존성 설치 → build/runtime이 사용."
+        ]
+      },
+      "safety_boundary": [
+        "새 dependency는 필요성·maintainer·license·version·lockfile diff·script side effect를 확인한 뒤 설치한다."
+      ],
+      "analogy_breakpoint": "package는 실행 코드이며 전이 의존성, platform 조건, version conflict, 악성 공급망 위험이 있다.",
+      "neutral_example": "설치 전 manifest의 dependency 항목과 예상 lockfile diff를 확인한다. 예시 package `example-lib`의 실제 설치는 하지 않는다."
+    },
+    {
+      "source_hash": "dbbe5beca61550ad8ed3f5eab20155c778d0ac6a38736ceb5308a077dc77f053",
+      "concept_id": "process-server",
+      "canonical_definition": "program은 저장된 명령이고 process는 그것이 실행 중인 주소 공간·thread·자원 묶음이다. 이 카드의 HTTP 문맥에서 server는 연결·요청을 받아 응답하는 software role이다. 다만 infrastructure 문맥에서는 그 역할을 수행하는 physical machine·VM도 `server`라고 부를 수 있으므로 문맥을 함께 확인한다.",
+      "mechanism": {
+        "actors": [
+          "command",
+          "operating system",
+          "process",
+          "server",
+          "client",
+          "database/API"
+        ],
+        "flow": [
+          "command 실행 → OS가 process 생성 → server가 host/port에 listen → client request → 처리·필요 시 DB/API 호출 → response → 다음 요청 대기."
+        ]
+      },
+      "safety_boundary": [
+        "bind 주소, 공개 directory, port, secret 존재, production 적합성, 종료 방법을 확인한다."
+      ],
+      "analogy_breakpoint": "실제 server는 proxy·여러 process/instance·동시 요청으로 구성될 수 있고 같은 program이 연결에 따라 client와 server 양쪽 역할을 할 수 있다.",
+      "neutral_example": "secret이 없는 전용 `public-demo`만 `127.0.0.1`에 bind해 임시 정적 server로 열고 Ctrl-C로 종료한다. home/project root는 공유하지 않는다."
+    },
+    {
+      "source_hash": "3f28d211ab00a0098fe9148d55a2a48be7801790f1d28e49cbf9991de9c0819c",
+      "concept_id": "database-table-query",
+      "canonical_definition": "relational DBMS는 relation/table 형태의 데이터를 관리한다. table은 같은 named column을 가진 row의 named collection이고 query는 DBMS에 결과나 처리를 요구하는 구조화된 요청이다.",
+      "mechanism": {
+        "actors": ["app/CLI", "DBMS", "table", "index", "result/status/error"],
+        "flow": [
+          "app/CLI가 SQL 전송 → DBMS가 문법·권한·constraint 확인 → table/index에서 처리 → result row 또는 status/error 반환."
+        ]
+      },
+      "safety_boundary": [
+        "production 여부, backup, transaction, 대상 row count, migration rollback을 확인하지 않은 write query는 자동 실행하지 않는다."
+      ],
+      "analogy_breakpoint": "실제 DB에는 transaction, constraint, index, join, concurrency, NULL, optimizer가 있어 단순 서랍장·spreadsheet와 다르다.",
+      "neutral_example": "`SELECT 2 + 2 AS answer;`처럼 저장 데이터를 바꾸지 않는 query로 시작하고, 수정 전에는 제한 조건을 둔 `SELECT`로 대상 row를 확인한다."
+    },
+    {
+      "source_hash": "7e584706c551dc2310cd95996042cd7dc6cd5e388066228e9f468830fbc59dca",
+      "concept_id": "api-request-response",
+      "canonical_definition": "API는 software가 다른 software와 상호작용하도록 정한 syntax·semantics·rules의 interface다. HTTP API에서는 client가 method·target·headers·선택적 body의 request를 보내고 server가 status·headers·선택적 body의 response를 돌려준다.",
+      "mechanism": {
+        "actors": ["client", "endpoint", "server", "request", "response"],
+        "flow": [
+          "client가 계약에 맞춰 request 구성 → endpoint가 검증·권한 확인·처리 → 성공/오류 response → client가 status와 content 해석."
+        ]
+      },
+      "safety_boundary": [
+        "외부 write API는 endpoint·method·account·scope·cost·idempotency·rollback을 승인 전에 표시한다."
+      ],
+      "analogy_breakpoint": "사람 창구처럼 애매한 요청을 알아서 해석하지 않고 schema·method·rate limit·retry·partial failure가 있다.",
+      "neutral_example": "가상의 read-only `GET /tasks/42`가 `200 OK`와 JSON을 반환하는 흐름을 trace한다. 실제 호출 전 method·target·비용·credential을 확인한다."
+    },
+    {
+      "source_hash": "0431d2f9109002de9cb8cc23b5d7e9cd6734e07d5a4c16a933efa3284f7511f8",
+      "concept_id": "credential-api-key-access-token",
+      "canonical_definition": "credential은 접근 주체·권한을 증명하는 정보다. API key는 서비스가 발급한 비밀 문자열로 project/app 식별·quota·접근 확인에 쓰이지만 정확한 의미는 공급자별이다. OAuth access token은 보호된 resource에 대한 scope·대상·기간 등의 위임 권한을 표현한다.",
+      "mechanism": {
+        "actors": [
+          "client",
+          "authorization server",
+          "resource server",
+          "API key",
+          "access token"
+        ],
+        "flow": [
+          "key는 server-side secret 저장소에서 읽어 HTTPS request에 포함한다. OAuth는 authorization 후 token 획득 → resource server 제출 → 유효성·audience/resource·scope 확인 순서다."
+        ]
+      },
+      "safety_boundary": [
+        "frontend·repo·chat·screenshot·log·URL에 실제 secret을 표시하지 않는다. 최소 scope, HTTPS, audience 검증, 별도 downstream token, revoke/rotate 절차를 유지한다."
+      ],
+      "analogy_breakpoint": "token은 사람을 항상 대표하지 않고 불투명할 수 있으며 공급자마다 API key 권한 모델이 다르다. 디지털 secret은 소유자 모르게 무한 복사될 수 있다.",
+      "neutral_example": "`.env.example`에는 `OPENAI_API_KEY=replace_me`만 두고 실제 값은 server 환경변수/secret manager에 저장한다. 이미 노출됐다면 삭제보다 revoke/rotate가 먼저다."
+    },
+    {
+      "source_hash": "f9fca8cef1dae0291f1f33bd09c14865a03eaf95928bfa1638b57d1e95301dd6",
+      "concept_id": "llm-token-context-window",
+      "canonical_definition": "LLM token은 모델이 입력·출력을 처리하는 원자적 단위다. context window는 한 요청에서 처리할 수 있는 입력·출력·reasoning 등의 전체 token 작업 공간 한도다.",
+      "mechanism": {
+        "actors": [
+          "provider/model tokenizer",
+          "input token sequence",
+          "model",
+          "output token",
+          "context window"
+        ],
+        "flow": [
+          "provider/model별 tokenizer가 input을 token sequence로 변환 → model이 sequence 처리 → output token 생성 → usage·cost·context가 해당 provider/model 규칙의 token 수로 계산된다. tool·image·document·thinking 처리 방식도 공급자와 모델에 따라 달라질 수 있다."
+        ]
+      },
+      "safety_boundary": [
+        "비용 추정에는 실제 model-specific count를 쓰고 secret·불필요한 개인정보를 context에 넣지 않는다."
+      ],
+      "analogy_breakpoint": "token은 인간의 단어·의미 단위와 일치하지 않고 token 수가 정보 중요도·사실 개수를 뜻하지 않는다.",
+      "neutral_example": "거친 글자 수 추정 대신 실제 사용 provider·model·messages·tool schema를 대상으로 해당 공급자의 공식 counting API/tokenizer를 사용하고 핵심 결정은 외부 정본에 저장한다."
+    },
+    {
+      "source_hash": "112c80c0c7947e6d9d32e2147bf330b1539a32f78d15ea4f68baa0b68177eccd",
+      "concept_id": "mcp-tool-resource",
+      "canonical_definition": "MCP는 AI application이 외부 data와 capability를 일관되게 발견·사용하도록 하는 host-client-server protocol이다. host는 client 연결과 application context/policy를 조정하고, client는 server별 1:1 연결을 유지하며, server는 prompts·resources·tools를 노출한다.",
+      "mechanism": {
+        "actors": [
+          "host",
+          "client",
+          "server",
+          "model/application",
+          "tool/resource"
+        ],
+        "flow": [
+          "host/client/server capability 협상 → 목록 발견 → model 또는 application이 tool/resource 사용을 선택 → client가 `tools/call` 등 protocol request 전송 → server 실행·결과 반환 → host/client가 결과를 application/model context에서 처리한다. 사용자 확인·자동 호출 방식은 host 구현과 정책에 따라 다르며 MCP protocol이 모든 호출의 사전 승인을 강제하지 않는다."
+        ]
+      },
+      "safety_boundary": [
+        "MCP 자체가 신뢰·확인 UI를 보장하지 않는다. Fairytail은 별도 hard guard로 민감 tool의 allowlist·사용자 확인·schema validation을 요구하고, server 신뢰·audience·local stdio OS permission을 검토한다."
+      ],
+      "analogy_breakpoint": "표준 연결은 server의 신뢰·정확성·최소 권한을 보장하지 않고 hosted product에서는 실행 경계가 UI상 하나처럼 보일 수 있다.",
+      "neutral_example": "**Fairytail 정책으로** read-only resource 조회부터 시작하고 민감 tool에는 정확한 대상·예상 side effect·확인 여부를 표시한다. 원격 MCP token은 해당 server audience/resource에 묶고 downstream token passthrough를 금지한다."
+    },
+    {
+      "source_hash": "903bd433fdadf5196caf2126b351c9d836a8489e1014604e54774ef045f55a41",
+      "concept_id": "environment-variable-config",
+      "canonical_definition": "environment variable은 process 환경의 `name=value` 데이터다. config는 app 동작을 바꾸는 설정 전체이며 default, flag, file, env, remote config 등에서 올 수 있다. `.env`는 OS environment 자체가 아니라 도구가 읽어 적재하는 파일 관례다.",
+      "mechanism": {
+        "actors": [
+          "shell/launcher",
+          "environment variable",
+          "child process",
+          "application",
+          "config source"
+        ],
+        "flow": [
+          "shell/launcher가 값 설정 → child process가 environment를 받음 → app이 이름으로 읽고 string을 type으로 parse → precedence 규칙 적용."
+        ]
+      },
+      "safety_boundary": [
+        "`.env`를 Git에서 제외하고 placeholder만 공유하며 secret manager·최소 권한·rotation을 운영 환경에 적용한다."
+      ],
+      "analogy_breakpoint": "값은 기본적으로 string이고 상속·대소문자·precedence·지속성은 OS/runtime마다 다르며 env 값도 log·crash dump·process inspection으로 노출될 수 있다.",
+      "neutral_example": "`APP_MODE=demo`처럼 비민감 값을 한 process에만 전달하고 값 존재 여부만 로그로 확인한다."
+    },
+    {
+      "source_hash": "b764b82708fdc7b70e9bc58b83fe7e0afbd6d4fa861c6d7a5f4eed874c40ce2a",
+      "concept_id": "permission-authentication-authorization",
+      "canonical_definition": "permission은 resource에 특정 operation을 허용하는 권리/속성이다. authentication(AuthN)은 제시된 user/process/device의 identity·authenticity를 확인한다. authorization(AuthZ)은 그 principal이 특정 resource에 요청한 action을 해도 되는지 허용·거부한다.",
+      "mechanism": {
+        "actors": [
+          "principal",
+          "credential/authenticator",
+          "resource",
+          "action",
+          "policy"
+        ],
+        "flow": [
+          "보호 요청 → credential/authenticator 검증 → principal 확정 → principal·action·resource·context에 policy 적용 → allow/deny. public resource는 anonymous access가 허용될 수 있다."
+        ]
+      },
+      "safety_boundary": [
+        "최소 권한, deny-by-default, 매 요청의 resource/action 검사, 권한 상승의 대상·기간·복구를 명시한다."
+      ],
+      "analogy_breakpoint": "identity는 사람뿐 아니라 service/process/device일 수 있고 정책은 시간·관계·resource owner에 따라 동적이며 AuthN 없이 anonymous AuthZ가 가능하다.",
+      "neutral_example": "`ls -l README.md`로 권한을 읽기만 한다. 해결책으로 곧바로 `chmod 777`을 제안하지 않는다."
+    },
+    {
+      "source_hash": "216e787ff3fe0cea84b5b8efe9fd66656a3f7a6f17949a3ebc22d41ccd89b59f",
+      "concept_id": "local-remote-cloud-deploy",
+      "canonical_definition": "local은 현재 host/runtime에 있다는 상대적 표현이고 `localhost`는 loopback으로 해석된다. remote는 현재 작업 위치 밖의 대상이라는 상대적 표현이다. cloud는 on-demand network access로 shared configurable computing resources를 쓰는 모델이다. deploy는 선택한 build/config를 target environment에 적용해 실행·제공 가능한 상태로 전환하는 lifecycle 행위다.",
+      "mechanism": {
+        "actors": [
+          "local workspace",
+          "remote repository",
+          "build",
+          "target environment",
+          "traffic",
+          "rollback"
+        ],
+        "flow": [
+          "local edit/test → remote repo 전달 가능 → build → target config/secrets → preview/release/rollout → health check → traffic 연결 → rollback."
+        ]
+      },
+      "safety_boundary": [
+        "production, public exposure, billing, domain, secret, DB migration, rollback을 명시 승인 없이 자동 실행하지 않는다."
+      ],
+      "analogy_breakpoint": "remote는 같은 machine일 수 있고 cloud는 단순히 “남의 컴퓨터 한 대”가 아니다. deploy는 DNS·secret·migration·health·rollback 상태 전이를 포함할 수 있다.",
+      "neutral_example": "`git remote -v`로 target을 읽기만 하고 첫 공개는 secret 없는 정적 non-production preview로 제한한다. deploy 전 target·cost·secret·health·rollback을 확인한다."
+    }
+  ],
+  "scenarios": [
+    {
+      "source_hash": "d76274e9c95c6fde447de7971ab2cafdf74ffe82c798ad019ad4d67c4668cf35",
+      "scenario_id": "S01",
+      "fixed_criterion": "package=객체, dependency=관계. manifest·lockfile diff 확인",
+      "encounter": "설치 요청을 받았지만 아직 package를 설치하지 않은 상태",
+      "pre_action": {
+        "target": "현재 project의 package manifest와 lockfile",
+        "side_effect": "검토 단계에서는 외부 상태 변화 없음",
+        "risk": "설치하면 직접·전이 코드와 install script가 추가될 수 있음",
+        "rollback": "설치 전 manifest·lockfile 상태를 checkpoint로 남김"
+      },
+      "next_action": "manifest에서 추가될 dependency 이름과 version range를 한 번 확인한다.",
+      "evidence": "예상 manifest·lockfile diff",
+      "diagnostic_question": "같은 package가 A에는 dependency이고 B에는 아닐 수 있는가?",
+      "policy_labels": [
+        {
+          "kind": "protocol_fact",
+          "text": "package는 배포·설치 객체이고 dependency는 그 객체를 필요로 하는 관계다."
+        },
+        {
+          "kind": "fairytail_policy",
+          "text": "실제 설치 전에 maintainer·license·version·lockfile diff·script side effect를 확인한다."
+        }
+      ]
+    },
+    {
+      "source_hash": "97cfb67afc24d9db6a825ca59da6ca00d0d3309c1ba9db2f6471d869d84b4a41",
+      "scenario_id": "S02",
+      "fixed_criterion": "running process, request role, localhost≠cloud. bind·directory·Ctrl-C 확인",
+      "encounter": "로컬 preview를 위해 dev server를 시작하려는 상태",
+      "pre_action": {
+        "target": "secret이 없는 전용 public-demo와 127.0.0.1의 지정 port",
+        "side_effect": "로컬 process가 port를 listen함",
+        "risk": "잘못된 bind 주소나 directory는 파일을 외부에 노출할 수 있음",
+        "rollback": "Ctrl-C로 process를 종료함"
+      },
+      "next_action": "bind 주소·공개 directory·port를 확인한 뒤 로컬 process를 시작한다.",
+      "evidence": "127.0.0.1 URL 응답과 종료 후 port가 닫힌 상태",
+      "diagnostic_question": "localhost:3000이 인터넷에 자동 공개되는가?",
+      "policy_labels": [
+        {
+          "kind": "protocol_fact",
+          "text": "server는 연결·요청을 받아 응답하는 역할이고 localhost는 loopback으로 해석된다."
+        },
+        {
+          "kind": "fairytail_policy",
+          "text": "home/project root는 공유하지 않고 bind 주소·directory·종료 방법을 먼저 확인한다."
+        }
+      ]
+    },
+    {
+      "source_hash": "d6f31b43c0f58ea92628dc58f663439d2e4f9f3b1e43fa0073fe049813ca5c91",
+      "scenario_id": "S03",
+      "fixed_criterion": "env는 전달 채널, config 전체·secret 성격과 구분. 실제 값 출력 금지",
+      "encounter": "앱이 필요한 environment variable을 찾지 못했다는 오류를 낸 상태",
+      "pre_action": {
+        "target": "필요한 variable 이름과 현재 process의 config source",
+        "side_effect": "존재 여부만 확인하며 실제 값은 표시하지 않음",
+        "risk": "secret 값이 terminal·log·chat에 노출될 수 있음",
+        "rollback": "검토 단계에서는 변경이 없고, 설정 변경 시 process를 재시작하기 전 원래 값을 보존함"
+      },
+      "next_action": "실제 값 대신 필요한 variable 이름과 존재 여부만 확인한다.",
+      "evidence": "값을 출력하지 않은 missing/present 상태와 config precedence",
+      "diagnostic_question": "환경변수에 넣으면 값이 자동으로 secret이 되는가?",
+      "policy_labels": [
+        {
+          "kind": "protocol_fact",
+          "text": "environment variable은 process 환경의 name=value 데이터이고 config는 설정 전체다."
+        },
+        {
+          "kind": "fairytail_policy",
+          "text": "실제 secret은 출력하지 않고 placeholder·존재 여부·revoke/rotate 절차만 다룬다."
+        }
+      ]
+    },
+    {
+      "source_hash": "4781d7568fd528bbbcf9857c3ea55b7ee2ae95d3ac83ee7e29badc8e7e1f7084",
+      "scenario_id": "S04",
+      "fixed_criterion": "API=계약, endpoint=접점. method·target·status 확인",
+      "encounter": "가상의 task 한 건을 읽는 HTTP API 흐름을 살펴보는 상태",
+      "pre_action": {
+        "target": "가상의 read-only `GET /tasks/42` endpoint",
+        "side_effect": "저장 상태를 바꾸지 않는 조회",
+        "risk": "잘못된 method·target·credential·account를 쓰면 다른 동작이나 비용이 생길 수 있음",
+        "rollback": "read-only fixture이므로 변경 없음"
+      },
+      "next_action": "method와 target을 읽고 예상 status와 response body를 trace한다.",
+      "evidence": "요청 method·target과 응답 status·content",
+      "diagnostic_question": "MCP server가 기존 GitHub API를 내부에서 호출할 수 있는가?",
+      "policy_labels": [
+        {
+          "kind": "protocol_fact",
+          "text": "API는 상호작용 계약이고 endpoint는 특정 접점이며 HTTP request와 response는 계약의 한 구현이다."
+        },
+        {
+          "kind": "fairytail_policy",
+          "text": "실제 호출 전 method·target·account·credential·비용을 표시한다."
+        }
+      ]
+    },
+    {
+      "source_hash": "c8d47c15bb146d87a3df7576d7f09b7183e683083501c481f18549293ffb9757",
+      "scenario_id": "S05",
+      "fixed_criterion": "자격증명 둘과 처리 단위를 구분. secret 노출 시 rotate",
+      "encounter": "placeholder credential이 거부되었고 세 종류의 token 용어를 구분해야 하는 상태",
+      "pre_action": {
+        "target": "credential 종류·scope·resource와 model usage 단위",
+        "side_effect": "실제 secret 없이 계약만 확인함",
+        "risk": "실제 key/token을 chat·repo·log에 복사하면 계정·비용이 노출될 수 있음",
+        "rollback": "노출이 의심되면 해당 공급자에서 revoke/rotate함"
+      },
+      "next_action": "실제 값을 표시하지 않고 오류가 API key, OAuth access token, LLM token 중 무엇을 가리키는지 확인한다.",
+      "evidence": "credential type·scope/resource와 model token usage가 별도 항목으로 구분됨",
+      "diagnostic_question": "context token을 복사하면 API에 로그인할 수 있는가?",
+      "policy_labels": [
+        {
+          "kind": "protocol_fact",
+          "text": "API key와 OAuth access token은 자격증명이고 LLM token은 모델 처리 단위다."
+        },
+        {
+          "kind": "fairytail_policy",
+          "text": "실제 secret을 반복 표시하지 않고 이미 노출됐다면 삭제보다 revoke/rotate를 먼저 안내한다."
+        }
+      ]
+    },
+    {
+      "source_hash": "7fb21b6d68a8ba8401cf8a78c36fbc04ec1599f3523dd04dc52e7402f9e39640",
+      "scenario_id": "S06",
+      "fixed_criterion": "server role와 data system 구분; write 전 SELECT·target 확인",
+      "encounter": "앱의 DB 연결이 실패해 요청 처리 역할과 데이터 체계를 분리해 봐야 하는 상태",
+      "pre_action": {
+        "target": "DB 연결 대상과 read-only query fixture",
+        "side_effect": "연결 설정을 읽고 제한된 SELECT만 검토함",
+        "risk": "query는 수정·삭제도 가능하고 production write는 복구가 어려울 수 있음",
+        "rollback": "검토 단계에서는 변경 없음; write 전 backup·transaction·rollback을 별도로 확인함"
+      },
+      "next_action": "DB 종류와 연결 target을 확인하고 데이터 변경 없는 query부터 구분한다.",
+      "evidence": "server role·database 체계·query 동작이 별도로 표시됨",
+      "diagnostic_question": "SQLite 파일을 읽는 앱에는 항상 별도 DB server가 필요한가?",
+      "policy_labels": [
+        {
+          "kind": "protocol_fact",
+          "text": "server는 요청 처리 역할이고 database는 데이터를 관리하는 체계이며 query는 읽기만을 뜻하지 않는다."
+        },
+        {
+          "kind": "fairytail_policy",
+          "text": "production·backup·transaction·대상 row count·rollback 없는 write query는 자동 실행하지 않는다."
+        }
+      ]
+    },
+    {
+      "source_hash": "459edc2f14b8f8f853f30042fba7e222eeb2e017c464a182a94e8bc86477af92",
+      "scenario_id": "S07",
+      "fixed_criterion": "사양 사실: model/app 선택→client `tools/call`→server 실행→결과 처리, 확인 방식은 구현별. 제품 정책: Fairytail은 민감 tool을 별도 확인. server 신뢰·권한 검토",
+      "encounter": "MCP server의 read-only resource와 tool 목록을 연결 전에 검토하는 상태",
+      "pre_action": {
+        "target": "검토 중인 MCP server와 선언된 resource/tool capability",
+        "side_effect": "목록·schema만 읽고 tool은 호출하지 않음",
+        "risk": "로컬 MCP도 OS/file/shell 권한만큼 위험하고 server가 외부 API를 호출할 수 있음",
+        "rollback": "연결을 활성화하지 않거나 설정에서 server를 비활성화함"
+      },
+      "next_action": "server 출처·transport·권한과 read-only resource부터 확인한다.",
+      "evidence": "host/client/server와 실제 실행 주체, tool/resource 목록, 권한 범위",
+      "diagnostic_question": "tool call JSON이 생성되면 파일이 이미 바뀌었는가? 어느 구성요소가 실제 실행하는가?",
+      "policy_labels": [
+        {
+          "kind": "protocol_fact",
+          "text": "model 또는 application이 사용을 선택하고 client가 tools/call을 보내면 MCP server가 실행하며 확인 방식은 host 구현과 정책에 따라 다르다."
+        },
+        {
+          "kind": "fairytail_policy",
+          "text": "Fairytail은 민감 tool에 별도 allowlist·대상 표시·사용자 확인·schema validation을 요구한다."
+        }
+      ]
+    },
+    {
+      "source_hash": "725ee6233f4213889acdf876ef9dd791039da1c83459309e81ab1cdc335fc689",
+      "scenario_id": "S08",
+      "fixed_criterion": "identity 확인과 action 허용 분리. `chmod 777` 금지",
+      "encounter": "로그인된 상태에서 특정 resource의 action이 거부된 상태",
+      "pre_action": {
+        "target": "거부된 principal·resource·action과 현재 permission",
+        "side_effect": "권한을 읽기만 함",
+        "risk": "무분별한 권한 상승은 다른 사용자·process에 불필요한 접근을 허용함",
+        "rollback": "검토 단계에서는 변경 없음; 변경 시 원래 owner/mode와 기간을 기록함"
+      },
+      "next_action": "principal·resource·action을 분리하고 현재 permission을 읽기만 한다.",
+      "evidence": "AuthN 결과와 AuthZ allow/deny, 구체 permission이 별도로 표시됨",
+      "diagnostic_question": "로그인 성공 후에도 삭제가 거부될 수 있는가?",
+      "policy_labels": [
+        {
+          "kind": "protocol_fact",
+          "text": "AuthN은 identity를 확인하고 AuthZ는 특정 resource와 action의 허용 여부를 판단한다."
+        },
+        {
+          "kind": "fairytail_policy",
+          "text": "해결책으로 곧바로 chmod 777을 제안하지 않고 최소 권한과 복구를 확인한다."
+        }
+      ]
+    },
+    {
+      "source_hash": "1939d7dd7f41d54dbdd4f032f35d7d43adf49d74e0a0a39ce536f47234eb0838",
+      "scenario_id": "S09",
+      "fixed_criterion": "folder·project·repo 구분. absolute target·Git status 확인",
+      "encounter": "AI가 파일을 수정하기 전에 작업 위치와 이력 경계를 확인하는 상태",
+      "pre_action": {
+        "target": "resolved absolute file path와 repository root",
+        "side_effect": "pwd·repo root·Git status를 읽기만 함",
+        "risk": "잘못된 directory에서 recursive edit·move·delete를 수행할 수 있음",
+        "rollback": "검토 단계에서는 변경 없음; 수정 전 Git 상태를 checkpoint로 사용함"
+      },
+      "next_action": "현재 path, repo root, 변경 전 Git status를 확인한다.",
+      "evidence": "absolute target과 repo root, tracked/untracked 변경 목록",
+      "diagnostic_question": "모든 project 폴더가 Git repo인가?",
+      "policy_labels": [
+        {
+          "kind": "protocol_fact",
+          "text": "folder는 파일 묶음, repository는 Git 이력 구조, project는 도구별 작업 범위다."
+        },
+        {
+          "kind": "fairytail_policy",
+          "text": "recursive·delete·move 전 resolved absolute target과 repo root를 다시 확인한다."
+        }
+      ]
+    },
+    {
+      "source_hash": "4ae11624a83baa6fb18444fc24b1190724b115cf092aadc56556049e300956ba",
+      "scenario_id": "S10",
+      "fixed_criterion": "push≠deploy. target·public·billing·secret·health·rollback 확인",
+      "encounter": "로컬 결과를 secret 없는 non-production preview로 준비하는 상태",
+      "pre_action": {
+        "target": "명시된 non-production preview environment와 remote repository",
+        "side_effect": "실제 공개·과금·deploy 없이 계획과 target만 검토함",
+        "risk": "production·public exposure·billing·secret·DB migration이 섞일 수 있음",
+        "rollback": "preview release 전 기존 상태와 rollback 경로를 확인함"
+      },
+      "next_action": "remote target과 deploy target을 분리해 읽고 public·billing·secret·health·rollback을 확인한다.",
+      "evidence": "push 상태와 deploy/release/health 상태가 별도 항목으로 표시됨",
+      "diagnostic_question": "GitHub에 push됐다는 사실만으로 서비스가 바뀌었는가?",
+      "policy_labels": [
+        {
+          "kind": "protocol_fact",
+          "text": "push는 Git 객체 전달이고 deploy는 target 환경에 build/config/release를 적용하는 lifecycle 행위다."
+        },
+        {
+          "kind": "fairytail_policy",
+          "text": "production·public exposure·billing·domain·secret·DB migration은 명시 승인 없이 자동 실행하지 않는다."
+        }
+      ]
+    }
+  ],
+  "contracts": [
+    {
+      "source_hash": "a96db923597da381d5b105a33d495cc09d58a1e92c178a84b8ebe3e6648609d5",
+      "concept_id": "package-dependency",
+      "relations": [
+        {
+          "relation_id": "manifest-declares-dependency",
+          "relation": "필요 관계를 선언한다"
+        },
+        {
+          "relation_id": "dependency-requires-package",
+          "relation": "필요한 대상으로 가리킨다"
+        },
+        {
+          "relation_id": "resolver-selects-package",
+          "relation": "조건에 맞는 대상을 선택한다"
+        }
+      ]
+    },
+    {
+      "source_hash": "fab87a9bc0416a3e2397192b10b1062236a45792337d0a82fae15b76494c6ef2",
+      "concept_id": "process-server",
+      "relations": [
+        {
+          "relation_id": "program-becomes-process",
+          "relation": "실행되면 활동 중인 인스턴스가 된다"
+        },
+        {
+          "relation_id": "process-serves-as-server",
+          "relation": "요청을 받는 역할을 수행할 수 있다"
+        },
+        {
+          "relation_id": "server-listens-on-port",
+          "relation": "구분된 접점에서 요청을 받는다"
+        },
+        {
+          "relation_id": "server-may-access-database",
+          "relation": "처리 중 기록 체계를 사용할 수 있다"
+        }
+      ]
+    },
+    {
+      "source_hash": "88265ba82a8475d36f6adf88113004e8d845c0b2f0a2fbb7d001c1bfce7087fa",
+      "concept_id": "environment-variable-config",
+      "relations": [
+        {
+          "relation_id": "config-may-use-environment-variable",
+          "relation": "일부 설정을 전달하는 한 채널로 사용할 수 있다"
+        },
+        {
+          "relation_id": "process-receives-environment-variable",
+          "relation": "시작될 때 이름과 값으로 된 설정을 전달받는다"
+        }
+      ]
+    },
+    {
+      "source_hash": "7e804786517f698450de011879ab2d32f362c610b2d38aed37be1d1c828bdd40",
+      "concept_id": "api-request-response",
+      "relations": [
+        {
+          "relation_id": "api-defines-endpoint",
+          "relation": "상호작용 가능한 접점을 규정한다"
+        },
+        {
+          "relation_id": "request-goes-to-endpoint",
+          "relation": "정해진 형식으로 전달된다"
+        },
+        {
+          "relation_id": "endpoint-returns-response",
+          "relation": "처리 결과를 돌려준다"
+        }
+      ]
+    },
+    {
+      "source_hash": "430b7b318fc36e5097f2ca1989504c3ac65199191ab60fd53f99facbbd80c71d",
+      "concept_id": "credential-api-key-access-token",
+      "relations": [
+        {
+          "relation_id": "api-key-presented-to-resource-server",
+          "relation": "서비스 접근 자격으로 제시된다"
+        },
+        {
+          "relation_id": "access-token-presented-to-resource-server",
+          "relation": "위임된 접근 자격으로 제시된다"
+        },
+        {
+          "relation_id": "scope-constrains-access-token",
+          "relation": "허용 범위를 제한한다"
+        }
+      ]
+    },
+    {
+      "source_hash": "78355180e98c27ca7fd0e306888311a0c4c51ce0ec3eaaaf0db4131a56fac3fc",
+      "concept_id": "database-table-query",
+      "relations": [
+        {
+          "relation_id": "dbms-manages-database",
+          "relation": "기록 체계를 관리한다"
+        },
+        {
+          "relation_id": "database-contains-table",
+          "relation": "정형 구조를 포함한다"
+        },
+        {
+          "relation_id": "table-contains-row",
+          "relation": "개별 기록을 포함한다"
+        },
+        {
+          "relation_id": "row-has-column",
+          "relation": "정해진 항목으로 구성된다"
+        },
+        {
+          "relation_id": "dbms-processes-query",
+          "relation": "읽기 또는 변경 요청을 처리한다"
+        }
+      ]
+    },
+    {
+      "source_hash": "ce0a81971ecc101ff87a734008727ac35ce44159a703420d2aea5c6a43dd571d",
+      "concept_id": "mcp-tool-resource",
+      "relations": [
+        {
+          "relation_id": "host-owns-client",
+          "relation": "연결별 통신 주체를 관리한다"
+        },
+        {
+          "relation_id": "client-connects-to-server",
+          "relation": "프로토콜 요청을 전달한다"
+        },
+        {
+          "relation_id": "server-exposes-resource",
+          "relation": "읽을 수 있는 자료를 제공할 수 있다"
+        },
+        {
+          "relation_id": "server-exposes-tool",
+          "relation": "실행 가능한 기능을 제공할 수 있다"
+        }
+      ]
+    },
+    {
+      "source_hash": "e9f91552b195ac7eeaaf9832a19fabc4ea4027c8565bb531905aa51ec7b43e47",
+      "concept_id": "permission-authentication-authorization",
+      "relations": [
+        {
+          "relation_id": "authentication-establishes-context-for-authorization",
+          "relation": "누구인지 확인해 판단의 입력을 만든다"
+        },
+        {
+          "relation_id": "authorization-decides-permission",
+          "relation": "특정 행동의 허용 여부를 판단한다"
+        }
+      ]
+    },
+    {
+      "source_hash": "36d21f71842cd866471f2d7447b6fa38f497cd4330c8a16a70b570d4ee5eec42",
+      "concept_id": "file-path-project-repository",
+      "relations": [
+        {
+          "relation_id": "path-identifies-file",
+          "relation": "해석되어 대상을 식별한다"
+        },
+        {
+          "relation_id": "project-scopes-worktree",
+          "relation": "현재 작업 범위를 정한다"
+        },
+        {
+          "relation_id": "repository-tracks-worktree",
+          "relation": "현재 작업본과 비교할 이력을 보관한다"
+        },
+        {
+          "relation_id": "worktree-contains-file",
+          "relation": "현재 펼쳐 둔 대상을 포함한다"
+        }
+      ]
+    },
+    {
+      "source_hash": "2738a689bbab6778b360b199625ea316434fb433497a032fa6d2b922f4d7c234",
+      "concept_id": "local-remote-cloud-deploy",
+      "relations": [
+        {
+          "relation_id": "local-may-sync-to-remote",
+          "relation": "작업 내용을 전달할 수 있다"
+        },
+        {
+          "relation_id": "remote-is-not-cloud",
+          "relation": "같은 개념이 아니며 위치·역할이 다르다"
+        },
+        {
+          "relation_id": "deploy-may-target-cloud",
+          "relation": "승인된 결과를 실제 대상에 배치·가동할 수 있다"
+        }
+      ]
+    }
+  ],
+  "mappings": [
+    {
+      "source_hash": "fc38fdc81140119e524ded6a31bee665d41d760d9710aa8d6e4a2b0e980e1afd",
+      "mapping_id": "P1-S01-A1",
+      "analogy_label": "약품 상자와 처방상 필요 관계",
+      "role_map": {
+        "package": "약품 상자",
+        "dependency": "처방상 필요 관계",
+        "manifest": "처방·투약 명세",
+        "resolver": "조달·약제 확인 담당"
+      },
+      "non_mappings": [
+        "디지털 package는 실행 코드와 전이 의존성·설치 스크립트를 포함할 수 있어 약품 상자보다 공급망 위험이 복잡하다."
+      ]
+    },
+    {
+      "source_hash": "80a95d5cb245ff0662e648b7e93d6a8be5089d00946572c14c38d6b74e21e37c",
+      "mapping_id": "P2-S01-A1",
+      "analogy_label": "앱/소재 도구와 캠페인 필요 관계",
+      "role_map": {
+        "package": "앱·소재 도구 묶음",
+        "dependency": "캠페인 필요 관계",
+        "manifest": "캠페인 도구 명세",
+        "resolver": "앱·버전 선택 담당"
+      },
+      "non_mappings": [
+        "디지털 package는 전이 의존성과 install script를 함께 가져올 수 있어 일반 캠페인 도구보다 실행 범위가 넓다."
+      ]
+    },
+    {
+      "source_hash": "571543b078bfd19c7860ce313fbbde3e6fddb9800a876e448f3097f64f6e2d79",
+      "mapping_id": "P3-S01-A1",
+      "analogy_label": "참고도서와 과제 필요 관계",
+      "role_map": {
+        "package": "참고도서",
+        "dependency": "과제 필요 관계",
+        "manifest": "참고문헌 계획표",
+        "resolver": "도서·판본 선택 과정"
+      },
+      "non_mappings": [
+        "package는 읽는 자료가 아니라 실행 가능한 코드일 수 있고 전이 의존성·platform 조건·악성 공급망 위험이 있다."
+      ]
+    },
+    {
+      "source_hash": "7387a98399636e31908d76f879d249240df649cbe98983d5750b396cb9b17a05",
+      "mapping_id": "P1-S02-A1",
+      "analogy_label": "근무 중인 직원과 병동 내 임시 접수창구",
+      "role_map": {
+        "program": "업무 매뉴얼",
+        "process": "근무 중인 직원",
+        "server": "병동 내 임시 접수창구 담당",
+        "port": "창구 번호",
+        "database": "별도 기록실"
+      },
+      "non_mappings": [
+        "실제 server는 여러 process·proxy·동시 요청으로 구성될 수 있고 같은 program이 연결마다 client와 server 역할을 바꿀 수 있다."
+      ]
+    },
+    {
+      "source_hash": "2dfb5f737cf1933fe6fa877e245f96c70bb54b986ae7895903839d515d8e694a",
+      "mapping_id": "P2-S02-A1",
+      "analogy_label": "실행 중인 캠페인 preview 담당과 내부 확인창구",
+      "role_map": {
+        "program": "캠페인 preview 운영 절차",
+        "process": "실행 중인 preview 담당",
+        "server": "내부 확인창구 담당",
+        "port": "확인창구 번호",
+        "database": "주문·캠페인 기록 체계"
+      },
+      "non_mappings": [
+        "실제 server는 자동화된 process이며 여러 instance·동시 요청·proxy가 있어 사람 담당자 한 명과 동일하지 않다."
+      ]
+    },
+    {
+      "source_hash": "9d5f0c3bd853ce08b2dcc0c5449fdc52b0c815e796bf2d092c00eeab2c310b88",
+      "mapping_id": "P3-S02-A1",
+      "analogy_label": "동아리 행사 리허설 부스",
+      "role_map": {
+        "program": "행사 운영 대본",
+        "process": "진행 중인 리허설 담당",
+        "server": "행사 리허설 부스 담당",
+        "port": "부스 번호",
+        "database": "행사 기록부"
+      },
+      "non_mappings": [
+        "server process는 문자 규칙과 protocol로 동작하며 proxy·여러 instance·동시 요청을 사람 리허설처럼 임의 조정하지 않는다."
+      ]
+    },
+    {
+      "source_hash": "eae52e49d9be02a04d7d1f32c48bc56a6057b0ae9f088e9ba7a1c759eb7cbc40",
+      "mapping_id": "P1-S03-A1",
+      "analogy_label": "교대 시작 시 받는 이름표 달린 설정 카드",
+      "role_map": {
+        "config": "교대 운영 설정 전체",
+        "environment variable": "교대 시작 때 받은 이름표 달린 설정 카드",
+        "process": "설정 카드를 읽고 일하는 직원"
+      },
+      "non_mappings": [
+        "환경변수 값은 기본적으로 string이고 OS·runtime별 상속과 우선순위가 다르며 log나 process inspection에 노출될 수 있다."
+      ]
+    },
+    {
+      "source_hash": "5fc8d59b4a94b705efb41b99d5d757a18c6a5c2616e31a54aaeb2b598c3a5727",
+      "mapping_id": "P2-S03-A1",
+      "analogy_label": "캠페인 시작 때 전달되는 이름표 달린 설정 카드",
+      "role_map": {
+        "config": "캠페인 운영 설정 전체",
+        "environment variable": "시작 때 전달되는 이름표 달린 설정 카드",
+        "process": "설정을 읽는 실행 중인 캠페인 도구"
+      },
+      "non_mappings": [
+        "환경변수는 config 전체가 아니고 secret 금고도 아니며 값이 log·crash dump·process inspection에 노출될 수 있다."
+      ]
+    },
+    {
+      "source_hash": "1fd803ed5eed927fe0fcba5098439cc30464edf2aae74b11b04ecc311b96e7c9",
+      "mapping_id": "P3-S03-A1",
+      "analogy_label": "행사 시작 때 전달되는 이름표 달린 설정 카드",
+      "role_map": {
+        "config": "행사 운영 설정 전체",
+        "environment variable": "시작 때 전달되는 이름표 달린 설정 카드",
+        "process": "설정을 읽는 행사 운영 도구"
+      },
+      "non_mappings": [
+        "환경변수는 문자열 전달 채널이며 secret 보호를 보장하지 않고 상속·대소문자·지속성이 환경마다 다르다."
+      ]
+    },
+    {
+      "source_hash": "96c61b1878117c79722a14afe1a27ca9bb3ce34f9d78db6613372b745c093530",
+      "mapping_id": "P1-S04-A1",
+      "analogy_label": "검사 의뢰서→검사실 접수→결과",
+      "role_map": {
+        "API": "검사 의뢰 규정",
+        "endpoint": "검사실 접수창구",
+        "request": "정해진 검사 의뢰서",
+        "response": "검사 결과표"
+      },
+      "non_mappings": [
+        "실제 API는 사람 접수자처럼 애매한 의도를 보완하지 않고 schema·method·rate limit·partial failure 규칙대로 동작한다."
+      ]
+    },
+    {
+      "source_hash": "6b8a9811ab6d9b7a2bc33d720ce6c11c38f12d7ad10e9e823be7ec301a63f9de",
+      "mapping_id": "P2-S04-A1",
+      "analogy_label": "분석 요청 양식→리포트 endpoint→결과",
+      "role_map": {
+        "API": "리포트 서비스 규정",
+        "endpoint": "리포트 접점",
+        "request": "정해진 분석 요청 양식",
+        "response": "분석 결과표"
+      },
+      "non_mappings": [
+        "API는 사람이 자유 형식 요청을 해석하는 창구가 아니며 method·schema·credential·rate limit을 정확히 따라야 한다."
+      ]
+    },
+    {
+      "source_hash": "6d5fee6fe6e4dd901143da2ae58e1201a051718113319cf9a889b6318f3bbb2c",
+      "mapping_id": "P3-S04-A1",
+      "analogy_label": "도서 검색 요청→검색창구→목록",
+      "role_map": {
+        "API": "도서 검색 규정",
+        "endpoint": "검색창구",
+        "request": "정해진 도서 검색 요청서",
+        "response": "도서 목록"
+      },
+      "non_mappings": [
+        "실제 API endpoint는 모호한 질문을 추론하지 않고 정해진 method·schema·status와 실패 규칙으로 처리한다."
+      ]
+    },
+    {
+      "source_hash": "6fc21fbc84b3729f8289af0afda8b9803d15076d18f685a2b76b6decc526525f",
+      "mapping_id": "P1-S05-A1",
+      "analogy_label": "공용 출입키와 기간·구역 제한 손목띠",
+      "role_map": {
+        "API key": "복제 가능한 공용 서비스 출입키",
+        "access token": "기간·구역 제한 손목띠",
+        "scope": "허용된 구역",
+        "resource server": "입구 확인 담당"
+      },
+      "non_mappings": [
+        "디지털 secret은 소유자 모르게 복제될 수 있고 token은 불투명하거나 사람 대신 service를 대표할 수 있다."
+      ]
+    },
+    {
+      "source_hash": "af3d64b4012ac0b0030b298411e2ea9dfbc193e849a0538911a4f60255e7b4e6",
+      "mapping_id": "P2-S05-A1",
+      "analogy_label": "서비스 key와 캠페인 한정 권한표",
+      "role_map": {
+        "API key": "복제 가능한 서비스 key",
+        "access token": "기간이 있는 캠페인 한정 권한표",
+        "scope": "허용된 캠페인·기능 범위",
+        "resource server": "서비스 요청 검사자"
+      },
+      "non_mappings": [
+        "공급자마다 API key 권한 모델이 다르고 access token의 audience·resource·scope를 단순 권한표보다 엄격히 검사한다."
+      ]
+    },
+    {
+      "source_hash": "453ad1da7f8618108acffed701515567121e9cbcae27b9d958946af82a7e7573",
+      "mapping_id": "P3-S05-A1",
+      "analogy_label": "자료실 service key와 행사 기간 출입띠",
+      "role_map": {
+        "API key": "복제 가능한 자료실 service key",
+        "access token": "행사 기간·구역 출입띠",
+        "scope": "허용 자료실·행동 범위",
+        "resource server": "자료실 입구 확인 담당"
+      },
+      "non_mappings": [
+        "digital credential은 물리 출입띠와 달리 눈에 띄지 않게 복제될 수 있고 공급자별 token 검증 규칙이 다르다."
+      ]
+    },
+    {
+      "source_hash": "1e97adeae013edb97c2e9721aaa5064b2bc180a079573d3f3e4ba3ae0759db69",
+      "mapping_id": "P1-S06-A1",
+      "analogy_label": "관리되는 기록 체계와 검색·처리 요청서",
+      "role_map": {
+        "database": "관리되는 업무 기록 체계",
+        "table": "정형 기록 장부",
+        "row": "한 업무 기록",
+        "column": "기록 항목",
+        "query": "검색·처리 요청서",
+        "DBMS": "기록 관리자"
+      },
+      "non_mappings": [
+        "실제 DB에는 transaction·constraint·index·join·concurrency·NULL·optimizer가 있어 단순 장부와 다르다."
+      ]
+    },
+    {
+      "source_hash": "6c14e11c98a33e4a8f31ca81173a3cb64425c4bebe97d8fd1aabe923811df1e0",
+      "mapping_id": "P2-S06-A1",
+      "analogy_label": "주문 기록 체계와 검색·처리 요청서",
+      "role_map": {
+        "database": "관리되는 주문 기록 체계",
+        "table": "주문 장부",
+        "row": "한 주문 기록",
+        "column": "주문 필드",
+        "query": "검색·처리 요청서",
+        "DBMS": "주문 기록 관리자"
+      },
+      "non_mappings": [
+        "DB query는 조회만 뜻하지 않고 수정·삭제도 가능하며 transaction·constraint·동시성 규칙을 따른다."
+      ]
+    },
+    {
+      "source_hash": "fc12b1a8bba40387d3b9e57da99a436954d7403f428f5146131bb2c07bda5520",
+      "mapping_id": "P3-S06-A1",
+      "analogy_label": "도서 기록 체계와 검색 요청서",
+      "role_map": {
+        "database": "관리되는 도서 기록 체계",
+        "table": "도서 장부",
+        "row": "한 도서 기록",
+        "column": "도서 정보 항목",
+        "query": "검색·처리 요청서",
+        "DBMS": "도서 기록 관리자"
+      },
+      "non_mappings": [
+        "database는 단순 목록이 아니며 query는 읽기뿐 아니라 변경도 할 수 있고 constraint·index·transaction이 개입한다."
+      ]
+    },
+    {
+      "source_hash": "f87641147b1f13491ba7bc2c0e4044927535b8d68a079cffe43a730dd8498ee0",
+      "mapping_id": "P1-S07-A1",
+      "analogy_label": "병원 프런트와 외부 검사기관 전용선",
+      "role_map": {
+        "host": "병원 프런트",
+        "client": "외부 검사기관별 전용선",
+        "server": "외부 검사기관",
+        "resource": "검사 안내 자료",
+        "tool": "검사 실행 서비스"
+      },
+      "non_mappings": [
+        "MCP 연결은 server의 신뢰·정확성·최소 권한을 보장하지 않으며 사용자 확인 방식도 host 구현과 정책에 따라 다르다."
+      ]
+    },
+    {
+      "source_hash": "1a7c8098010584a107f8ca808844cc2e305a2b029b5e4330b0c437ca103da52e",
+      "mapping_id": "P2-S07-A1",
+      "analogy_label": "운영 hub와 업체별 integration line",
+      "role_map": {
+        "host": "운영 hub",
+        "client": "업체별 integration line",
+        "server": "외부 업체 시스템",
+        "resource": "업체 제공 자료",
+        "tool": "업체 실행 서비스"
+      },
+      "non_mappings": [
+        "표준 protocol 연결이 외부 업체의 신뢰성이나 최소 권한을 자동 보장하지 않고 tool 실행 확인도 host별로 다르다."
+      ]
+    },
+    {
+      "source_hash": "13c90d1068c669b57a2df52d98ebcbf825ca33b1d7b8c60ad35b1a998ef24b8f",
+      "mapping_id": "P3-S07-A1",
+      "analogy_label": "학생회 안내 데스크와 업체 연락선",
+      "role_map": {
+        "host": "학생회 안내 데스크",
+        "client": "업체별 연락선",
+        "server": "외부 업체",
+        "resource": "업체 안내 자료",
+        "tool": "업체 실행 서비스"
+      },
+      "non_mappings": [
+        "MCP server가 제공한다고 해서 안전하거나 정확한 것은 아니고 tool 자동 호출·확인 방식은 application 구현에 달려 있다."
+      ]
+    },
+    {
+      "source_hash": "26bd73968ae526e0c2747968257b783ff1452eb954eaada25746548d2ee2b59c",
+      "mapping_id": "P1-S08-A1",
+      "analogy_label": "배지 확인과 특정 약품실 출입 규칙",
+      "role_map": {
+        "authentication": "배지 진위 확인",
+        "authorization": "특정 약품실 출입 규칙 확인",
+        "permission": "약품실 문 열기 허용 항목"
+      },
+      "non_mappings": [
+        "실제 identity는 사람뿐 아니라 service·process·device일 수 있고 anonymous authorization과 동적 정책도 가능하다."
+      ]
+    },
+    {
+      "source_hash": "9f772e25bac20e609f4a71b1d54cb8167e341bd6ac98b1d0352dec1ab6a3d0a9",
+      "mapping_id": "P2-S08-A1",
+      "analogy_label": "계정 로그인과 환불 권한",
+      "role_map": {
+        "authentication": "계정 로그인 확인",
+        "authorization": "환불 규칙 확인",
+        "permission": "특정 주문 환불 허용 항목"
+      },
+      "non_mappings": [
+        "로그인 성공이 모든 행동 허용을 뜻하지 않고 policy는 resource·action·시간·관계에 따라 달라질 수 있다."
+      ]
+    },
+    {
+      "source_hash": "e246947e7a15a9795b210dcaa0d5ad85780947cead21aaba629e5882ea571911",
+      "mapping_id": "P3-S08-A1",
+      "analogy_label": "학생증 확인과 특별자료실 권한",
+      "role_map": {
+        "authentication": "학생증 진위 확인",
+        "authorization": "특별자료실 출입 규칙 확인",
+        "permission": "특정 자료 열람 허용 항목"
+      },
+      "non_mappings": [
+        "디지털 principal은 사람 외 service·device일 수 있고 public resource는 authentication 없이도 authorization될 수 있다."
+      ]
+    },
+    {
+      "source_hash": "f11b7e8111122a860a223f471ecc3b86385802f8f7468536a528a1f1c493f9f3",
+      "mapping_id": "P1-S09-A1",
+      "analogy_label": "업무철·문서 주소·이력 보관소",
+      "role_map": {
+        "file": "문서",
+        "path": "문서 주소",
+        "project": "업무철",
+        "repository": "변경 이력 보관소",
+        "worktree": "현재 펼쳐 둔 작업본"
+      },
+      "non_mappings": [
+        "symlink·hard link 때문에 한 file에 여러 path가 있을 수 있고 Git repository는 단순 백업 폴더가 아닌 graph·refs·objects 구조다."
+      ]
+    },
+    {
+      "source_hash": "b92bf435df993e244184147595915b75de2331118d07f07b08630d979aa9c15b",
+      "mapping_id": "P2-S09-A1",
+      "analogy_label": "캠페인 작업·소재 주소·version history",
+      "role_map": {
+        "file": "소재 파일",
+        "path": "소재 주소",
+        "project": "캠페인 작업 범위",
+        "repository": "version history 보관소",
+        "worktree": "현재 캠페인 작업본"
+      },
+      "non_mappings": [
+        "repository는 folder와 동일하지 않고 worktree가 없을 수도 있으며 path와 file도 항상 일대일 관계가 아니다."
+      ]
+    },
+    {
+      "source_hash": "069cf997ef9508c0cf54a9c91fe9ea266e1f31b29f3db85b4aab4a960a304b7d",
+      "mapping_id": "P3-S09-A1",
+      "analogy_label": "과제 작업·파일 주소·Git 이력",
+      "role_map": {
+        "file": "과제 파일",
+        "path": "파일 주소",
+        "project": "과제 작업 범위",
+        "repository": "Git 이력 보관소",
+        "worktree": "현재 펼쳐 둔 과제 작업본"
+      },
+      "non_mappings": [
+        "Git repository는 단순 과제 폴더가 아니며 bare repo에는 현재 작업 파일이 없고 한 file이 여러 path로 보일 수도 있다."
+      ]
+    },
+    {
+      "source_hash": "31cecbc48df3151965dac2365e5ba69ed8adfd6d1634a046255a5ef2372cab54",
+      "mapping_id": "P1-S10-A1",
+      "analogy_label": "내 작업대→다른 부서→운영 배치",
+      "role_map": {
+        "local": "내 작업대",
+        "remote": "다른 부서의 작업 공간",
+        "cloud": "필요할 때 확장 가능한 임대 작업장",
+        "deploy": "승인된 버전을 운영 위치에 배치·가동하는 절차"
+      },
+      "non_mappings": [
+        "remote는 같은 machine일 수 있고 cloud는 한 작업장보다 복잡하며 deploy에는 DNS·secret·migration·health·rollback 상태 전이가 포함될 수 있다."
+      ]
+    },
+    {
+      "source_hash": "4e55ca156a3fac78859d1572df8925fb02696d832074d6ad419fe74679e2f24c",
+      "mapping_id": "P2-S10-A1",
+      "analogy_label": "로컬 초안→remote repo→preview 공개",
+      "role_map": {
+        "local": "내 기기의 로컬 초안",
+        "remote": "공유 remote repo",
+        "cloud": "필요할 때 확장되는 hosted 작업장",
+        "deploy": "승인된 preview를 대상에 공개·가동하는 절차"
+      },
+      "non_mappings": [
+        "push는 remote repo에 전달하는 동작이고 deploy는 별도 대상의 build·config·release·health·rollback을 포함해 서로 같지 않다."
+      ]
+    },
+    {
+      "source_hash": "9adf009e60ea1c6033813a5242979c6aad039253e2b306bedb02c31638d59da5",
+      "mapping_id": "P3-S10-A1",
+      "analogy_label": "개인 과제→공유 repo→발표용 preview",
+      "role_map": {
+        "local": "내 기기의 개인 과제",
+        "remote": "공유 repo",
+        "cloud": "필요할 때 빌리는 online 작업장",
+        "deploy": "승인된 발표용 preview를 대상에 배치·가동하는 절차"
+      },
+      "non_mappings": [
+        "remote 저장과 실제 공개는 별도이며 deploy에는 target·secret·billing·health·rollback 확인이 필요한 상태 전이가 있다."
+      ]
+    }
+  ]
+}

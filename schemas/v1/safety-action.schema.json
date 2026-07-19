@@ -1,0 +1,146 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fairytail.dev/schemas/v1/safety-action.schema.json",
+  "title": "Fairytail safety action",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "source",
+    "operation",
+    "tool_name",
+    "target",
+    "flags",
+    "rollback",
+    "approval_state"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "source": {
+      "enum": ["fairytail_automation", "host_tool_review"]
+    },
+    "operation": {
+      "enum": [
+        "read",
+        "write_file",
+        "install_dependency",
+        "delete",
+        "credential_exposure",
+        "change_permission",
+        "database_read",
+        "database_write",
+        "database_migration",
+        "publish",
+        "send_message",
+        "production_change",
+        "billing",
+        "transmit_profile",
+        "install_remote_code",
+        "rewrite_history",
+        "unknown"
+      ]
+    },
+    "tool_name": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_.:-]{1,120}$"
+    },
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "locator", "scope", "environment"],
+      "properties": {
+        "kind": {
+          "enum": [
+            "filesystem",
+            "database",
+            "repository",
+            "service",
+            "account",
+            "channel",
+            "billing",
+            "profile",
+            "network",
+            "tool",
+            "unknown"
+          ]
+        },
+        "locator": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "scope": {
+          "enum": [
+            "single",
+            "batch",
+            "workspace",
+            "outside_workspace",
+            "home",
+            "root",
+            "global",
+            "unknown"
+          ]
+        },
+        "environment": {
+          "enum": [
+            "local",
+            "test",
+            "staging",
+            "production",
+            "external",
+            "unknown"
+          ]
+        }
+      }
+    },
+    "flags": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "recursive",
+        "force",
+        "bulk",
+        "public",
+        "permission_widening",
+        "secrets_present",
+        "personal_data_present",
+        "profile_data_present",
+        "consent_recorded",
+        "cost_bounded"
+      ],
+      "properties": {
+        "recursive": { "type": "boolean" },
+        "force": { "type": "boolean" },
+        "bulk": { "type": "boolean" },
+        "public": { "type": "boolean" },
+        "permission_widening": { "type": "boolean" },
+        "secrets_present": { "type": "boolean" },
+        "personal_data_present": { "type": "boolean" },
+        "profile_data_present": { "type": "boolean" },
+        "consent_recorded": { "type": "boolean" },
+        "cost_bounded": { "type": "boolean" }
+      }
+    },
+    "rollback": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["available", "strategy"],
+      "properties": {
+        "available": { "type": "boolean" },
+        "strategy": {
+          "enum": [
+            "none",
+            "version_control",
+            "backup",
+            "transaction",
+            "provider_undo",
+            "manual"
+          ]
+        }
+      }
+    },
+    "approval_state": {
+      "enum": ["none", "scoped_user_approved"]
+    }
+  }
+}

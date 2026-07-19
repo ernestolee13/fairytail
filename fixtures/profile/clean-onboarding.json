@@ -1,0 +1,8 @@
+{
+  "background_categories": ["office"],
+  "familiar_labels": ["Project schedules, document reviews, and work handoffs"],
+  "coding_actions": ["none"],
+  "presentation_preference": "analogy_first",
+  "safety_concerns": ["secret", "breakage"],
+  "language": "en"
+}

@@ -1,0 +1,120 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fairytail.local/schemas/v1/concept-card.schema.json",
+  "title": "Fairytail concept card v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "card_version",
+    "family_id",
+    "id",
+    "aliases",
+    "scope",
+    "spec_revision",
+    "canonical_definition",
+    "mechanism",
+    "beginner_encounters",
+    "misconceptions",
+    "confused_with",
+    "analogy_roles",
+    "analogy_breakpoint",
+    "neutral_example",
+    "safety_boundary",
+    "sources",
+    "verified_at"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "card_version": { "type": "integer", "minimum": 1 },
+    "family_id": { "type": "string", "pattern": "^C[0-9]{2}$" },
+    "id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+    "aliases": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "uniqueItems": true
+    },
+    "scope": { "type": "string", "minLength": 1 },
+    "spec_revision": { "type": "string", "minLength": 1 },
+    "canonical_definition": { "type": "string", "minLength": 1 },
+    "mechanism": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["actors", "flow"],
+      "properties": {
+        "actors": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        },
+        "flow": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "beginner_encounters": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "misconceptions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "explicit_refutation",
+          "correct_model",
+          "counterexample"
+        ],
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+          "explicit_refutation": { "type": "string", "minLength": 1 },
+          "correct_model": { "type": "string", "minLength": 1 },
+          "counterexample": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "confused_with": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 1 },
+      "uniqueItems": true
+    },
+    "analogy_roles": {
+      "type": "array",
+      "minItems": 2,
+      "items": { "type": "string", "minLength": 1 },
+      "uniqueItems": true
+    },
+    "analogy_breakpoint": { "type": "string", "minLength": 1 },
+    "neutral_example": { "type": "string", "minLength": 1 },
+    "safety_boundary": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["title", "url", "tier", "reviewed_at"],
+        "properties": {
+          "title": { "type": "string", "minLength": 1 },
+          "url": { "type": "string", "format": "uri" },
+          "tier": { "enum": ["A", "B", "C"] },
+          "revision": { "type": "string", "minLength": 1 },
+          "reviewed_at": { "type": "string", "format": "date" }
+        }
+      }
+    },
+    "verified_at": { "type": "string", "format": "date" }
+  }
+}

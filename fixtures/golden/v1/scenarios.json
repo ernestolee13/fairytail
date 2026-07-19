@@ -1,0 +1,297 @@
+{
+  "schema_version": 1,
+  "scenarios": [
+    {
+      "scenario_version": 1,
+      "scenario_id": "S01",
+      "title": "Package vs. dependency before `npm install`",
+      "concept_ids": ["package-dependency"],
+      "confusion_pair_ids": ["package-dependency"],
+      "fixed_criterion": "package=object, dependency=relationship. Check the manifest and lockfile diff.",
+      "encounter": "An install was requested, but no package has been installed yet",
+      "pre_action": {
+        "target": "The current project's package manifest and lockfile",
+        "side_effect": "No external state changes during review",
+        "risk": "Installation may add direct and transitive code plus install scripts",
+        "rollback": "Checkpoint the manifest and lockfile state before installation"
+      },
+      "next_action": "Check the dependency name and version range that would be added to the manifest.",
+      "evidence": "Expected manifest and lockfile diff",
+      "diagnostic_question": "Can the same package be a dependency of project A but not project B?",
+      "policy_labels": [
+        {
+          "kind": "protocol_fact",
+          "text": "A package is a distributable or installable object; a dependency is a relationship in which that object is required."
+        },
+        {
+          "kind": "fairytail_policy",
+          "text": "Before installation, check the maintainer, license, version, lockfile diff, and script side effects."
+        }
+      ]
+    },
+    {
+      "scenario_version": 1,
+      "scenario_id": "S02",
+      "title": "Start a dev server / process, server, and local",
+      "concept_ids": ["process-server", "local-remote-cloud-deploy"],
+      "confusion_pair_ids": ["local-server-remote-cloud"],
+      "fixed_criterion": "running process, server role, localhost is not cloud. Check the bind address, public directory, and Ctrl-C.",
+      "encounter": "Preparing to start a dev server for a local preview",
+      "pre_action": {
+        "target": "A dedicated, secret-free public-demo directory and a designated port on 127.0.0.1",
+        "side_effect": "A local process listens on the port",
+        "risk": "An incorrect bind address or directory may expose files externally",
+        "rollback": "Stop the process with Ctrl-C"
+      },
+      "next_action": "Check the bind address, public directory, and port, then start the local process.",
+      "evidence": "A response from the 127.0.0.1 URL and a closed port after shutdown",
+      "diagnostic_question": "Is localhost:3000 automatically exposed to the internet?",
+      "policy_labels": [
+        {
+          "kind": "protocol_fact",
+          "text": "A server is a role that accepts connections or requests and returns responses; localhost resolves to the loopback interface."
+        },
+        {
+          "kind": "fairytail_policy",
+          "text": "Do not serve the home or project root; first confirm the bind address, directory, and shutdown method."
+        }
+      ]
+    },
+    {
+      "scenario_version": 1,
+      "scenario_id": "S03",
+      "title": "Missing `.env` / environment variables, config, and secrets",
+      "concept_ids": [
+        "environment-variable-config",
+        "credential-api-key-access-token"
+      ],
+      "confusion_pair_ids": ["config-env-secret"],
+      "fixed_criterion": "An environment variable is a delivery channel, not all config or automatically a secret. Never print real values.",
+      "encounter": "The app reports that it cannot find a required environment variable",
+      "pre_action": {
+        "target": "The required variable name and the current process's config source",
+        "side_effect": "Check only whether the variable exists; do not display its value",
+        "risk": "A secret value may be exposed in a terminal, log, or chat",
+        "rollback": "Review makes no changes; if config changes, preserve the original value before restarting the process"
+      },
+      "next_action": "Check only the required variable name and whether it is present, not its value.",
+      "evidence": "Missing or present status without the value, plus config precedence",
+      "diagnostic_question": "Does placing a value in an environment variable automatically make it a secret?",
+      "policy_labels": [
+        {
+          "kind": "protocol_fact",
+          "text": "An environment variable is name=value data in a process environment; config is the complete set of settings."
+        },
+        {
+          "kind": "fairytail_policy",
+          "text": "Do not print real secrets; use placeholders, presence checks, and revoke or rotate procedures."
+        }
+      ]
+    },
+    {
+      "scenario_version": 1,
+      "scenario_id": "S04",
+      "title": "Read-only API call / request and response",
+      "concept_ids": ["api-request-response"],
+      "confusion_pair_ids": ["api-mcp"],
+      "fixed_criterion": "API=contract, endpoint=interaction point. Check the method, target, and status.",
+      "encounter": "Tracing an HTTP API flow that reads one fictional task",
+      "pre_action": {
+        "target": "A fictional, read-only `GET /tasks/42` endpoint",
+        "side_effect": "A read that does not alter stored state",
+        "risk": "The wrong method, target, credential, or account may trigger a different action or cost",
+        "rollback": "No changes because this is a read-only fixture"
+      },
+      "next_action": "Read the method and target, then trace the expected status and response body.",
+      "evidence": "Request method and target, plus response status and content",
+      "diagnostic_question": "Can an MCP server call an existing GitHub API internally?",
+      "policy_labels": [
+        {
+          "kind": "protocol_fact",
+          "text": "An API is an interaction contract, an endpoint is a specific interaction point, and HTTP requests and responses are one implementation of that contract."
+        },
+        {
+          "kind": "fairytail_policy",
+          "text": "Before a real call, display the method, target, account, credential type, and potential cost."
+        }
+      ]
+    },
+    {
+      "scenario_version": 1,
+      "scenario_id": "S05",
+      "title": "API key error / API key, access token, and LLM token",
+      "concept_ids": [
+        "credential-api-key-access-token",
+        "llm-token-context-window"
+      ],
+      "confusion_pair_ids": [
+        "api-credentials-llm-token",
+        "api-key-access-token"
+      ],
+      "fixed_criterion": "Separate the two credential types from the model-processing unit. Rotate exposed secrets.",
+      "encounter": "A placeholder credential was rejected, and three uses of the word token must be distinguished",
+      "pre_action": {
+        "target": "Credential type, scope, resource, and model-usage unit",
+        "side_effect": "Review only the contracts, without real secrets",
+        "risk": "Copying a real key or token into a chat, repository, or log may expose the account and incur costs",
+        "rollback": "If exposure is suspected, revoke or rotate the credential with its provider"
+      },
+      "next_action": "Without displaying a real value, determine whether the error refers to an API key, OAuth access token, or LLM token.",
+      "evidence": "Credential type, scope or resource, and model token usage shown as separate items",
+      "diagnostic_question": "Can copying a context token log you in to an API?",
+      "policy_labels": [
+        {
+          "kind": "protocol_fact",
+          "text": "API keys and OAuth access tokens are credentials; an LLM token is a model-processing unit."
+        },
+        {
+          "kind": "fairytail_policy",
+          "text": "Do not repeat a real secret; if it was exposed, recommend revoking or rotating it before merely deleting the copy."
+        }
+      ]
+    },
+    {
+      "scenario_version": 1,
+      "scenario_id": "S06",
+      "title": "Database connection error / server, database, and query",
+      "concept_ids": ["process-server", "database-table-query"],
+      "confusion_pair_ids": ["server-database"],
+      "fixed_criterion": "Distinguish a server role from a data system; verify SELECT and the target before any write.",
+      "encounter": "A database connection failed, so the request-handling role and data system must be separated",
+      "pre_action": {
+        "target": "The database connection target and a read-only query fixture",
+        "side_effect": "Read the connection settings and review only a constrained SELECT",
+        "risk": "A query can also modify or delete data, and a production write may be difficult to recover",
+        "rollback": "Review makes no changes; separately verify the backup, transaction, and rollback path before a write"
+      },
+      "next_action": "Check the database type and connection target, then identify a query that makes no data changes.",
+      "evidence": "The server role, database system, and query behavior shown separately",
+      "diagnostic_question": "Does an application that reads an SQLite file always need a separate database server?",
+      "policy_labels": [
+        {
+          "kind": "protocol_fact",
+          "text": "A server is a request-handling role, a database is a data-management system, and a query does not necessarily mean read-only."
+        },
+        {
+          "kind": "fairytail_policy",
+          "text": "Do not automatically run a production write query without a backup, transaction, target row count, and rollback path."
+        }
+      ]
+    },
+    {
+      "scenario_version": 1,
+      "scenario_id": "S07",
+      "title": "Connect an MCP server / API, MCP, model, and tool",
+      "concept_ids": ["api-request-response", "mcp-tool-resource"],
+      "confusion_pair_ids": ["api-mcp", "model-tool"],
+      "fixed_criterion": "Protocol fact: model/app selects use → client sends `tools/call` → server executes → result is processed; confirmation is implementation-specific. Product policy: Fairytail separately confirms sensitive tools. Review server trust and permissions.",
+      "encounter": "Reviewing an MCP server's read-only resources and tool list before connecting",
+      "pre_action": {
+        "target": "The MCP server under review and its declared resource and tool capabilities",
+        "side_effect": "Read only the list and schemas; do not call a tool",
+        "risk": "A local MCP server can be as risky as its OS, file, or shell permissions and may call external APIs",
+        "rollback": "Do not enable the connection, or disable the server in configuration"
+      },
+      "next_action": "First check the server's source, transport, permissions, and read-only resources.",
+      "evidence": "Host, client, server, actual executor, tool and resource lists, and permission scope",
+      "diagnostic_question": "When tool-call JSON is generated, has the file already changed? Which component actually executes the action?",
+      "policy_labels": [
+        {
+          "kind": "protocol_fact",
+          "text": "A model or application selects use, the client sends tools/call, and the MCP server executes it; confirmation depends on the host implementation and policy."
+        },
+        {
+          "kind": "fairytail_policy",
+          "text": "Fairytail requires a separate allowlist, target display, user confirmation, and schema validation for sensitive tools."
+        }
+      ]
+    },
+    {
+      "scenario_version": 1,
+      "scenario_id": "S08",
+      "title": "`permission denied` / AuthN·AuthZ·permission",
+      "concept_ids": ["permission-authentication-authorization"],
+      "confusion_pair_ids": ["authentication-authorization"],
+      "fixed_criterion": "Separate identity verification from action authorization. Never use `chmod 777` as a blanket fix.",
+      "encounter": "A specific action on a resource was denied even though the user is signed in",
+      "pre_action": {
+        "target": "The denied principal, resource, action, and current permission",
+        "side_effect": "Read permissions only",
+        "risk": "Broad privilege escalation may grant unnecessary access to other users or processes",
+        "rollback": "Review makes no changes; if permissions change, record the original owner, mode, and duration"
+      },
+      "next_action": "Separate the principal, resource, and action, then read the current permission without changing it.",
+      "evidence": "Authentication result, authorization allow or deny decision, and specific permission shown separately",
+      "diagnostic_question": "Can deletion still be denied after a successful login?",
+      "policy_labels": [
+        {
+          "kind": "protocol_fact",
+          "text": "Authentication verifies identity; authorization decides whether a specific action on a resource is allowed."
+        },
+        {
+          "kind": "fairytail_policy",
+          "text": "Do not immediately propose chmod 777; check least privilege and recovery instead."
+        }
+      ]
+    },
+    {
+      "scenario_version": 1,
+      "scenario_id": "S09",
+      "title": "Check the repository and path before editing a file",
+      "concept_ids": ["file-path-project-repository"],
+      "confusion_pair_ids": ["repository-folder-project"],
+      "fixed_criterion": "Distinguish folder, project, and repository. Check the absolute target and Git status.",
+      "encounter": "Checking the work location and history boundary before an AI edits a file",
+      "pre_action": {
+        "target": "The resolved absolute file path and repository root",
+        "side_effect": "Read only the working directory, repository root, and Git status",
+        "risk": "A recursive edit, move, or deletion may run in the wrong directory",
+        "rollback": "Review makes no changes; use the pre-edit Git status as a checkpoint"
+      },
+      "next_action": "Check the current path, repository root, and pre-edit Git status.",
+      "evidence": "Absolute target, repository root, and tracked or untracked changes",
+      "diagnostic_question": "Is every project folder a Git repository?",
+      "policy_labels": [
+        {
+          "kind": "protocol_fact",
+          "text": "A folder is a collection of files, a repository is a Git history structure, and a project is a tool-defined work scope."
+        },
+        {
+          "kind": "fairytail_policy",
+          "text": "Before a recursive edit, deletion, or move, recheck the resolved absolute target and repository root."
+        }
+      ]
+    },
+    {
+      "scenario_version": 1,
+      "scenario_id": "S10",
+      "title": "preview deploy / local·remote·cloud·push/deploy",
+      "concept_ids": [
+        "local-remote-cloud-deploy",
+        "file-path-project-repository"
+      ],
+      "confusion_pair_ids": ["remote-cloud", "push-deploy"],
+      "fixed_criterion": "push is not deploy. Check the target, public exposure, billing, secrets, health, and rollback.",
+      "encounter": "Preparing local work for a secret-free, non-production preview",
+      "pre_action": {
+        "target": "The specified non-production preview environment and remote repository",
+        "side_effect": "Review only the plan and target, without public exposure, billing, or deployment",
+        "risk": "Production, public exposure, billing, secrets, or a database migration may be involved",
+        "rollback": "Confirm the existing state and rollback path before a preview release"
+      },
+      "next_action": "Read the remote and deployment targets separately, then check public exposure, billing, secrets, health, and rollback.",
+      "evidence": "Push state shown separately from deployment, release, and health state",
+      "diagnostic_question": "Does the service change merely because code was pushed to GitHub?",
+      "policy_labels": [
+        {
+          "kind": "protocol_fact",
+          "text": "A push transfers Git objects; a deployment is a lifecycle action that applies a build, config, or release to a target environment."
+        },
+        {
+          "kind": "fairytail_policy",
+          "text": "Do not automatically trigger production, public exposure, billing, domain changes, secret handling, or database migrations without explicit approval."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,386 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fairytail.local/schemas/v1/build-decision-packet.schema.json",
+  "title": "Fairytail build decision packet v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "contract_version",
+    "contract_id",
+    "provenance",
+    "task",
+    "trace",
+    "safety",
+    "complexity",
+    "ladder",
+    "decision",
+    "runnable_check",
+    "packet_hash"
+  ],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "contract_version": { "const": 1 },
+    "contract_id": { "const": "fairytail-build-decision-v1" },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["project", "repository", "commit", "license", "adaptation"],
+      "properties": {
+        "project": { "const": "Ponytail" },
+        "repository": {
+          "const": "https://github.com/DietrichGebert/ponytail"
+        },
+        "commit": {
+          "const": "16f29800fd2681bdf24f3eb4ccffe38be3baec6b"
+        },
+        "license": { "const": "MIT" },
+        "adaptation": {
+          "const": "Fairytail build-layer decision contract"
+        }
+      }
+    },
+    "task": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "summary",
+        "requested_outcome",
+        "explicit_requirements",
+        "implementation_required"
+      ],
+      "properties": {
+        "summary": { "$ref": "#/$defs/safeText240" },
+        "requested_outcome": { "$ref": "#/$defs/safeText500" },
+        "explicit_requirements": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 32,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/safeText500" }
+        },
+        "implementation_required": { "type": "boolean" }
+      }
+    },
+    "trace": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "completed_before_ladder",
+        "entry_point",
+        "flow",
+        "callers",
+        "shared_root",
+        "evidence"
+      ],
+      "properties": {
+        "completed_before_ladder": { "const": true },
+        "entry_point": { "$ref": "#/$defs/safeText300" },
+        "flow": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 64,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/safeText500" }
+        },
+        "callers": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 64,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/safeText300" }
+        },
+        "shared_root": { "$ref": "#/$defs/safeText300" },
+        "evidence": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 64,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/safeText500" }
+        }
+      }
+    },
+    "safety": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "trust_boundary_validation",
+        "data_loss_prevention",
+        "security",
+        "accessibility",
+        "explicit_requirements",
+        "hardware_calibration"
+      ],
+      "properties": {
+        "trust_boundary_validation": {
+          "$ref": "#/$defs/safetyDisposition"
+        },
+        "data_loss_prevention": { "$ref": "#/$defs/safetyDisposition" },
+        "security": { "$ref": "#/$defs/safetyDisposition" },
+        "accessibility": { "$ref": "#/$defs/safetyDisposition" },
+        "explicit_requirements": {
+          "allOf": [
+            { "$ref": "#/$defs/safetyDisposition" },
+            {
+              "properties": {
+                "applicable": { "const": true },
+                "status": { "const": "preserved" }
+              }
+            }
+          ]
+        },
+        "hardware_calibration": { "$ref": "#/$defs/safetyDisposition" }
+      }
+    },
+    "complexity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kinds"],
+      "properties": {
+        "kinds": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 7,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "trivial",
+              "branch",
+              "loop",
+              "parser",
+              "money",
+              "security",
+              "nontrivial"
+            ]
+          }
+        }
+      }
+    },
+    "ladder": {
+      "type": "array",
+      "minItems": 7,
+      "maxItems": 7,
+      "prefixItems": [
+        { "$ref": "#/$defs/needRung" },
+        { "$ref": "#/$defs/repositoryReuseRung" },
+        { "$ref": "#/$defs/standardLibraryRung" },
+        { "$ref": "#/$defs/nativePlatformRung" },
+        { "$ref": "#/$defs/installedDependencyRung" },
+        { "$ref": "#/$defs/oneLineRung" },
+        { "$ref": "#/$defs/minimumWorkingDiffRung" }
+      ],
+      "items": false
+    },
+    "decision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["selected_rung", "rationale"],
+      "properties": {
+        "selected_rung": { "$ref": "#/$defs/rungName" },
+        "rationale": { "$ref": "#/$defs/safeText500" }
+      }
+    },
+    "runnable_check": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["required", "reason_kinds", "argv", "expected_evidence"],
+      "properties": {
+        "required": { "type": "boolean" },
+        "reason_kinds": {
+          "type": "array",
+          "maxItems": 6,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "branch",
+              "loop",
+              "parser",
+              "money",
+              "security",
+              "nontrivial"
+            ]
+          }
+        },
+        "argv": {
+          "oneOf": [
+            { "type": "null" },
+            {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 32,
+              "prefixItems": [
+                {
+                  "enum": [
+                    "node",
+                    "npm",
+                    "npx",
+                    "pnpm",
+                    "yarn",
+                    "bun",
+                    "deno",
+                    "python",
+                    "python3",
+                    "pytest",
+                    "cargo",
+                    "go",
+                    "dotnet",
+                    "mvn",
+                    "gradle",
+                    "./gradlew",
+                    "make",
+                    "just",
+                    "ruby",
+                    "bundle"
+                  ]
+                }
+              ],
+              "items": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200,
+                "pattern": "^[A-Za-z0-9_@%+=:,./-]+$"
+              }
+            }
+          ]
+        },
+        "expected_evidence": {
+          "oneOf": [{ "type": "null" }, { "$ref": "#/$defs/safeText500" }]
+        }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "required": { "const": true } } },
+          "then": {
+            "properties": {
+              "reason_kinds": { "minItems": 1 },
+              "argv": { "type": "array" },
+              "expected_evidence": { "type": "string" }
+            }
+          },
+          "else": {
+            "properties": {
+              "reason_kinds": { "maxItems": 0 },
+              "argv": { "type": "null" },
+              "expected_evidence": { "type": "null" }
+            }
+          }
+        }
+      ]
+    },
+    "packet_hash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    }
+  },
+  "$defs": {
+    "safeText240": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 240,
+      "pattern": "^(?!\\s)(?!.*\\s$)[^\\u0000-\\u001f\\u007f]+$"
+    },
+    "safeText300": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 300,
+      "pattern": "^(?!\\s)(?!.*\\s$)[^\\u0000-\\u001f\\u007f]+$"
+    },
+    "safeText500": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500,
+      "pattern": "^(?!\\s)(?!.*\\s$)[^\\u0000-\\u001f\\u007f]+$"
+    },
+    "safetyDisposition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["applicable", "status", "evidence"],
+      "properties": {
+        "applicable": { "type": "boolean" },
+        "status": { "enum": ["preserved", "not_applicable"] },
+        "evidence": { "$ref": "#/$defs/safeText500" }
+      },
+      "oneOf": [
+        {
+          "properties": {
+            "applicable": { "const": true },
+            "status": { "const": "preserved" }
+          }
+        },
+        {
+          "properties": {
+            "applicable": { "const": false },
+            "status": { "const": "not_applicable" }
+          }
+        }
+      ]
+    },
+    "rungName": {
+      "enum": [
+        "need",
+        "repository_reuse",
+        "standard_library",
+        "native_platform",
+        "installed_dependency",
+        "one_line",
+        "minimum_working_diff"
+      ]
+    },
+    "ladderEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["rung", "status", "evidence"],
+      "properties": {
+        "rung": { "$ref": "#/$defs/rungName" },
+        "status": {
+          "enum": ["satisfies", "does_not_satisfy", "not_evaluated"]
+        },
+        "evidence": { "$ref": "#/$defs/safeText500" }
+      }
+    },
+    "needRung": {
+      "allOf": [
+        { "$ref": "#/$defs/ladderEntry" },
+        { "properties": { "rung": { "const": "need" } } }
+      ]
+    },
+    "repositoryReuseRung": {
+      "allOf": [
+        { "$ref": "#/$defs/ladderEntry" },
+        { "properties": { "rung": { "const": "repository_reuse" } } }
+      ]
+    },
+    "standardLibraryRung": {
+      "allOf": [
+        { "$ref": "#/$defs/ladderEntry" },
+        { "properties": { "rung": { "const": "standard_library" } } }
+      ]
+    },
+    "nativePlatformRung": {
+      "allOf": [
+        { "$ref": "#/$defs/ladderEntry" },
+        { "properties": { "rung": { "const": "native_platform" } } }
+      ]
+    },
+    "installedDependencyRung": {
+      "allOf": [
+        { "$ref": "#/$defs/ladderEntry" },
+        { "properties": { "rung": { "const": "installed_dependency" } } }
+      ]
+    },
+    "oneLineRung": {
+      "allOf": [
+        { "$ref": "#/$defs/ladderEntry" },
+        { "properties": { "rung": { "const": "one_line" } } }
+      ]
+    },
+    "minimumWorkingDiffRung": {
+      "allOf": [
+        { "$ref": "#/$defs/ladderEntry" },
+        {
+          "properties": { "rung": { "const": "minimum_working_diff" } }
+        }
+      ]
+    }
+  }
+}

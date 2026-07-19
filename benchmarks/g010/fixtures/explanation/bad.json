@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "locale": "en",
+  "canonical_fact_hash": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+  "concept_ids": ["path-traversal"],
+  "analogy": {
+    "source_world": "hospital",
+    "relations": []
+  },
+  "breakpoint": "",
+  "worked_example": { "input": "../secret.txt", "steps": [] },
+  "progressive_disclosure": ["analogy", "fact"],
+  "verification": "",
+  "teach_back": "",
+  "confusion_pair": { "left": "", "right": "", "diagnostic": "" },
+  "private_profile_canary": "PRIVATE_PROFILE_CANARY"
+}

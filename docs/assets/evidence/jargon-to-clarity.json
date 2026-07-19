@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "evidence_id": "g012-jargon-to-clarity-v1",
+  "synthetic_fixture": true,
+  "comparison_kind": "reviewed-jargon-to-familiar-flow-illustration",
+  "not_a_host_session_capture": true,
+  "same_read_only_scenario": true,
+  "model_calls": 0,
+  "model_output_tokens": 0,
+  "network_calls": 0,
+  "profile_fixture_kind": "synthetic-approved-labels",
+  "production_personalization_path_exercised": false,
+  "concepts": [
+    "process-server",
+    "api-request-response",
+    "credential-api-key-access-token",
+    "database-table-query",
+    "mcp-tool-resource"
+  ],
+  "canonical_fact_set_hashes": {
+    "process-server": "d4ac926f28f02209663733e3e196d2a172ae07cd3c810abc23e591c81b0dcbc0",
+    "api-request-response": "68de9b8eee10ea038f83fd00300da5cf6e07b7ba9fb0ef3c0e2f40b99611752c",
+    "credential-api-key-access-token": "c2ab9df1a9d218f94daf90eccf4b24e98dfe3c8c44a4ea3a781cde5f7ef1facf",
+    "database-table-query": "85f2a021dd50a05ddab9d899bba56d00251021c586afc83efc71044c8b910707",
+    "mcp-tool-resource": "d425d81d755161480c1ba3d5dfa5ac1199dd65290e7f67f8b09e083845e757ad"
+  },
+  "approved_profile_labels": [
+    "Restaurant kitchen workflow",
+    "dedicated supplier line",
+    "service counter",
+    "temporary station pass",
+    "order ledger"
+  ],
+  "claim_boundary": "The left side is a deliberately jargon-dense synthetic formatter, not retained default-host output. The right side is a reviewed familiar-flow illustration using synthetic approved labels; it is not production personalization output or human-comprehension evidence.",
+  "screenshot": {
+    "chromium_version": "Chromium 152.0.7924.0",
+    "browser_distribution_pinned": false,
+    "viewport": "1800x1080",
+    "jargon_sha256": "7fba0fb6d09431bf2ac69db5e9fd4321d8c3aeeec2f77e33827c79e38d775961",
+    "clarity_sha256": "114322b11be6108a11288476e30bc854176ec1a35e4fb4acd1b09b93a0106156",
+    "html_sha256": "c17ff292daeed2707014202ff0d3d28caf659db48cd1c91f5a4987cd559619c9",
+    "png_sha256": "c8233350c75a6473f8c229ca3464ac7cb891068d3a9481a2492a24dcfdd73970"
+  },
+  "source_pins": {
+    "scripts/generate-g012-readme-evidence.mjs": "869a84f80ffbe7015aed36ceeebcbc6034b19f06af149c90bb9aa7e5f93f204b",
+    "docs/assets/evidence/terminal-evidence.json": "c9eed13b37f6d20b0f37d118b6c51c8330fa1db6b6d1be1bdeeaaf4ad13db83b",
+    "src/learning/terminal.mjs": "ae269788026fa5978c989eb00bc20bd91e8d418522990ec770df41e08a1528c3",
+    "src/analogy/personalized.mjs": "30927ec00265ec6572be117fc358f4b35784ef7061f961e539a26fb78693e0ac"
+  }
+}

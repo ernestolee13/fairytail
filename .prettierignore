@@ -1,0 +1,7 @@
+fixtures/hooks/malformed.json
+fixtures/content/malformed/invalid-json.json
+.omc
+.omx
+benchmarks/g010/results/measured/
+benchmarks/g011/results/
+docs/assets/evidence/

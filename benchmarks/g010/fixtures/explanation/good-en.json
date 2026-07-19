@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "locale": "en",
+  "canonical_fact_hash": "5e9a7d2d58f2676a42e4fa1c5bc7d30c75041b27a4ccf1d2256e46feadf87158",
+  "concept_ids": ["path-traversal", "trust-boundary"],
+  "analogy": {
+    "source_world": "hospital",
+    "relations": [
+      { "source_role": "reception desk", "target_role": "path validator" },
+      { "source_role": "staff-only corridor", "target_role": "trusted root" }
+    ]
+  },
+  "breakpoint": "A filesystem path can be crafted byte by byte; a visitor cannot reshape a real corridor.",
+  "worked_example": {
+    "input": "../secret.txt",
+    "steps": [
+      "resolve against the root",
+      "verify the root boundary",
+      "reject the escape"
+    ]
+  },
+  "progressive_disclosure": [
+    "fact",
+    "analogy",
+    "breakpoint",
+    "example",
+    "verification",
+    "teach_back"
+  ],
+  "verification": "Try both notes/today.md and ../secret.txt; only the first should resolve.",
+  "teach_back": "Why must validation happen after path normalization?",
+  "confusion_pair": {
+    "left": "normalization",
+    "right": "authorization",
+    "diagnostic": "Normalization makes a path canonical; the boundary check decides whether it is allowed."
+  }
+}

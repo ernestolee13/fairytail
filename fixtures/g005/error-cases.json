@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "cases": [
+    {
+      "case_id": "error-s01",
+      "input": {
+        "schema_version": 1,
+        "surface": "error",
+        "interaction_id": "error-s01",
+        "scenario_id": "S01",
+        "requested_locale": "en",
+        "started_at": "2026-07-18T11:00:00.000Z",
+        "failure": {
+          "evidence_id": "evidence-s01",
+          "observed_at": "2026-07-18T11:01:00.000Z",
+          "summary": "The install check did not produce the expected result.",
+          "interrupted": false
+        },
+        "cause": {
+          "statement": "The observed status indicates that an install prerequisite is not ready.",
+          "confidence": "medium",
+          "based_on_evidence_id": "evidence-s01"
+        }
+      }
+    },
+    {
+      "case_id": "error-s02",
+      "input": {
+        "schema_version": 1,
+        "surface": "error",
+        "interaction_id": "error-s02",
+        "scenario_id": "S02",
+        "requested_locale": "ko",
+        "started_at": "2026-07-18T11:00:00.000Z",
+        "failure": {
+          "evidence_id": "evidence-s02",
+          "observed_at": "2026-07-18T11:01:00.000Z",
+          "summary": "로컬 미리보기 상태 확인이 예상 결과를 내지 못했습니다.",
+          "interrupted": false
+        },
+        "cause": {
+          "statement": "관찰된 상태는 로컬 프로세스가 준비되지 않았음을 가리킵니다.",
+          "confidence": "high",
+          "based_on_evidence_id": "evidence-s02"
+        }
+      }
+    },
+    {
+      "case_id": "error-s03",
+      "input": {
+        "schema_version": 1,
+        "surface": "error",
+        "interaction_id": "error-s03",
+        "scenario_id": "S03",
+        "requested_locale": "en",
+        "started_at": "2026-07-18T11:00:00.000Z",
+        "failure": {
+          "evidence_id": "evidence-s03",
+          "observed_at": "2026-07-18T11:01:00.000Z",
+          "summary": "The configuration readiness check did not pass.",
+          "interrupted": true
+        },
+        "cause": {
+          "statement": "The observed readiness result indicates that required configuration is absent.",
+          "confidence": "high",
+          "based_on_evidence_id": "evidence-s03"
+        }
+      }
+    },
+    {
+      "case_id": "error-s04",
+      "input": {
+        "schema_version": 1,
+        "surface": "error",
+        "interaction_id": "error-s04",
+        "scenario_id": "S04",
+        "requested_locale": "ko",
+        "started_at": "2026-07-18T11:00:00.000Z",
+        "failure": {
+          "evidence_id": "evidence-s04",
+          "observed_at": "2026-07-18T11:01:00.000Z",
+          "summary": "읽기 요청이 예상한 응답 상태를 만들지 못했습니다.",
+          "interrupted": false
+        },
+        "cause": {
+          "statement": "관찰된 응답 상태는 요청과 응답의 경계가 맞지 않음을 가리킵니다.",
+          "confidence": "medium",
+          "based_on_evidence_id": "evidence-s04"
+        }
+      }
+    },
+    {
+      "case_id": "error-s05",
+      "input": {
+        "schema_version": 1,
+        "surface": "error",
+        "interaction_id": "error-s05",
+        "scenario_id": "S05",
+        "requested_locale": "en",
+        "started_at": "2026-07-18T11:00:00.000Z",
+        "failure": {
+          "evidence_id": "evidence-s05",
+          "observed_at": "2026-07-18T11:01:00.000Z",
+          "summary": "The placeholder credential check was rejected.",
+          "interrupted": true
+        },
+        "cause": {
+          "statement": "The rejection status indicates that the placeholder was not accepted.",
+          "confidence": "high",
+          "based_on_evidence_id": "evidence-s05"
+        }
+      }
+    },
+    {
+      "case_id": "error-s06",
+      "input": {
+        "schema_version": 1,
+        "surface": "error",
+        "interaction_id": "error-s06",
+        "scenario_id": "S06",
+        "requested_locale": "ko",
+        "started_at": "2026-07-18T11:00:00.000Z",
+        "failure": {
+          "evidence_id": "evidence-s06",
+          "observed_at": "2026-07-18T11:01:00.000Z",
+          "summary": "데이터 연결 상태 확인이 실패했습니다.",
+          "interrupted": false
+        },
+        "cause": {
+          "statement": "관찰된 연결 상태는 요청 처리 역할과 데이터 역할 사이의 경계를 가리킵니다.",
+          "confidence": "medium",
+          "based_on_evidence_id": "evidence-s06"
+        }
+      }
+    },
+    {
+      "case_id": "error-s07",
+      "input": {
+        "schema_version": 1,
+        "surface": "error",
+        "interaction_id": "error-s07",
+        "scenario_id": "S07",
+        "requested_locale": "en",
+        "started_at": "2026-07-18T11:00:00.000Z",
+        "failure": {
+          "evidence_id": "evidence-s07",
+          "observed_at": "2026-07-18T11:01:00.000Z",
+          "summary": "The read only capability inspection did not complete.",
+          "interrupted": true
+        },
+        "cause": {
+          "statement": "The observed capability status indicates that the connection boundary is incomplete.",
+          "confidence": "low",
+          "based_on_evidence_id": "evidence-s07"
+        }
+      }
+    },
+    {
+      "case_id": "error-s08",
+      "input": {
+        "schema_version": 1,
+        "surface": "error",
+        "interaction_id": "error-s08",
+        "scenario_id": "S08",
+        "requested_locale": "ko",
+        "started_at": "2026-07-18T11:00:00.000Z",
+        "failure": {
+          "evidence_id": "evidence-s08",
+          "observed_at": "2026-07-18T11:01:00.000Z",
+          "summary": "요청한 자원 동작이 거부되었습니다.",
+          "interrupted": false
+        },
+        "cause": {
+          "statement": "관찰된 거부 상태는 현재 동작 권한이 충분하지 않음을 가리킵니다.",
+          "confidence": "high",
+          "based_on_evidence_id": "evidence-s08"
+        }
+      }
+    },
+    {
+      "case_id": "error-s09",
+      "input": {
+        "schema_version": 1,
+        "surface": "error",
+        "interaction_id": "error-s09",
+        "scenario_id": "S09",
+        "requested_locale": "en",
+        "started_at": "2026-07-18T11:00:00.000Z",
+        "failure": {
+          "evidence_id": "evidence-s09",
+          "observed_at": "2026-07-18T11:01:00.000Z",
+          "summary": "The reviewed work location did not match the expected boundary.",
+          "interrupted": false
+        },
+        "cause": {
+          "statement": "The observed location status indicates that the work boundary needs review.",
+          "confidence": "medium",
+          "based_on_evidence_id": "evidence-s09"
+        }
+      }
+    },
+    {
+      "case_id": "error-s10",
+      "input": {
+        "schema_version": 1,
+        "surface": "error",
+        "interaction_id": "error-s10",
+        "scenario_id": "S10",
+        "requested_locale": "ko",
+        "started_at": "2026-07-18T11:00:00.000Z",
+        "failure": {
+          "evidence_id": "evidence-s10",
+          "observed_at": "2026-07-18T11:01:00.000Z",
+          "summary": "비운영 미리보기 상태 확인이 완료되지 않았습니다.",
+          "interrupted": true
+        },
+        "cause": {
+          "statement": "관찰된 상태는 로컬 작업과 원격 미리보기 사이의 단계가 남았음을 가리킵니다.",
+          "confidence": "low",
+          "based_on_evidence_id": "evidence-s10"
+        }
+      }
+    }
+  ]
+}

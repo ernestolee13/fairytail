@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "profiles": [
+    {
+      "profile_version": 1,
+      "profile_id": "P1",
+      "language": "en",
+      "familiar_worlds": [
+        {
+          "id": "hospital-nursing",
+          "label": "Hospital nursing and care handoffs"
+        }
+      ],
+      "observed_experience": ["No coding experience"],
+      "presentation_preference": "analogy_first",
+      "safety_concerns": [],
+      "no_analogy": false,
+      "model_processing": {
+        "mode": "neutral_local",
+        "approved_fields": [],
+        "approved_at": null
+      },
+      "pii_redaction_enabled": true,
+      "updated_at": "2026-07-18"
+    },
+    {
+      "profile_version": 1,
+      "profile_id": "P2",
+      "language": "en",
+      "familiar_worlds": [
+        {
+          "id": "small-ecommerce-operations",
+          "label": "Small online store operations"
+        }
+      ],
+      "observed_experience": ["Built two no-code automations"],
+      "presentation_preference": "checklist",
+      "safety_concerns": [],
+      "no_analogy": false,
+      "model_processing": {
+        "mode": "neutral_local",
+        "approved_fields": [],
+        "approved_at": null
+      },
+      "pii_redaction_enabled": true,
+      "updated_at": "2026-07-18"
+    },
+    {
+      "profile_version": 1,
+      "profile_id": "P3",
+      "language": "en",
+      "familiar_worlds": [
+        {
+          "id": "humanities-student",
+          "label": "Humanities study and student clubs"
+        }
+      ],
+      "observed_experience": ["Edited HTML once"],
+      "presentation_preference": "try_first",
+      "safety_concerns": [],
+      "no_analogy": false,
+      "model_processing": {
+        "mode": "neutral_local",
+        "approved_fields": [],
+        "approved_at": null
+      },
+      "pii_redaction_enabled": true,
+      "updated_at": "2026-07-18"
+    }
+  ]
+}

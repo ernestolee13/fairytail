@@ -1,0 +1,36 @@
+{
+  "name": "fairytail",
+  "version": "0.1.6",
+  "description": "Minimal implementation guidance with deterministic, beginner-friendly explanations.",
+  "author": {
+    "name": "Fairytail contributors",
+    "url": "https://github.com/ernestolee13/fairytail"
+  },
+  "homepage": "https://github.com/ernestolee13/fairytail#readme",
+  "repository": "https://github.com/ernestolee13/fairytail",
+  "license": "MIT",
+  "keywords": [
+    "beginner",
+    "explanations",
+    "coding",
+    "learning",
+    "productivity"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Fairytail",
+    "shortDescription": "Minimal code, beginner-friendly clarity.",
+    "longDescription": "Keep implementation compact, then explain verified results with fixed facts, bounded analogies, explicit safety limits, and the user's preferred language.",
+    "developerName": "Fairytail",
+    "category": "Productivity",
+    "capabilities": ["Interactive", "Read", "Write"],
+    "websiteURL": "https://github.com/ernestolee13/fairytail",
+    "privacyPolicyURL": "https://github.com/ernestolee13/fairytail/blob/main/PRIVACY.md",
+    "defaultPrompt": [
+      "Explain this verified result for a coding beginner.",
+      "Use Fairytail to explain API, MCP, tokens, servers, and databases.",
+      "Keep the implementation minimal and the explanation beginner-friendly."
+    ],
+    "brandColor": "#6D5BD0"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fairytail.local/schemas/v1/personalized-analogy-candidate.schema.json",
+  "title": "Fairytail bounded analogy role binding v2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "request_id",
+    "source_context",
+    "analogy_label",
+    "role_bindings"
+  ],
+  "properties": {
+    "schema_version": { "const": 2 },
+    "request_id": { "type": "string", "pattern": "^FTR-[a-f0-9]{32}$" },
+    "source_context": { "type": "string", "minLength": 1, "maxLength": 40 },
+    "analogy_label": { "type": "string", "minLength": 1, "maxLength": 40 },
+    "role_bindings": {
+      "type": "object",
+      "minProperties": 2,
+      "maxProperties": 32,
+      "additionalProperties": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 83
+      }
+    }
+  }
+}

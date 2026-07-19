@@ -1,0 +1,984 @@
+{
+  "schema_version": 1,
+  "content_version": "2026.07.18.2",
+  "locale": "en",
+  "cards": [
+    {
+      "schema_version": 1,
+      "card_version": 1,
+      "family_id": "C01",
+      "id": "terminal-shell-command",
+      "aliases": ["terminal", "shell", "command"],
+      "scope": "Generic + POSIX Issue 8/IEEE 1003.1-2024. Windows Terminal rolling documentation reviewed 2026-07-18.",
+      "spec_revision": "POSIX Issue 8 / IEEE Std 1003.1-2024; Windows Terminal rolling docs reviewed 2026-07-18",
+      "canonical_definition": "A terminal is a host/UI that passes character input and displays output streams. A shell is a program that interprets text as commands. A command is an execution unit in shell syntax and may be an external program, builtin, function, or pipeline.",
+      "mechanism": {
+        "actors": [
+          "terminal",
+          "shell",
+          "command",
+          "process",
+          "stdout",
+          "stderr"
+        ],
+        "flow": [
+          "User input → terminal → shell parsing and expansion → execution target selection → process execution → stdout/stderr → terminal display."
+        ]
+      },
+      "beginner_encounters": [
+        "Instructions such as “Open a terminal and run this command,” plus installation, builds, Git, and log inspection."
+      ],
+      "misconceptions": [
+        {
+          "id": "terminal-is-shell",
+          "explicit_refutation": "`terminal = shell` is false. The same terminal can run different shells such as zsh, Bash, or PowerShell. `command = application file` is also false.",
+          "correct_model": "A terminal is a host/UI that passes character input and displays output streams, a shell is a program that interprets text as commands, and a command is an execution unit in shell syntax.",
+          "counterexample": "The same terminal can run different shells such as zsh, Bash, or PowerShell."
+        }
+      ],
+      "confused_with": [
+        "process",
+        "path",
+        "environment variable",
+        "permission"
+      ],
+      "analogy_roles": [
+        "terminal=conversation window/service counter",
+        "shell=request interpreter",
+        "command=request form",
+        "utility=operator",
+        "output=result sheet"
+      ],
+      "analogy_breakpoint": "A human clerk can resolve ambiguity, but a shell applies character-level rules for quoting, expansion, and pipes; a small difference can trigger destructive behavior.",
+      "neutral_example": "Use `pwd` only to inspect the current working location. It does not change external state.",
+      "safety_boundary": [
+        "Before showing the command string, show the current path, exact target, side effects, and how to stop or recover."
+      ],
+      "sources": [
+        {
+          "title": "POSIX Shell Command Language",
+          "url": "https://pubs.opengroup.org/onlinepubs/9799919799/utilities/V3_chap02.html",
+          "tier": "A",
+          "revision": "POSIX Issue 8 / IEEE Std 1003.1-2024",
+          "reviewed_at": "2026-07-18"
+        },
+        {
+          "title": "POSIX Shell definition",
+          "url": "https://pubs.opengroup.org/onlinepubs/9799919799/basedefs/V1_chap03.html#tag_03_333",
+          "tier": "A",
+          "revision": "POSIX Issue 8 / IEEE Std 1003.1-2024",
+          "reviewed_at": "2026-07-18"
+        },
+        {
+          "title": "Microsoft Terminal FAQ",
+          "url": "https://learn.microsoft.com/en-us/windows/terminal/faq",
+          "tier": "A",
+          "revision": "rolling docs reviewed 2026-07-18",
+          "reviewed_at": "2026-07-18"
+        }
+      ],
+      "verified_at": "2026-07-18"
+    },
+    {
+      "schema_version": 1,
+      "card_version": 1,
+      "family_id": "C02",
+      "id": "file-path-project-repository",
+      "aliases": ["file", "path", "project", "repository", "repo", "folder"],
+      "scope": "POSIX 2024 + Git 2.54.0 documentation. `project` is a tool-specific convention, not a standard OS or Git object.",
+      "spec_revision": "POSIX Issue 8 / IEEE Std 1003.1-2024; Git 2.54.0",
+      "canonical_definition": "A file is an object that an operating system can read and write, and a path is a string interpreted to identify it. A project is a tool-specific scope for a body of work. A Git repository is a version-history store made up of refs and an object database, and it may have no worktree.",
+      "mechanism": {
+        "actors": [
+          "file",
+          "path",
+          "directory",
+          "worktree",
+          "index",
+          "objects",
+          "refs"
+        ],
+        "flow": [
+          "A relative path is resolved from the current directory; an absolute path is resolved from the root. Git compares and records the current worktree files against the history represented by the index, objects, and refs."
+        ]
+      },
+      "beginner_encounters": [
+        "When an AI mentions where to create a file, the project root, relative paths, a repo, or `git diff`."
+      ],
+      "misconceptions": [
+        {
+          "id": "repository-is-folder-project",
+          "explicit_refutation": "`repository = folder = project` is false. An ordinary folder has no Git history, a bare repository may have no checked-out working files, and one project may use multiple repositories.",
+          "correct_model": "A folder groups files, a repository is a Git history structure, and a project is a tool-specific scope of work.",
+          "counterexample": "A bare repository may have no checked-out working files, and one project may use multiple repositories."
+        }
+      ],
+      "confused_with": [
+        "terminal",
+        "package manifest",
+        "local/remote",
+        "deploy"
+      ],
+      "analogy_roles": [
+        "file=document",
+        "path=address",
+        "project=work dossier",
+        "repository=change-history archive",
+        "worktree=current working copy"
+      ],
+      "analogy_breakpoint": "Symlinks and hard links can give one file multiple paths, and a repository is a graph/refs/objects structure rather than a simple backup folder.",
+      "neutral_example": "Use `pwd`, `git rev-parse --show-toplevel`, and `git status --short` to inspect the location and change state.",
+      "safety_boundary": [
+        "Before a recursive operation, deletion, or move, recheck the resolved absolute target and repository root."
+      ],
+      "sources": [
+        {
+          "title": "POSIX File/Pathname",
+          "url": "https://pubs.opengroup.org/onlinepubs/9799919799/basedefs/V1_chap03.html#tag_03_139",
+          "tier": "A",
+          "revision": "POSIX Issue 8 / IEEE Std 1003.1-2024",
+          "reviewed_at": "2026-07-18"
+        },
+        {
+          "title": "POSIX Pathname Resolution",
+          "url": "https://pubs.opengroup.org/onlinepubs/9799919799/basedefs/V1_chap04.html#tag_04_16",
+          "tier": "A",
+          "revision": "POSIX Issue 8 / IEEE Std 1003.1-2024",
+          "reviewed_at": "2026-07-18"
+        },
+        {
+          "title": "Git glossary",
+          "url": "https://git-scm.com/docs/gitglossary",
+          "tier": "A",
+          "revision": "Git 2.54.0 docs reviewed 2026-07-18",
+          "reviewed_at": "2026-07-18"
+        }
+      ],
+      "verified_at": "2026-07-18"
+    },
+    {
+      "schema_version": 1,
+      "card_version": 1,
+      "family_id": "C03",
+      "id": "package-dependency",
+      "aliases": ["package", "dependency", "manifest", "lockfile"],
+      "scope": "Generic; npm rolling documentation and the PyPA dependency specification reviewed 2026-07-18.",
+      "spec_revision": "npm rolling docs and PyPA dependency spec reviewed 2026-07-18",
+      "canonical_definition": "A package is an object bundled so an ecosystem can distribute and install it. A dependency is a relationship or requirement stating that a project or package needs another package.",
+      "mechanism": {
+        "actors": [
+          "manifest",
+          "resolver",
+          "package",
+          "dependency",
+          "artifact",
+          "build/runtime"
+        ],
+        "flow": [
+          "Record requirements in a manifest → resolver selects artifacts for the version and environment → install direct and transitive dependencies → build/runtime uses them."
+        ]
+      },
+      "beginner_encounters": [
+        "`npm install`, `pip install`, `package.json`, `pyproject.toml`, lockfile, `node_modules`."
+      ],
+      "misconceptions": [
+        {
+          "id": "package-is-dependency",
+          "explicit_refutation": "`package = dependency` is false. The same package may be a dependency of project A but not project B. Not every module is a package.",
+          "correct_model": "A package is an object bundled for distribution and installation, while a dependency is a relationship or requirement stating that another package is needed.",
+          "counterexample": "The same package may be a dependency of project A but not project B."
+        }
+      ],
+      "confused_with": [
+        "module",
+        "manifest",
+        "lockfile",
+        "version",
+        "supply chain"
+      ],
+      "analogy_roles": [
+        "package=sealed box of parts",
+        "dependency=required-parts relationship",
+        "manifest=parts specification",
+        "resolver=procurement coordinator"
+      ],
+      "analogy_breakpoint": "A package can contain executable code and carries transitive-dependency, platform-condition, version-conflict, and malicious supply-chain risks.",
+      "neutral_example": "Before installation, inspect the manifest dependency entry and expected lockfile diff. Do not actually install the example package `example-lib`.",
+      "safety_boundary": [
+        "Install a new dependency only after checking its necessity, maintainer, license, version, lockfile diff, and script side effects."
+      ],
+      "sources": [
+        {
+          "title": "npm packages and modules",
+          "url": "https://docs.npmjs.com/about-packages-and-modules/",
+          "tier": "A",
+          "revision": "rolling docs reviewed 2026-07-18",
+          "reviewed_at": "2026-07-18"
+        },
+        {
+          "title": "npm dependencies/devDependencies",
+          "url": "https://docs.npmjs.com/specifying-dependencies-and-devdependencies-in-a-package-json-file/",
+          "tier": "A",
+          "revision": "rolling docs reviewed 2026-07-18",
+          "reviewed_at": "2026-07-18"
+        },
+        {
+          "title": "PyPA Dependency Specifiers",
+          "url": "https://packaging.python.org/en/latest/specifications/dependency-specifiers/",
+          "tier": "A",
+          "revision": "rolling spec reviewed 2026-07-18",
+          "reviewed_at": "2026-07-18"
+        }
+      ],
+      "verified_at": "2026-07-18"
+    },
+    {
+      "schema_version": 1,
+      "card_version": 1,
+      "family_id": "C04",
+      "id": "process-server",
+      "aliases": ["program", "process", "server", "localhost", "port"],
+      "scope": "Process is covered generically and under POSIX; this card primarily explains the HTTP client/server role. POSIX 2024, HTTP RFC 9110, Node v26.5.0, and Python 3.14.6 documentation reviewed.",
+      "spec_revision": "POSIX 2024; RFC 9110; Node v26.5.0; Python 3.14.6",
+      "canonical_definition": "A program is a stored set of instructions, while a process is its running address space, threads, and resources. In this card's HTTP context, a server is a software role that accepts connections and requests and returns responses. In an infrastructure context, however, `server` can also mean a physical machine or VM performing that role, so check the context.",
+      "mechanism": {
+        "actors": [
+          "command",
+          "operating system",
+          "process",
+          "server",
+          "client",
+          "database/API"
+        ],
+        "flow": [
+          "Run command → OS creates process → server listens on host/port → client request → processing and optional DB/API calls → response → wait for the next request."
+        ]
+      },
+      "beginner_encounters": [
+        "A development server, `localhost:3000`, port conflicts, “server is running,” and Ctrl-C."
+      ],
+      "misconceptions": [
+        {
+          "id": "server-is-cloud-or-database",
+          "explicit_refutation": "A server is **not always** a cloud machine, nor is it the same as a database. A local process can serve the server role, a database such as SQLite can operate without a separate database-server process, and one server program may use multiple databases.",
+          "correct_model": "A server is a software role that accepts connections and requests and returns responses; in an infrastructure context, it can also mean the physical machine or VM performing that role.",
+          "counterexample": "A local process can serve the server role, and a database such as SQLite can operate without a separate database-server process."
+        }
+      ],
+      "confused_with": [
+        "client",
+        "port",
+        "database",
+        "localhost",
+        "cloud",
+        "process lifecycle"
+      ],
+      "analogy_roles": [
+        "program=work manual",
+        "process=employee currently at work",
+        "server=request-desk attendant",
+        "port=desk number",
+        "database=records room"
+      ],
+      "analogy_breakpoint": "A real server can involve proxies, multiple processes or instances, and concurrent requests; the same program can act as both client and server across different connections.",
+      "neutral_example": "Bind only a dedicated, secret-free `public-demo` directory to `127.0.0.1` as a temporary static server, then stop it with Ctrl-C. Do not share a home directory or project root.",
+      "safety_boundary": [
+        "Check the bind address, exposed directory, port, presence of secrets, production suitability, and shutdown method."
+      ],
+      "sources": [
+        {
+          "title": "POSIX Live Process",
+          "url": "https://pubs.opengroup.org/onlinepubs/9799919799/basedefs/V1_chap03.html#tag_03_189",
+          "tier": "A",
+          "revision": "POSIX Issue 8 / IEEE Std 1003.1-2024",
+          "reviewed_at": "2026-07-18"
+        },
+        {
+          "title": "RFC 9110 §3.3",
+          "url": "https://www.rfc-editor.org/rfc/rfc9110.html#section-3.3",
+          "tier": "A",
+          "revision": "RFC 9110 / STD 97",
+          "reviewed_at": "2026-07-18"
+        },
+        {
+          "title": "Node net.Server",
+          "url": "https://nodejs.org/api/net.html",
+          "tier": "A",
+          "revision": "Node v26.5.0 docs",
+          "reviewed_at": "2026-07-18"
+        },
+        {
+          "title": "Python http.server",
+          "url": "https://docs.python.org/3/library/http.server.html",
+          "tier": "A",
+          "revision": "Python 3.14.6 docs",
+          "reviewed_at": "2026-07-18"
+        }
+      ],
+      "verified_at": "2026-07-18"
+    },
+    {
+      "schema_version": 1,
+      "card_version": 1,
+      "family_id": "C05",
+      "id": "database-table-query",
+      "aliases": ["database", "db", "dbms", "table", "row", "column", "query"],
+      "scope": "Relational databases. PostgreSQL stable 18 and SQLite documentation reviewed 2026-07-18.",
+      "spec_revision": "PostgreSQL 18; SQLite rolling docs reviewed 2026-07-18",
+      "canonical_definition": "A relational DBMS manages data as relations/tables. A table is a named collection of rows with the same named columns, and a query is a structured request asking the DBMS for a result or operation.",
+      "mechanism": {
+        "actors": ["app/CLI", "DBMS", "table", "index", "result/status/error"],
+        "flow": [
+          "App/CLI sends SQL → DBMS checks syntax, permissions, and constraints → processes tables/indexes → returns result rows or a status/error."
+        ]
+      },
+      "beginner_encounters": [
+        "Storing logins, posts, and settings; schemas; migrations; and “DB connection failed.”"
+      ],
+      "misconceptions": [
+        {
+          "id": "database-is-server-or-query-is-read",
+          "explicit_refutation": "`database = server` is false, and `query = read` is also false. A PostgreSQL server can manage multiple databases, while SQLite can be embedded in an application process, and SQL also includes update and delete commands.",
+          "correct_model": "A relational DBMS manages data in tables, and a query is a structured request for a result or operation.",
+          "counterexample": "SQLite can be embedded in an application process, and SQL includes update and delete commands."
+        }
+      ],
+      "confused_with": [
+        "server",
+        "table/spreadsheet",
+        "schema",
+        "transaction",
+        "migration",
+        "API"
+      ],
+      "analogy_roles": [
+        "database=managed record system",
+        "table=structured ledger",
+        "row=one record",
+        "column=field",
+        "query=search or processing request",
+        "DBMS=records manager"
+      ],
+      "analogy_breakpoint": "Real databases have transactions, constraints, indexes, joins, concurrency, NULL, and optimizers, so they differ from a simple filing cabinet or spreadsheet.",
+      "neutral_example": "Start with a query such as `SELECT 2 + 2 AS answer;` that does not change stored data. Before an update, use a constrained `SELECT` to inspect the target rows.",
+      "safety_boundary": [
+        "Do not automatically run a write query without checking whether the target is production, the backup, transaction, target row count, and migration rollback."
+      ],
+      "sources": [
+        {
+          "title": "PostgreSQL 18 Concepts",
+          "url": "https://www.postgresql.org/docs/current/tutorial-concepts.html",
+          "tier": "A",
+          "revision": "PostgreSQL stable 18",
+          "reviewed_at": "2026-07-18"
+        },
+        {
+          "title": "PostgreSQL Querying a Table",
+          "url": "https://www.postgresql.org/docs/current/tutorial-select.html",
+          "tier": "A",
+          "revision": "PostgreSQL stable 18",
+          "reviewed_at": "2026-07-18"
+        },
+        {
+          "title": "SQLite SELECT",
+          "url": "https://www.sqlite.org/lang_select.html",
+          "tier": "A",
+          "revision": "rolling docs reviewed 2026-07-18",
+          "reviewed_at": "2026-07-18"
+        }
+      ],
+      "verified_at": "2026-07-18"
+    },
+    {
+      "schema_version": 1,
+      "card_version": 1,
+      "family_id": "C06",
+      "id": "api-request-response",
+      "aliases": ["api", "endpoint", "request", "response"],
+      "scope": "generic API + HTTP semantics RFC 9110/STD 97.",
+      "spec_revision": "RFC 9110 / STD 97",
+      "canonical_definition": "An API is an interface whose syntax, semantics, and rules define how software interacts with other software. In an HTTP API, a client sends a request containing a method, target, headers, and optional body, and a server returns a response containing a status, headers, and optional body.",
+      "mechanism": {
+        "actors": ["client", "endpoint", "server", "request", "response"],
+        "flow": [
+          "Client constructs a request according to the contract → endpoint validates, authorizes, and processes it → success/error response → client interprets the status and content."
+        ]
+      },
+      "beginner_encounters": [
+        "Connecting weather, maps, payments, an LLM, or a custom backend."
+      ],
+      "misconceptions": [
+        {
+          "id": "api-is-url-server-or-database",
+          "explicit_refutation": "`API = URL`, `API = server`, and `API = database` are all false. A URL can identify an endpoint, while an API is the complete interaction contract. Not every API uses HTTP.",
+          "correct_model": "An API is an interface whose syntax, semantics, and rules define how software interacts with other software.",
+          "counterexample": "A URL can identify an endpoint, and not every API uses HTTP."
+        }
+      ],
+      "confused_with": ["endpoint", "server", "database", "credential", "MCP"],
+      "analogy_roles": [
+        "API=service rules/menu",
+        "endpoint=specific service desk",
+        "request=standard request form",
+        "response=processing result"
+      ],
+      "analogy_breakpoint": "Unlike a human service desk, an API does not resolve ambiguous requests on its own; schemas, methods, rate limits, retries, and partial failures apply.",
+      "neutral_example": "Trace a fictional read-only `GET /tasks/42` that returns `200 OK` and JSON. Before a real call, check the method, target, cost, and credential.",
+      "safety_boundary": [
+        "Before approving an external write API call, show the endpoint, method, account, scope, cost, idempotency, and rollback."
+      ],
+      "sources": [
+        {
+          "title": "POSIX API definition",
+          "url": "https://pubs.opengroup.org/onlinepubs/9799919799/basedefs/V1_chap03.html#tag_03_20",
+          "tier": "A",
+          "revision": "POSIX Issue 8 / IEEE Std 1003.1-2024",
+          "reviewed_at": "2026-07-18"
+        },
+        {
+          "title": "RFC 9110 HTTP Semantics",
+          "url": "https://www.rfc-editor.org/rfc/rfc9110.html",
+          "tier": "A",
+          "revision": "RFC 9110 / STD 97",
+          "reviewed_at": "2026-07-18"
+        },
+        {
+          "title": "MDN API glossary",
+          "url": "https://developer.mozilla.org/en-US/docs/Glossary/API",
+          "tier": "A",
+          "revision": "rolling docs reviewed 2026-07-18",
+          "reviewed_at": "2026-07-18"
+        }
+      ],
+      "verified_at": "2026-07-18"
+    },
+    {
+      "schema_version": 1,
+      "card_version": 1,
+      "family_id": "C07",
+      "id": "credential-api-key-access-token",
+      "aliases": ["credential", "api key", "access token", "bearer", "scope"],
+      "scope": "Provider-specific API-key contracts + OAuth 2.0/RFC 6749 and 6750 and Security BCP RFC 9700.",
+      "spec_revision": "OAuth 2.0 RFC 6749 and RFC 6750; OAuth 2.0 Security BCP RFC 9700",
+      "canonical_definition": "A credential is information used to prove an accessing principal or its authority. An API key is a secret string issued by a service and used for purposes such as project/app identification, quota assignment, or access checks, but its exact meaning is provider-specific. An OAuth access token represents delegated authority over a protected resource, including scope, target, and duration.",
+      "mechanism": {
+        "actors": [
+          "client",
+          "authorization server",
+          "resource server",
+          "API key",
+          "access token"
+        ],
+        "flow": [
+          "Read the key from a server-side secret store and include it in an HTTPS request. For OAuth: authorize, obtain a token → submit it to the resource server → check validity, audience/resource, and scope."
+        ]
+      },
+      "beginner_encounters": [
+        "`.env`, SDK initialization, `Authorization: Bearer`, Google connection/consent screens, expiration, and refresh."
+      ],
+      "misconceptions": [
+        {
+          "id": "bearer-means-oauth-access-token",
+          "explicit_refutation": "`uses Bearer = access token` is false. Bearer is a transmission method, and an API key can also be transmitted that way. An access token is not the same as an identity card or ID token, and an API key does not always authenticate a user's identity.",
+          "correct_model": "The exact meaning of an API key is provider-specific, while an OAuth access token represents delegated authority with a scope, target, and duration.",
+          "counterexample": "Bearer is a transmission method, and an API key can also be transmitted that way."
+        }
+      ],
+      "confused_with": [
+        "authentication",
+        "authorization",
+        "scope",
+        "ID token",
+        "refresh token",
+        "LLM token"
+      ],
+      "analogy_roles": [
+        "API key=copyable service access key",
+        "access token=time- and area-limited wristband",
+        "scope=permitted area",
+        "resource server=entrance inspector"
+      ],
+      "analogy_breakpoint": "A token does not always represent a person and may be opaque; API-key authority models differ by provider. A digital secret can be copied indefinitely without its owner's knowledge.",
+      "neutral_example": "Put only `OPENAI_API_KEY=replace_me` in `.env.example`, and store the real value in a server environment variable or secret manager. If it has already been exposed, revoke or rotate it before merely deleting it.",
+      "safety_boundary": [
+        "Never display a real secret in a frontend, repository, chat, screenshot, log, or URL. Maintain minimum scope, HTTPS, audience validation, separate downstream tokens, and revoke/rotate procedures."
+      ],
+      "sources": [
+        {
+          "title": "RFC 6749 §1.4",
+          "url": "https://www.rfc-editor.org/rfc/rfc6749.html#section-1.4",
+          "tier": "A",
+          "revision": "RFC 6749",
+          "reviewed_at": "2026-07-18"
+        },
+        {
+          "title": "RFC 6750",
+          "url": "https://www.rfc-editor.org/rfc/rfc6750.html",
+          "tier": "A",
+          "revision": "RFC 6750",
+          "reviewed_at": "2026-07-18"
+        },
+        {
+          "title": "RFC 9700",
+          "url": "https://www.rfc-editor.org/rfc/rfc9700.html",
+          "tier": "A",
+          "revision": "RFC 9700",
+          "reviewed_at": "2026-07-18"
+        },
+        {
+          "title": "OpenAI authentication",
+          "url": "https://developers.openai.com/api/reference/overview#authentication",
+          "tier": "A",
+          "revision": "rolling docs reviewed 2026-07-18",
+          "reviewed_at": "2026-07-18"
+        },
+        {
+          "title": "Google Cloud API keys",
+          "url": "https://docs.cloud.google.com/docs/authentication/api-keys",
+          "tier": "A",
+          "revision": "rolling docs reviewed 2026-07-18",
+          "reviewed_at": "2026-07-18"
+        }
+      ],
+      "verified_at": "2026-07-18"
+    },
+    {
+      "schema_version": 1,
+      "card_version": 1,
+      "family_id": "C08",
+      "id": "llm-token-context-window",
+      "aliases": ["llm token", "context window", "tokenizer", "context"],
+      "scope": "Provider-, model-, and tokenizer-specific. OpenAI and Anthropic official documentation cross-checked 2026-07-18; consult the current catalog/API for the model in use for exact limits and calculations.",
+      "spec_revision": "OpenAI and Anthropic rolling docs reviewed 2026-07-18",
+      "canonical_definition": "An LLM token is an atomic unit used by a model to process input and output. A context window is the total token-workspace limit for input, output, reasoning, and related content processed in one request.",
+      "mechanism": {
+        "actors": [
+          "provider/model tokenizer",
+          "input token sequence",
+          "model",
+          "output token",
+          "context window"
+        ],
+        "flow": [
+          "A provider/model-specific tokenizer converts input to a token sequence → model processes the sequence → output tokens are generated → usage, cost, and context are calculated from token counts under that provider/model's rules. Treatment of tools, images, documents, and thinking may also vary by provider and model."
+        ]
+      },
+      "beginner_encounters": [
+        "Input/output token pricing, long conversations, files and tool schemas, “context exceeded,” and earlier conversation details becoming less available."
+      ],
+      "misconceptions": [
+        {
+          "id": "llm-token-is-word-access-token-or-memory",
+          "explicit_refutation": "`token = word` is false, and an LLM token is entirely different from an API access token. A context window is not permanent memory, and compaction cannot guarantee lossless preservation of the original text.",
+          "correct_model": "An LLM token is a model-processing unit, and a context window is the total token-workspace limit for one request.",
+          "counterexample": "A token does not align with a human word or unit of meaning, and a context window is not permanent memory."
+        }
+      ],
+      "confused_with": [
+        "API access token",
+        "prompt",
+        "message",
+        "memory",
+        "compaction",
+        "cost"
+      ],
+      "analogy_roles": [
+        "token=typesetting piece read by a printing press",
+        "context window=fixed-size workbench",
+        "external document=storage shelf"
+      ],
+      "analogy_breakpoint": "Tokens do not align with human words or units of meaning, and token count does not indicate information importance or the number of facts.",
+      "neutral_example": "Instead of a rough character-count estimate, use the provider's official counting API/tokenizer with the actual provider, model, messages, and tool schemas. Store key decisions in an external source of truth.",
+      "safety_boundary": [
+        "Use actual model-specific counts for cost estimates, and do not put secrets or unnecessary personal data in the context."
+      ],
+      "sources": [
+        {
+          "title": "OpenAI Tokens",
+          "url": "https://developers.openai.com/api/docs/concepts#tokens",
+          "tier": "A",
+          "revision": "rolling docs reviewed 2026-07-18",
+          "reviewed_at": "2026-07-18"
+        },
+        {
+          "title": "OpenAI token counting",
+          "url": "https://developers.openai.com/api/docs/guides/token-counting",
+          "tier": "A",
+          "revision": "rolling docs reviewed 2026-07-18",
+          "reviewed_at": "2026-07-18"
+        },
+        {
+          "title": "OpenAI context-window management",
+          "url": "https://developers.openai.com/api/docs/guides/conversation-state#managing-the-context-window",
+          "tier": "A",
+          "revision": "rolling docs reviewed 2026-07-18",
+          "reviewed_at": "2026-07-18"
+        },
+        {
+          "title": "Anthropic token counting",
+          "url": "https://platform.claude.com/docs/en/build-with-claude/token-counting",
+          "tier": "A",
+          "revision": "rolling docs reviewed 2026-07-18",
+          "reviewed_at": "2026-07-18"
+        },
+        {
+          "title": "Anthropic context windows",
+          "url": "https://platform.claude.com/docs/en/build-with-claude/context-windows",
+          "tier": "A",
+          "revision": "rolling docs reviewed 2026-07-18",
+          "reviewed_at": "2026-07-18"
+        }
+      ],
+      "verified_at": "2026-07-18"
+    },
+    {
+      "schema_version": 1,
+      "card_version": 1,
+      "family_id": "C09",
+      "id": "mcp-tool-resource",
+      "aliases": [
+        "mcp",
+        "host",
+        "client",
+        "server",
+        "tool",
+        "resource",
+        "prompt"
+      ],
+      "scope": "Model Context Protocol revision `2025-11-25`.",
+      "spec_revision": "MCP 2025-11-25",
+      "canonical_definition": "MCP is a host-client-server protocol that lets AI applications consistently discover and use external data and capabilities. A host coordinates client connections and application context/policy, each client maintains a one-to-one connection with a server, and a server exposes prompts, resources, and tools.",
+      "mechanism": {
+        "actors": [
+          "host",
+          "client",
+          "server",
+          "model/application",
+          "tool/resource"
+        ],
+        "flow": [
+          "Host/client/server capability negotiation → list discovery → model or application selects a tool/resource → client sends a protocol request such as `tools/call` → server executes and returns a result → host/client processes the result in the application/model context. User confirmation and automatic-call behavior depend on host implementation and policy; the MCP protocol does not require prior approval for every call."
+        ]
+      },
+      "beginner_encounters": [
+        "Connecting GitHub, a database, or a filesystem to Claude, Codex, or a desktop application; “install an MCP server.”"
+      ],
+      "misconceptions": [
+        {
+          "id": "mcp-server-is-model-or-mcp-replaces-api",
+          "explicit_refutation": "`MCP server = AI model` is false, and MCP does not replace general APIs. A server can call an existing API. `Model-controlled` means a model can participate in tool selection; actual confirmation, automatic execution, and permissions are separate matters determined by host implementation and policy. A local MCP server can be as risky as its OS, file, and shell permissions allow.",
+          "correct_model": "MCP is a host-client-server protocol that lets an AI application discover and use external data and capabilities.",
+          "counterexample": "An MCP server can call an existing API, while actual confirmation, automatic execution, and permissions remain separate matters determined by host implementation and policy."
+        }
+      ],
+      "confused_with": [
+        "API",
+        "model",
+        "tool",
+        "host",
+        "client",
+        "prompt",
+        "resource",
+        "OAuth"
+      ],
+      "analogy_roles": [
+        "host=hotel front desk",
+        "client=dedicated phone line for each provider",
+        "server=external specialist provider",
+        "resource=reference material",
+        "tool=action service"
+      ],
+      "analogy_breakpoint": "A standard connection does not guarantee a server's trustworthiness, accuracy, or least privilege, and a hosted product may make separate execution boundaries look like one boundary in the UI.",
+      "neutral_example": "**Under Fairytail policy,** start with read-only resource retrieval and show the exact target, expected side effects, and confirmation state for sensitive tools. Bind a remote MCP token to that server's audience/resource, and prohibit downstream token passthrough.",
+      "safety_boundary": [
+        "MCP itself does not guarantee trust or a confirmation UI. As separate hard guards, Fairytail requires an allowlist, user confirmation, and schema validation for sensitive tools, and reviews server trust, audience, and local-stdio OS permissions."
+      ],
+      "sources": [
+        {
+          "title": "MCP architecture",
+          "url": "https://modelcontextprotocol.io/specification/2025-11-25/architecture",
+          "tier": "A",
+          "revision": "MCP 2025-11-25",
+          "reviewed_at": "2026-07-18"
+        },
+        {
+          "title": "MCP server primitives",
+          "url": "https://modelcontextprotocol.io/specification/2025-11-25/server/index",
+          "tier": "A",
+          "revision": "MCP 2025-11-25",
+          "reviewed_at": "2026-07-18"
+        },
+        {
+          "title": "MCP tools",
+          "url": "https://modelcontextprotocol.io/specification/2025-11-25/server/tools",
+          "tier": "A",
+          "revision": "MCP 2025-11-25",
+          "reviewed_at": "2026-07-18"
+        },
+        {
+          "title": "MCP resources",
+          "url": "https://modelcontextprotocol.io/specification/2025-11-25/server/resources",
+          "tier": "A",
+          "revision": "MCP 2025-11-25",
+          "reviewed_at": "2026-07-18"
+        },
+        {
+          "title": "MCP authorization",
+          "url": "https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization",
+          "tier": "A",
+          "revision": "MCP 2025-11-25",
+          "reviewed_at": "2026-07-18"
+        }
+      ],
+      "verified_at": "2026-07-18"
+    },
+    {
+      "schema_version": 1,
+      "card_version": 1,
+      "family_id": "C10",
+      "id": "environment-variable-config",
+      "aliases": ["environment variable", "env", "config", ".env", "secret"],
+      "scope": "POSIX 2024 + Node v26.5.0. `.env` behavior is runtime/framework-specific.",
+      "spec_revision": "POSIX Issue 8 / IEEE Std 1003.1-2024; Node v26.5.0",
+      "canonical_definition": "An environment variable is `name=value` data in a process environment. Configuration is the complete set of settings that alter application behavior and may come from defaults, flags, files, environment variables, remote configuration, and other sources. A `.env` file is a convention loaded by a tool; it is not the OS environment itself.",
+      "mechanism": {
+        "actors": [
+          "shell/launcher",
+          "environment variable",
+          "child process",
+          "application",
+          "config source"
+        ],
+        "flow": [
+          "Shell/launcher sets values → child process receives the environment → application reads values by name and parses strings into types → precedence rules are applied."
+        ]
+      },
+      "beginner_encounters": [
+        "Port, mode, base URL, API key, “environment variable is missing,” and `.env.example`."
+      ],
+      "misconceptions": [
+        {
+          "id": "env-is-dotenv-or-secret-vault",
+          "explicit_refutation": "`env var = .env file = secret vault` is false. A hidden file is not automatically safe, and changing a parent value may not update a process that is already running.",
+          "correct_model": "An environment variable is name=value data in a process environment, configuration is the complete set of settings, and a .env file is a convention loaded by a tool.",
+          "counterexample": "Changing a parent value may not update a process that is already running."
+        }
+      ],
+      "confused_with": [
+        "process",
+        "shell",
+        "secret",
+        "command flag",
+        "config file",
+        "deployment environment"
+      ],
+      "analogy_roles": [
+        "config=complete set of work settings",
+        "environment variable=labeled setting card handed over at the start of work",
+        "process=employee who received the card"
+      ],
+      "analogy_breakpoint": "Values are strings by default; inheritance, case sensitivity, precedence, and persistence vary by OS/runtime; and environment values can leak through logs, crash dumps, or process inspection.",
+      "neutral_example": "Pass a non-sensitive value such as `APP_MODE=demo` to one process only, and log only whether the value exists.",
+      "safety_boundary": [
+        "Exclude `.env` from Git, share placeholders only, and use a secret manager, least privilege, and rotation in operational environments."
+      ],
+      "sources": [
+        {
+          "title": "POSIX Environment Variables",
+          "url": "https://pubs.opengroup.org/onlinepubs/9799919799/basedefs/V1_chap08.html",
+          "tier": "A",
+          "revision": "POSIX Issue 8 / IEEE Std 1003.1-2024",
+          "reviewed_at": "2026-07-18"
+        },
+        {
+          "title": "Node process.env",
+          "url": "https://nodejs.org/api/process.html#processenv",
+          "tier": "A",
+          "revision": "Node v26.5.0 docs",
+          "reviewed_at": "2026-07-18"
+        },
+        {
+          "title": "Node environment/.env",
+          "url": "https://nodejs.org/api/environment_variables.html",
+          "tier": "A",
+          "revision": "Node v26.5.0 docs",
+          "reviewed_at": "2026-07-18"
+        }
+      ],
+      "verified_at": "2026-07-18"
+    },
+    {
+      "schema_version": 1,
+      "card_version": 1,
+      "family_id": "C11",
+      "id": "permission-authentication-authorization",
+      "aliases": [
+        "permission",
+        "authentication",
+        "authorization",
+        "authn",
+        "authz"
+      ],
+      "scope": "Generic security concepts + POSIX 2024. NIST/OWASP rolling guidance reviewed 2026-07-18.",
+      "spec_revision": "POSIX Issue 8 / IEEE Std 1003.1-2024; NIST/OWASP rolling guidance reviewed 2026-07-18",
+      "canonical_definition": "A permission is a right or attribute allowing a specific operation on a resource. Authentication (AuthN) verifies the claimed identity or authenticity of a user, process, or device. Authorization (AuthZ) allows or denies whether that principal may perform the requested action on a specific resource.",
+      "mechanism": {
+        "actors": [
+          "principal",
+          "credential/authenticator",
+          "resource",
+          "action",
+          "policy"
+        ],
+        "flow": [
+          "Protected request → validate credential/authenticator → establish principal → apply policy to principal, action, resource, and context → allow/deny. A public resource may permit anonymous access."
+        ]
+      },
+      "beginner_encounters": [
+        "Login, `permission denied`, file permissions, OAuth scopes, and API access control."
+      ],
+      "misconceptions": [
+        {
+          "id": "authentication-implies-authorization",
+          "explicit_refutation": "`successful login = all actions allowed` is false. AuthN establishes who or what is acting, while AuthZ decides whether that actor may perform this action on this target.",
+          "correct_model": "AuthN verifies identity, AuthZ decides whether a specific action on a specific resource is allowed, and a permission is one concrete allowed operation.",
+          "counterexample": "A user can log in successfully and still be denied permission to delete a specific resource."
+        }
+      ],
+      "confused_with": [
+        "credential",
+        "identity",
+        "role",
+        "scope",
+        "owner",
+        "policy"
+      ],
+      "analogy_roles": [
+        "authentication=checking whether a badge is genuine",
+        "authorization=checking the access list and rules",
+        "permission=one allowed door or action"
+      ],
+      "analogy_breakpoint": "An identity may be a service, process, or device rather than a person; policies can vary dynamically by time, relationship, or resource owner; and anonymous AuthZ can occur without AuthN.",
+      "neutral_example": "Use `ls -l README.md` only to inspect permissions. Do not immediately suggest `chmod 777` as the solution.",
+      "safety_boundary": [
+        "Use least privilege and deny by default, check the resource and action on every request, and state the target, duration, and recovery path for any privilege escalation."
+      ],
+      "sources": [
+        {
+          "title": "POSIX Authentication/Authorization/Permissions",
+          "url": "https://pubs.opengroup.org/onlinepubs/9799919799/basedefs/V1_chap03.html#tag_03_33",
+          "tier": "A",
+          "revision": "POSIX Issue 8 / IEEE Std 1003.1-2024",
+          "reviewed_at": "2026-07-18"
+        },
+        {
+          "title": "NIST Authentication",
+          "url": "https://csrc.nist.gov/glossary/term/authentication",
+          "tier": "A",
+          "revision": "rolling glossary reviewed 2026-07-18",
+          "reviewed_at": "2026-07-18"
+        },
+        {
+          "title": "NIST Authorization",
+          "url": "https://csrc.nist.gov/glossary/term/authorization",
+          "tier": "A",
+          "revision": "rolling glossary reviewed 2026-07-18",
+          "reviewed_at": "2026-07-18"
+        },
+        {
+          "title": "OWASP Authorization Cheat Sheet",
+          "url": "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html",
+          "tier": "A",
+          "revision": "rolling guidance reviewed 2026-07-18",
+          "reviewed_at": "2026-07-18"
+        }
+      ],
+      "verified_at": "2026-07-18"
+    },
+    {
+      "schema_version": 1,
+      "card_version": 1,
+      "family_id": "C12",
+      "id": "local-remote-cloud-deploy",
+      "aliases": ["local", "localhost", "remote", "cloud", "deploy", "push"],
+      "scope": "generic deployment concepts, RFC 6761, NIST SP 800-145, Git/MDN rolling docs.",
+      "spec_revision": "RFC 6761; NIST SP 800-145; Git/MDN rolling docs reviewed 2026-07-18",
+      "canonical_definition": "Local is a relative term meaning within the current host/runtime, and `localhost` resolves to loopback. Remote is a relative term for a target outside the current working location. Cloud is a model for using shared, configurable computing resources through on-demand network access. Deploy is a lifecycle action that applies a selected build/configuration to a target environment and moves it into a runnable or serviceable state.",
+      "mechanism": {
+        "actors": [
+          "local workspace",
+          "remote repository",
+          "build",
+          "target environment",
+          "traffic",
+          "rollback"
+        ],
+        "flow": [
+          "Local edit/test → optional transfer to remote repository → build → target configuration/secrets → preview/release/rollout → health check → connect traffic → rollback."
+        ]
+      },
+      "beginner_encounters": [
+        "A localhost preview, GitHub remote, hosting URL, or deploy button."
+      ],
+      "misconceptions": [
+        {
+          "id": "local-server-is-cloud-or-push-is-deploy",
+          "explicit_refutation": "`local server = cloud server`, `remote = cloud`, and `git push = deploy` are all false. A Git remote can be on the same host, and a separate build or release may still be required after a push.",
+          "correct_model": "Local and remote describe relative locations, cloud is a computing-resource delivery model, and deploy is a lifecycle action that applies a build/configuration/release to a target environment.",
+          "counterexample": "A Git remote can be on the same host, and a separate build or release may still be required after a push."
+        }
+      ],
+      "confused_with": [
+        "server",
+        "repo",
+        "environment",
+        "production",
+        "build",
+        "release",
+        "DNS"
+      ],
+      "analogy_roles": [
+        "local=my workbench",
+        "remote=another workroom",
+        "cloud=rentable workspace that can scale on demand",
+        "deploy=place and start an approved version in its operating location"
+      ],
+      "analogy_breakpoint": "A remote can be on the same machine, and cloud is not simply “someone else's single computer.” A deployment can include DNS, secrets, migrations, health checks, rollback, and other state transitions.",
+      "neutral_example": "Use `git remote -v` only to inspect the target, and limit the first publication to a secret-free static non-production preview. Before deploying, check the target, cost, secrets, health checks, and rollback.",
+      "safety_boundary": [
+        "Do not automatically perform production changes, public exposure, billing changes, domain changes, secret handling, database migrations, or rollback without explicit approval."
+      ],
+      "sources": [
+        {
+          "title": "RFC 6761 localhost",
+          "url": "https://www.rfc-editor.org/rfc/rfc6761.html#section-6.3",
+          "tier": "A",
+          "revision": "RFC 6761",
+          "reviewed_at": "2026-07-18"
+        },
+        {
+          "title": "Git remotes",
+          "url": "https://git-scm.com/book/en/v2/Git-Basics-Working-with-Remotes",
+          "tier": "A",
+          "revision": "rolling docs reviewed 2026-07-18",
+          "reviewed_at": "2026-07-18"
+        },
+        {
+          "title": "NIST SP 800-145",
+          "url": "https://csrc.nist.gov/pubs/sp/800/145/final",
+          "tier": "A",
+          "revision": "NIST SP 800-145",
+          "reviewed_at": "2026-07-18"
+        },
+        {
+          "title": "MDN Publishing your website",
+          "url": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Your_first_website/Publishing_your_website",
+          "tier": "A",
+          "revision": "rolling docs reviewed 2026-07-18",
+          "reviewed_at": "2026-07-18"
+        }
+      ],
+      "verified_at": "2026-07-18"
+    }
+  ]
+}

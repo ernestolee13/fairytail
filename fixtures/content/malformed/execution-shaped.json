@@ -1,0 +1,4 @@
+{
+  "schema_version": 1,
+  "payload": "globalThis.__FAIRYTAIL_CONTENT_CANARY__ = true"
+}

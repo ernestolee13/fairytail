@@ -1,0 +1,16 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "fairytail-smoke",
+  "description": "Disposable local marketplace for Fairytail compatibility tests.",
+  "owner": {
+    "name": "Fairytail"
+  },
+  "plugins": [
+    {
+      "name": "fairytail",
+      "description": "Beginner-friendly explanations with fixed technical facts and bounded analogies.",
+      "version": "0.1.1",
+      "source": "./plugins/fairytail"
+    }
+  ]
+}

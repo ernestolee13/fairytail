@@ -1,0 +1,20 @@
+{
+  "name": "fairytail",
+  "interface": {
+    "displayName": "Fairytail"
+  },
+  "plugins": [
+    {
+      "name": "fairytail",
+      "source": {
+        "source": "local",
+        "path": "./"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

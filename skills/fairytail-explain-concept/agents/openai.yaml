@@ -1,0 +1,6 @@
+interface:
+  display_name: "Fairytail Explain Concept"
+  short_description: "Reviewed beginner explanations without model detours"
+  default_prompt: "Use $fairytail:fairytail-explain-concept to explain MCP in Korean."
+policy:
+  allow_implicit_invocation: true

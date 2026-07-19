@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fairytail.local/schemas/v1/scenario.schema.json",
+  "title": "Fairytail golden scenario v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "scenario_version",
+    "scenario_id",
+    "title",
+    "concept_ids",
+    "confusion_pair_ids",
+    "fixed_criterion",
+    "encounter",
+    "pre_action",
+    "next_action",
+    "evidence",
+    "diagnostic_question",
+    "policy_labels"
+  ],
+  "properties": {
+    "scenario_version": { "const": 1 },
+    "scenario_id": { "type": "string", "pattern": "^S[0-9]{2}$" },
+    "title": { "type": "string", "minLength": 1 },
+    "concept_ids": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 2,
+      "items": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+      "uniqueItems": true
+    },
+    "confusion_pair_ids": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+      "uniqueItems": true
+    },
+    "fixed_criterion": { "type": "string", "minLength": 1 },
+    "encounter": { "type": "string", "minLength": 1 },
+    "pre_action": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["target", "side_effect", "risk", "rollback"],
+      "properties": {
+        "target": { "type": "string", "minLength": 1 },
+        "side_effect": { "type": "string", "minLength": 1 },
+        "risk": { "type": "string", "minLength": 1 },
+        "rollback": { "type": "string", "minLength": 1 }
+      }
+    },
+    "next_action": { "type": "string", "minLength": 1 },
+    "evidence": { "type": "string", "minLength": 1 },
+    "diagnostic_question": { "type": "string", "minLength": 1 },
+    "policy_labels": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["kind", "text"],
+        "properties": {
+          "kind": { "enum": ["protocol_fact", "fairytail_policy"] },
+          "text": { "type": "string", "minLength": 1 }
+        }
+      }
+    }
+  }
+}

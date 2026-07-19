@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "locale": "ko",
+  "canonical_fact_hash": "5e9a7d2d58f2676a42e4fa1c5bc7d30c75041b27a4ccf1d2256e46feadf87158",
+  "concept_ids": ["path-traversal", "trust-boundary"],
+  "analogy": {
+    "source_world": "hospital",
+    "relations": [
+      { "source_role": "접수 창구", "target_role": "path validator" },
+      { "source_role": "직원 전용 복도", "target_role": "trusted root" }
+    ]
+  },
+  "breakpoint": "파일 경로는 바이트 단위로 조작할 수 있지만 실제 방문자는 복도 구조를 바꿀 수 없다는 한계가 있습니다.",
+  "worked_example": {
+    "input": "../secret.txt",
+    "steps": ["루트 기준으로 정규화", "루트 경계 확인", "탈출 경로 거부"]
+  },
+  "progressive_disclosure": [
+    "fact",
+    "analogy",
+    "breakpoint",
+    "example",
+    "verification",
+    "teach_back"
+  ],
+  "verification": "notes/today.md와 ../secret.txt를 모두 시도해 첫 번째만 허용되는지 확인합니다.",
+  "teach_back": "왜 경로를 정규화한 다음에 경계를 검사해야 할까요?",
+  "confusion_pair": {
+    "left": "normalization",
+    "right": "authorization",
+    "diagnostic": "정규화는 경로를 표준형으로 만들고, 경계 검사는 그 경로를 허용할지 판단합니다."
+  }
+}

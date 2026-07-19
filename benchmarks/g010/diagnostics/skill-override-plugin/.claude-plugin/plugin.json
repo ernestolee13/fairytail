@@ -1,0 +1,5 @@
+{
+  "name": "g010-skill-override",
+  "version": "1.0.0",
+  "description": "Benchmark-only pinned skill model override for G010 cache experiments"
+}

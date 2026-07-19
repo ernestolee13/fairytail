@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fairytail.local/schemas/v1/verification-evidence.schema.json",
+  "title": "Fairytail bounded verification evidence v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "evidence_version",
+    "evidence_id",
+    "interaction_id",
+    "check_id",
+    "kind",
+    "status",
+    "summary",
+    "observed_at"
+  ],
+  "properties": {
+    "evidence_version": { "const": 1 },
+    "evidence_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,119}$"
+    },
+    "interaction_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,119}$"
+    },
+    "check_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,119}$"
+    },
+    "kind": { "enum": ["test", "diff", "screen", "status", "log"] },
+    "status": { "enum": ["passed", "failed"] },
+    "summary": { "type": "string", "minLength": 1, "maxLength": 240 },
+    "observed_at": { "type": "string", "format": "date-time" }
+  }
+}

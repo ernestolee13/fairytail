@@ -1,0 +1,680 @@
+{
+  "schema_version": 1,
+  "mappings": [
+    {
+      "mapping_version": 1,
+      "mapping_id": "P1-S01",
+      "concept_id": "package-dependency",
+      "profile_id": "P1",
+      "profile_world": "hospital-nursing",
+      "candidate_text": "Medication kit and prescription requirement",
+      "role_map": {
+        "package": "medication kit",
+        "dependency": "prescription requirement"
+      },
+      "relations_preserved": [],
+      "non_mappings": [
+        "Not yet structurally validated; must not be shown to users."
+      ],
+      "breakpoint": "A package can contain executable code and carries transitive-dependency, platform-condition, version-conflict, and malicious supply-chain risks.",
+      "neutral_fallback": "Before installation, inspect the manifest dependency entry and expected lockfile diff. Do not actually install the example package `example-lib`.",
+      "confidence": "unvalidated",
+      "user_status": "candidate",
+      "validation_status": "candidate_requires_validation",
+      "verified_at": "2026-07-18"
+    },
+    {
+      "mapping_version": 1,
+      "mapping_id": "P2-S01",
+      "concept_id": "package-dependency",
+      "profile_id": "P2",
+      "profile_world": "small-ecommerce-operations",
+      "candidate_text": "App and creative-asset tools required by a campaign",
+      "role_map": {
+        "package": "app or creative-asset tool",
+        "dependency": "campaign requirement"
+      },
+      "relations_preserved": [],
+      "non_mappings": [
+        "Not yet structurally validated; must not be shown to users."
+      ],
+      "breakpoint": "A package can contain executable code and carries transitive-dependency, platform-condition, version-conflict, and malicious supply-chain risks.",
+      "neutral_fallback": "Before installation, inspect the manifest dependency entry and expected lockfile diff. Do not actually install the example package `example-lib`.",
+      "confidence": "unvalidated",
+      "user_status": "candidate",
+      "validation_status": "candidate_requires_validation",
+      "verified_at": "2026-07-18"
+    },
+    {
+      "mapping_version": 1,
+      "mapping_id": "P3-S01",
+      "concept_id": "package-dependency",
+      "profile_id": "P3",
+      "profile_world": "humanities-student",
+      "candidate_text": "Reference book and assignment requirement",
+      "role_map": {
+        "package": "reference book",
+        "dependency": "assignment requirement"
+      },
+      "relations_preserved": [],
+      "non_mappings": [
+        "Not yet structurally validated; must not be shown to users."
+      ],
+      "breakpoint": "A package can contain executable code and carries transitive-dependency, platform-condition, version-conflict, and malicious supply-chain risks.",
+      "neutral_fallback": "Before installation, inspect the manifest dependency entry and expected lockfile diff. Do not actually install the example package `example-lib`.",
+      "confidence": "unvalidated",
+      "user_status": "candidate",
+      "validation_status": "candidate_requires_validation",
+      "verified_at": "2026-07-18"
+    },
+    {
+      "mapping_version": 1,
+      "mapping_id": "P1-S02",
+      "concept_id": "process-server",
+      "profile_id": "P1",
+      "profile_world": "hospital-nursing",
+      "candidate_text": "On-duty staff member and temporary ward intake desk",
+      "role_map": {
+        "process": "on-duty staff member",
+        "server": "temporary ward intake desk"
+      },
+      "relations_preserved": [],
+      "non_mappings": [
+        "Not yet structurally validated; must not be shown to users."
+      ],
+      "breakpoint": "A real server can involve proxies, multiple processes or instances, and concurrent requests; the same program can act as both client and server across different connections.",
+      "neutral_fallback": "Bind only a dedicated, secret-free `public-demo` directory to `127.0.0.1` as a temporary static server, then stop it with Ctrl-C. Do not share a home directory or project root.",
+      "confidence": "unvalidated",
+      "user_status": "candidate",
+      "validation_status": "candidate_requires_validation",
+      "verified_at": "2026-07-18"
+    },
+    {
+      "mapping_version": 1,
+      "mapping_id": "P2-S02",
+      "concept_id": "process-server",
+      "profile_id": "P2",
+      "profile_world": "small-ecommerce-operations",
+      "candidate_text": "Active campaign-preview operator and internal review desk",
+      "role_map": {
+        "process": "active campaign-preview operator",
+        "server": "internal review desk"
+      },
+      "relations_preserved": [],
+      "non_mappings": [
+        "Not yet structurally validated; must not be shown to users."
+      ],
+      "breakpoint": "A real server can involve proxies, multiple processes or instances, and concurrent requests; the same program can act as both client and server across different connections.",
+      "neutral_fallback": "Bind only a dedicated, secret-free `public-demo` directory to `127.0.0.1` as a temporary static server, then stop it with Ctrl-C. Do not share a home directory or project root.",
+      "confidence": "unvalidated",
+      "user_status": "candidate",
+      "validation_status": "candidate_requires_validation",
+      "verified_at": "2026-07-18"
+    },
+    {
+      "mapping_version": 1,
+      "mapping_id": "P3-S02",
+      "concept_id": "process-server",
+      "profile_id": "P3",
+      "profile_world": "humanities-student",
+      "candidate_text": "Student-club event rehearsal booth",
+      "role_map": {
+        "process": "rehearsal in progress",
+        "server": "event rehearsal booth"
+      },
+      "relations_preserved": [],
+      "non_mappings": [
+        "Not yet structurally validated; must not be shown to users."
+      ],
+      "breakpoint": "A real server can involve proxies, multiple processes or instances, and concurrent requests; the same program can act as both client and server across different connections.",
+      "neutral_fallback": "Bind only a dedicated, secret-free `public-demo` directory to `127.0.0.1` as a temporary static server, then stop it with Ctrl-C. Do not share a home directory or project root.",
+      "confidence": "unvalidated",
+      "user_status": "candidate",
+      "validation_status": "candidate_requires_validation",
+      "verified_at": "2026-07-18"
+    },
+    {
+      "mapping_version": 1,
+      "mapping_id": "P1-S03",
+      "concept_id": "environment-variable-config",
+      "profile_id": "P1",
+      "profile_world": "hospital-nursing",
+      "candidate_text": "Shift-start setup card; secrets remain separately sealed",
+      "role_map": {
+        "environment variable": "setup card issued at shift start",
+        "secret": "separate sealed envelope"
+      },
+      "relations_preserved": [],
+      "non_mappings": [
+        "Not yet structurally validated; must not be shown to users."
+      ],
+      "breakpoint": "Values are strings by default; inheritance, case sensitivity, precedence, and persistence vary by OS/runtime; and environment values can leak through logs, crash dumps, or process inspection.",
+      "neutral_fallback": "Pass a non-sensitive value such as `APP_MODE=demo` to one process only, and log only whether the value exists.",
+      "confidence": "unvalidated",
+      "user_status": "candidate",
+      "validation_status": "candidate_requires_validation",
+      "verified_at": "2026-07-18"
+    },
+    {
+      "mapping_version": 1,
+      "mapping_id": "P2-S03",
+      "concept_id": "environment-variable-config",
+      "profile_id": "P2",
+      "profile_world": "small-ecommerce-operations",
+      "candidate_text": "Campaign launch settings sheet; API key in a safe",
+      "role_map": {
+        "config": "campaign launch settings sheet",
+        "secret": "API key safe"
+      },
+      "relations_preserved": [],
+      "non_mappings": [
+        "Not yet structurally validated; must not be shown to users."
+      ],
+      "breakpoint": "Values are strings by default; inheritance, case sensitivity, precedence, and persistence vary by OS/runtime; and environment values can leak through logs, crash dumps, or process inspection.",
+      "neutral_fallback": "Pass a non-sensitive value such as `APP_MODE=demo` to one process only, and log only whether the value exists.",
+      "confidence": "unvalidated",
+      "user_status": "candidate",
+      "validation_status": "candidate_requires_validation",
+      "verified_at": "2026-07-18"
+    },
+    {
+      "mapping_version": 1,
+      "mapping_id": "P3-S03",
+      "concept_id": "environment-variable-config",
+      "profile_id": "P3",
+      "profile_world": "humanities-student",
+      "candidate_text": "Event operations settings sheet; secrets in a separate lockbox",
+      "role_map": {
+        "config": "event operations settings sheet",
+        "secret": "separate lockbox"
+      },
+      "relations_preserved": [],
+      "non_mappings": [
+        "Not yet structurally validated; must not be shown to users."
+      ],
+      "breakpoint": "Values are strings by default; inheritance, case sensitivity, precedence, and persistence vary by OS/runtime; and environment values can leak through logs, crash dumps, or process inspection.",
+      "neutral_fallback": "Pass a non-sensitive value such as `APP_MODE=demo` to one process only, and log only whether the value exists.",
+      "confidence": "unvalidated",
+      "user_status": "candidate",
+      "validation_status": "candidate_requires_validation",
+      "verified_at": "2026-07-18"
+    },
+    {
+      "mapping_version": 1,
+      "mapping_id": "P1-S04",
+      "concept_id": "api-request-response",
+      "profile_id": "P1",
+      "profile_world": "hospital-nursing",
+      "candidate_text": "Lab order → lab intake desk → result",
+      "role_map": {
+        "request": "lab order",
+        "endpoint": "lab intake desk",
+        "response": "lab result"
+      },
+      "relations_preserved": [],
+      "non_mappings": [
+        "Not yet structurally validated; must not be shown to users."
+      ],
+      "breakpoint": "Unlike a human service desk, an API does not resolve ambiguous requests on its own; schemas, methods, rate limits, retries, and partial failures apply.",
+      "neutral_fallback": "Trace a fictional read-only `GET /tasks/42` that returns `200 OK` and JSON. Before a real call, check the method, target, cost, and credential.",
+      "confidence": "unvalidated",
+      "user_status": "candidate",
+      "validation_status": "candidate_requires_validation",
+      "verified_at": "2026-07-18"
+    },
+    {
+      "mapping_version": 1,
+      "mapping_id": "P2-S04",
+      "concept_id": "api-request-response",
+      "profile_id": "P2",
+      "profile_world": "small-ecommerce-operations",
+      "candidate_text": "Analytics request form → reporting endpoint → result",
+      "role_map": {
+        "request": "analytics request form",
+        "endpoint": "reporting endpoint",
+        "response": "analytics result"
+      },
+      "relations_preserved": [],
+      "non_mappings": [
+        "Not yet structurally validated; must not be shown to users."
+      ],
+      "breakpoint": "Unlike a human service desk, an API does not resolve ambiguous requests on its own; schemas, methods, rate limits, retries, and partial failures apply.",
+      "neutral_fallback": "Trace a fictional read-only `GET /tasks/42` that returns `200 OK` and JSON. Before a real call, check the method, target, cost, and credential.",
+      "confidence": "unvalidated",
+      "user_status": "candidate",
+      "validation_status": "candidate_requires_validation",
+      "verified_at": "2026-07-18"
+    },
+    {
+      "mapping_version": 1,
+      "mapping_id": "P3-S04",
+      "concept_id": "api-request-response",
+      "profile_id": "P3",
+      "profile_world": "humanities-student",
+      "candidate_text": "Book search request → search desk → list",
+      "role_map": {
+        "request": "book search request",
+        "endpoint": "search desk",
+        "response": "book list"
+      },
+      "relations_preserved": [],
+      "non_mappings": [
+        "Not yet structurally validated; must not be shown to users."
+      ],
+      "breakpoint": "Unlike a human service desk, an API does not resolve ambiguous requests on its own; schemas, methods, rate limits, retries, and partial failures apply.",
+      "neutral_fallback": "Trace a fictional read-only `GET /tasks/42` that returns `200 OK` and JSON. Before a real call, check the method, target, cost, and credential.",
+      "confidence": "unvalidated",
+      "user_status": "candidate",
+      "validation_status": "candidate_requires_validation",
+      "verified_at": "2026-07-18"
+    },
+    {
+      "mapping_version": 1,
+      "mapping_id": "P1-S05",
+      "concept_id": "credential-api-key-access-token",
+      "profile_id": "P1",
+      "profile_world": "hospital-nursing",
+      "candidate_text": "Shared access key, time-limited wristband, and typesetting unit",
+      "role_map": {
+        "api key": "shared access key",
+        "access token": "time-limited wristband",
+        "llm token": "typesetting unit"
+      },
+      "relations_preserved": [],
+      "non_mappings": [
+        "Not yet structurally validated; must not be shown to users."
+      ],
+      "breakpoint": "A token does not always represent a person and may be opaque; API-key authority models differ by provider. A digital secret can be copied indefinitely without its owner's knowledge.",
+      "neutral_fallback": "Put only `OPENAI_API_KEY=replace_me` in `.env.example`, and store the real value in a server environment variable or secret manager. If it has already been exposed, revoke or rotate it before merely deleting it.",
+      "confidence": "unvalidated",
+      "user_status": "candidate",
+      "validation_status": "candidate_requires_validation",
+      "verified_at": "2026-07-18"
+    },
+    {
+      "mapping_version": 1,
+      "mapping_id": "P2-S05",
+      "concept_id": "credential-api-key-access-token",
+      "profile_id": "P2",
+      "profile_world": "small-ecommerce-operations",
+      "candidate_text": "Service key, campaign-scoped authorization, and text-processing unit",
+      "role_map": {
+        "api key": "service key",
+        "access token": "campaign-scoped authorization",
+        "llm token": "text-processing unit"
+      },
+      "relations_preserved": [],
+      "non_mappings": [
+        "Not yet structurally validated; must not be shown to users."
+      ],
+      "breakpoint": "A token does not always represent a person and may be opaque; API-key authority models differ by provider. A digital secret can be copied indefinitely without its owner's knowledge.",
+      "neutral_fallback": "Put only `OPENAI_API_KEY=replace_me` in `.env.example`, and store the real value in a server environment variable or secret manager. If it has already been exposed, revoke or rotate it before merely deleting it.",
+      "confidence": "unvalidated",
+      "user_status": "candidate",
+      "validation_status": "candidate_requires_validation",
+      "verified_at": "2026-07-18"
+    },
+    {
+      "mapping_version": 1,
+      "mapping_id": "P3-S05",
+      "concept_id": "credential-api-key-access-token",
+      "profile_id": "P3",
+      "profile_world": "humanities-student",
+      "candidate_text": "Library key, event wristband, and print unit",
+      "role_map": {
+        "api key": "library key",
+        "access token": "event wristband",
+        "llm token": "print unit"
+      },
+      "relations_preserved": [],
+      "non_mappings": [
+        "Not yet structurally validated; must not be shown to users."
+      ],
+      "breakpoint": "A token does not always represent a person and may be opaque; API-key authority models differ by provider. A digital secret can be copied indefinitely without its owner's knowledge.",
+      "neutral_fallback": "Put only `OPENAI_API_KEY=replace_me` in `.env.example`, and store the real value in a server environment variable or secret manager. If it has already been exposed, revoke or rotate it before merely deleting it.",
+      "confidence": "unvalidated",
+      "user_status": "candidate",
+      "validation_status": "candidate_requires_validation",
+      "verified_at": "2026-07-18"
+    },
+    {
+      "mapping_version": 1,
+      "mapping_id": "P1-S06",
+      "concept_id": "database-table-query",
+      "profile_id": "P1",
+      "profile_world": "hospital-nursing",
+      "candidate_text": "Request-desk operator and separate records system",
+      "role_map": {
+        "server": "request-desk operator",
+        "database": "separate records system"
+      },
+      "relations_preserved": [],
+      "non_mappings": [
+        "Not yet structurally validated; must not be shown to users."
+      ],
+      "breakpoint": "Real databases have transactions, constraints, indexes, joins, concurrency, NULL, and optimizers, so they differ from a simple filing cabinet or spreadsheet.",
+      "neutral_fallback": "Start with a query such as `SELECT 2 + 2 AS answer;` that does not change stored data. Before an update, use a constrained `SELECT` to inspect the target rows.",
+      "confidence": "unvalidated",
+      "user_status": "candidate",
+      "validation_status": "candidate_requires_validation",
+      "verified_at": "2026-07-18"
+    },
+    {
+      "mapping_version": 1,
+      "mapping_id": "P2-S06",
+      "concept_id": "database-table-query",
+      "profile_id": "P2",
+      "profile_world": "small-ecommerce-operations",
+      "candidate_text": "Customer-support API operator and order ledger",
+      "role_map": {
+        "server": "customer-support API operator",
+        "database": "order ledger"
+      },
+      "relations_preserved": [],
+      "non_mappings": [
+        "Not yet structurally validated; must not be shown to users."
+      ],
+      "breakpoint": "Real databases have transactions, constraints, indexes, joins, concurrency, NULL, and optimizers, so they differ from a simple filing cabinet or spreadsheet.",
+      "neutral_fallback": "Start with a query such as `SELECT 2 + 2 AS answer;` that does not change stored data. Before an update, use a constrained `SELECT` to inspect the target rows.",
+      "confidence": "unvalidated",
+      "user_status": "candidate",
+      "validation_status": "candidate_requires_validation",
+      "verified_at": "2026-07-18"
+    },
+    {
+      "mapping_version": 1,
+      "mapping_id": "P3-S06",
+      "concept_id": "database-table-query",
+      "profile_id": "P3",
+      "profile_world": "humanities-student",
+      "candidate_text": "Checkout desk and book-record database",
+      "role_map": {
+        "server": "checkout desk",
+        "database": "book-record database"
+      },
+      "relations_preserved": [],
+      "non_mappings": [
+        "Not yet structurally validated; must not be shown to users."
+      ],
+      "breakpoint": "Real databases have transactions, constraints, indexes, joins, concurrency, NULL, and optimizers, so they differ from a simple filing cabinet or spreadsheet.",
+      "neutral_fallback": "Start with a query such as `SELECT 2 + 2 AS answer;` that does not change stored data. Before an update, use a constrained `SELECT` to inspect the target rows.",
+      "confidence": "unvalidated",
+      "user_status": "candidate",
+      "validation_status": "candidate_requires_validation",
+      "verified_at": "2026-07-18"
+    },
+    {
+      "mapping_version": 1,
+      "mapping_id": "P1-S07",
+      "concept_id": "mcp-tool-resource",
+      "profile_id": "P1",
+      "profile_world": "hospital-nursing",
+      "candidate_text": "Hospital front desk and dedicated line to an outside lab",
+      "role_map": {
+        "host": "hospital front desk",
+        "client": "dedicated line to an outside lab",
+        "server": "outside lab"
+      },
+      "relations_preserved": [],
+      "non_mappings": [
+        "Not yet structurally validated; must not be shown to users."
+      ],
+      "breakpoint": "A standard connection does not guarantee a server's trustworthiness, accuracy, or least privilege, and a hosted product may make separate execution boundaries look like one boundary in the UI.",
+      "neutral_fallback": "**Under Fairytail policy,** start with read-only resource retrieval and show the exact target, expected side effects, and confirmation state for sensitive tools. Bind a remote MCP token to that server's audience/resource, and prohibit downstream token passthrough.",
+      "confidence": "unvalidated",
+      "user_status": "candidate",
+      "validation_status": "candidate_requires_validation",
+      "verified_at": "2026-07-18"
+    },
+    {
+      "mapping_version": 1,
+      "mapping_id": "P2-S07",
+      "concept_id": "mcp-tool-resource",
+      "profile_id": "P2",
+      "profile_world": "small-ecommerce-operations",
+      "candidate_text": "Operations hub and vendor integration line",
+      "role_map": {
+        "host": "operations hub",
+        "client": "vendor integration line",
+        "server": "external vendor"
+      },
+      "relations_preserved": [],
+      "non_mappings": [
+        "Not yet structurally validated; must not be shown to users."
+      ],
+      "breakpoint": "A standard connection does not guarantee a server's trustworthiness, accuracy, or least privilege, and a hosted product may make separate execution boundaries look like one boundary in the UI.",
+      "neutral_fallback": "**Under Fairytail policy,** start with read-only resource retrieval and show the exact target, expected side effects, and confirmation state for sensitive tools. Bind a remote MCP token to that server's audience/resource, and prohibit downstream token passthrough.",
+      "confidence": "unvalidated",
+      "user_status": "candidate",
+      "validation_status": "candidate_requires_validation",
+      "verified_at": "2026-07-18"
+    },
+    {
+      "mapping_version": 1,
+      "mapping_id": "P3-S07",
+      "concept_id": "mcp-tool-resource",
+      "profile_id": "P3",
+      "profile_world": "humanities-student",
+      "candidate_text": "Student council help desk and vendor contact line",
+      "role_map": {
+        "host": "student council help desk",
+        "client": "vendor contact line",
+        "server": "external vendor"
+      },
+      "relations_preserved": [],
+      "non_mappings": [
+        "Not yet structurally validated; must not be shown to users."
+      ],
+      "breakpoint": "A standard connection does not guarantee a server's trustworthiness, accuracy, or least privilege, and a hosted product may make separate execution boundaries look like one boundary in the UI.",
+      "neutral_fallback": "**Under Fairytail policy,** start with read-only resource retrieval and show the exact target, expected side effects, and confirmation state for sensitive tools. Bind a remote MCP token to that server's audience/resource, and prohibit downstream token passthrough.",
+      "confidence": "unvalidated",
+      "user_status": "candidate",
+      "validation_status": "candidate_requires_validation",
+      "verified_at": "2026-07-18"
+    },
+    {
+      "mapping_version": 1,
+      "mapping_id": "P1-S08",
+      "concept_id": "permission-authentication-authorization",
+      "profile_id": "P1",
+      "profile_world": "hospital-nursing",
+      "candidate_text": "Badge verification vs. access rules for a specific medication room",
+      "role_map": {
+        "authentication": "badge verification",
+        "authorization": "access rules for a specific medication room"
+      },
+      "relations_preserved": [],
+      "non_mappings": [
+        "Not yet structurally validated; must not be shown to users."
+      ],
+      "breakpoint": "An identity may be a service, process, or device rather than a person; policies can vary dynamically by time, relationship, or resource owner; and anonymous AuthZ can occur without AuthN.",
+      "neutral_fallback": "Use `ls -l README.md` only to inspect permissions. Do not immediately suggest `chmod 777` as the solution.",
+      "confidence": "unvalidated",
+      "user_status": "candidate",
+      "validation_status": "candidate_requires_validation",
+      "verified_at": "2026-07-18"
+    },
+    {
+      "mapping_version": 1,
+      "mapping_id": "P2-S08",
+      "concept_id": "permission-authentication-authorization",
+      "profile_id": "P2",
+      "profile_world": "small-ecommerce-operations",
+      "candidate_text": "Account sign-in vs. refund authorization",
+      "role_map": {
+        "authentication": "account sign-in",
+        "authorization": "refund authorization"
+      },
+      "relations_preserved": [],
+      "non_mappings": [
+        "Not yet structurally validated; must not be shown to users."
+      ],
+      "breakpoint": "An identity may be a service, process, or device rather than a person; policies can vary dynamically by time, relationship, or resource owner; and anonymous AuthZ can occur without AuthN.",
+      "neutral_fallback": "Use `ls -l README.md` only to inspect permissions. Do not immediately suggest `chmod 777` as the solution.",
+      "confidence": "unvalidated",
+      "user_status": "candidate",
+      "validation_status": "candidate_requires_validation",
+      "verified_at": "2026-07-18"
+    },
+    {
+      "mapping_version": 1,
+      "mapping_id": "P3-S08",
+      "concept_id": "permission-authentication-authorization",
+      "profile_id": "P3",
+      "profile_world": "humanities-student",
+      "candidate_text": "Student ID verification vs. special-collections authorization",
+      "role_map": {
+        "authentication": "student ID verification",
+        "authorization": "special-collections authorization"
+      },
+      "relations_preserved": [],
+      "non_mappings": [
+        "Not yet structurally validated; must not be shown to users."
+      ],
+      "breakpoint": "An identity may be a service, process, or device rather than a person; policies can vary dynamically by time, relationship, or resource owner; and anonymous AuthZ can occur without AuthN.",
+      "neutral_fallback": "Use `ls -l README.md` only to inspect permissions. Do not immediately suggest `chmod 777` as the solution.",
+      "confidence": "unvalidated",
+      "user_status": "candidate",
+      "validation_status": "candidate_requires_validation",
+      "verified_at": "2026-07-18"
+    },
+    {
+      "mapping_version": 1,
+      "mapping_id": "P1-S09",
+      "concept_id": "file-path-project-repository",
+      "profile_id": "P1",
+      "profile_world": "hospital-nursing",
+      "candidate_text": "Work binder, document address, and history archive",
+      "role_map": {
+        "project": "work binder",
+        "path": "document address",
+        "repository": "history archive"
+      },
+      "relations_preserved": [],
+      "non_mappings": [
+        "Not yet structurally validated; must not be shown to users."
+      ],
+      "breakpoint": "Symlinks and hard links can give one file multiple paths, and a repository is a graph/refs/objects structure rather than a simple backup folder.",
+      "neutral_fallback": "Use `pwd`, `git rev-parse --show-toplevel`, and `git status --short` to inspect the location and change state.",
+      "confidence": "unvalidated",
+      "user_status": "candidate",
+      "validation_status": "candidate_requires_validation",
+      "verified_at": "2026-07-18"
+    },
+    {
+      "mapping_version": 1,
+      "mapping_id": "P2-S09",
+      "concept_id": "file-path-project-repository",
+      "profile_id": "P2",
+      "profile_world": "small-ecommerce-operations",
+      "candidate_text": "Campaign folder, asset address, and version history",
+      "role_map": {
+        "project": "campaign folder",
+        "path": "asset address",
+        "repository": "version history"
+      },
+      "relations_preserved": [],
+      "non_mappings": [
+        "Not yet structurally validated; must not be shown to users."
+      ],
+      "breakpoint": "Symlinks and hard links can give one file multiple paths, and a repository is a graph/refs/objects structure rather than a simple backup folder.",
+      "neutral_fallback": "Use `pwd`, `git rev-parse --show-toplevel`, and `git status --short` to inspect the location and change state.",
+      "confidence": "unvalidated",
+      "user_status": "candidate",
+      "validation_status": "candidate_requires_validation",
+      "verified_at": "2026-07-18"
+    },
+    {
+      "mapping_version": 1,
+      "mapping_id": "P3-S09",
+      "concept_id": "file-path-project-repository",
+      "profile_id": "P3",
+      "profile_world": "humanities-student",
+      "candidate_text": "Assignment folder, file address, and Git history",
+      "role_map": {
+        "project": "assignment folder",
+        "path": "file address",
+        "repository": "Git history"
+      },
+      "relations_preserved": [],
+      "non_mappings": [
+        "Not yet structurally validated; must not be shown to users."
+      ],
+      "breakpoint": "Symlinks and hard links can give one file multiple paths, and a repository is a graph/refs/objects structure rather than a simple backup folder.",
+      "neutral_fallback": "Use `pwd`, `git rev-parse --show-toplevel`, and `git status --short` to inspect the location and change state.",
+      "confidence": "unvalidated",
+      "user_status": "candidate",
+      "validation_status": "candidate_requires_validation",
+      "verified_at": "2026-07-18"
+    },
+    {
+      "mapping_version": 1,
+      "mapping_id": "P1-S10",
+      "concept_id": "local-remote-cloud-deploy",
+      "profile_id": "P1",
+      "profile_world": "hospital-nursing",
+      "candidate_text": "My workstation → another department → production rollout",
+      "role_map": {
+        "local": "my workstation",
+        "remote": "another department",
+        "deploy": "production rollout"
+      },
+      "relations_preserved": [],
+      "non_mappings": [
+        "Not yet structurally validated; must not be shown to users."
+      ],
+      "breakpoint": "A remote can be on the same machine, and cloud is not simply “someone else's single computer.” A deployment can include DNS, secrets, migrations, health checks, rollback, and other state transitions.",
+      "neutral_fallback": "Use `git remote -v` only to inspect the target, and limit the first publication to a secret-free static non-production preview. Before deploying, check the target, cost, secrets, health checks, and rollback.",
+      "confidence": "unvalidated",
+      "user_status": "candidate",
+      "validation_status": "candidate_requires_validation",
+      "verified_at": "2026-07-18"
+    },
+    {
+      "mapping_version": 1,
+      "mapping_id": "P2-S10",
+      "concept_id": "local-remote-cloud-deploy",
+      "profile_id": "P2",
+      "profile_world": "small-ecommerce-operations",
+      "candidate_text": "Local draft → remote repository → preview release",
+      "role_map": {
+        "local": "local draft",
+        "remote": "remote repository",
+        "deploy": "preview release"
+      },
+      "relations_preserved": [],
+      "non_mappings": [
+        "Not yet structurally validated; must not be shown to users."
+      ],
+      "breakpoint": "A remote can be on the same machine, and cloud is not simply “someone else's single computer.” A deployment can include DNS, secrets, migrations, health checks, rollback, and other state transitions.",
+      "neutral_fallback": "Use `git remote -v` only to inspect the target, and limit the first publication to a secret-free static non-production preview. Before deploying, check the target, cost, secrets, health checks, and rollback.",
+      "confidence": "unvalidated",
+      "user_status": "candidate",
+      "validation_status": "candidate_requires_validation",
+      "verified_at": "2026-07-18"
+    },
+    {
+      "mapping_version": 1,
+      "mapping_id": "P3-S10",
+      "concept_id": "local-remote-cloud-deploy",
+      "profile_id": "P3",
+      "profile_world": "humanities-student",
+      "candidate_text": "Personal assignment → shared repository → presentation preview",
+      "role_map": {
+        "local": "personal assignment",
+        "remote": "shared repository",
+        "deploy": "presentation preview"
+      },
+      "relations_preserved": [],
+      "non_mappings": [
+        "Not yet structurally validated; must not be shown to users."
+      ],
+      "breakpoint": "A remote can be on the same machine, and cloud is not simply “someone else's single computer.” A deployment can include DNS, secrets, migrations, health checks, rollback, and other state transitions.",
+      "neutral_fallback": "Use `git remote -v` only to inspect the target, and limit the first publication to a secret-free static non-production preview. Before deploying, check the target, cost, secrets, health checks, and rollback.",
+      "confidence": "unvalidated",
+      "user_status": "candidate",
+      "validation_status": "candidate_requires_validation",
+      "verified_at": "2026-07-18"
+    }
+  ]
+}
